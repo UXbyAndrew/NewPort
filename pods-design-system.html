@@ -237,29 +237,51 @@
     </section>
 
     <!-- CLIMAX: the number -->
-    <section class="scene scene--climax" data-scene="dial" aria-labelledby="climax-h">
-      <p class="act act--center">The result</p>
-      <div class="dial">
-        <svg viewBox="0 0 200 200" aria-hidden="true"><circle class="dial__track" cx="100" cy="100" r="88"/><circle class="dial__arc" cx="100" cy="100" r="88"/></svg>
-        <p class="dial__num" aria-hidden="true"><span data-dial>60+</span><small>minutes</small></p>
+    <section class="scene pinned fade scene--climax" data-scene="dial" aria-labelledby="climax-h">
+      <div class="stage stage--climax">
+        <div class="climax">
+          <p class="act act--center">The result</p>
+          <div class="dial">
+            <svg viewBox="0 0 200 200" aria-hidden="true"><circle class="dial__track" cx="100" cy="100" r="88"/><circle class="dial__arc" cx="100" cy="100" r="88"/></svg>
+            <p class="dial__num" aria-hidden="true"><span data-dial>60+</span><small>minutes</small></p>
+          </div>
+          <h2 id="climax-h" class="big-line big-line--sm">Hour‑long handoff walkthroughs became <span class="nw">15–20 minute</span> implementation conversations.</h2>
+        </div>
       </div>
-      <h2 id="climax-h" class="big-line big-line--sm">Hour‑long handoff walkthroughs became <span class="nw">15–20 minute</span> implementation conversations.</h2>
     </section>
 
-    <!-- RESOLUTION -->
-    <section class="scene scene--out" id="act-outcome" data-act="5" aria-labelledby="out-h">
-      <h2 id="out-h" class="big-line" data-r>Quality got easier to repeat.</h2>
-      <ul class="outs">
-        <li data-r><strong>3 → 1</strong><span>Aligned teams</span>One language across three product areas.</li>
-        <li data-r><strong>1 owner</strong><span>Clear ownership</span>A contribution model with accountability.</li>
-        <li data-r><strong>Standards</strong><span>Repeatable quality</span>Replaced one‑off interpretation.</li>
-      </ul>
+    <!-- RESOLUTION: the same three screens from Act I, now one language -->
+    <section class="scene pinned pinned--long fade" id="act-outcome" data-scene="resolve" data-act="5" aria-labelledby="out-h">
+      <div class="stage stage--resolve">
+        <div class="actcard" aria-hidden="true"><span>Resolution</span>One language</div>
+        <div class="resolve">
+          <p class="beats__tag">Illustrative</p>
+          <div class="scrs"><div class="scr" style="--i:0"><p class="scr__area">Discovery</p><div class="scr__body"><span class="scr__ok" aria-hidden="true">✓</span><p class="scr__h"><span class="bf" style="font:600 22px/1.05 var(--display)">Book your container</span><span class="af">Book your container</span></p><span class="scr__in"></span><span class="scr__in scr__in--s"></span><span class="scr__cta"><span class="bf" style="background:#e92e3d;border-radius:0;font:600 14px var(--body)">Get a quote</span><span class="af">Get a quote</span></span></div></div><div class="scr" style="--i:1"><p class="scr__area">Booking</p><div class="scr__body"><span class="scr__ok" aria-hidden="true">✓</span><p class="scr__h"><span class="bf" style="font:italic 400 22px/1.1 Georgia,serif">Book your container</span><span class="af">Book your container</span></p><span class="scr__in"></span><span class="scr__in scr__in--s"></span><span class="scr__cta"><span class="bf" style="background:#b11326;border-radius:999px;font:700 12px var(--body);letter-spacing:.08em">GET A QUOTE</span><span class="af">Get a quote</span></span></div></div><div class="scr" style="--i:2"><p class="scr__area">Post‑Booking</p><div class="scr__body"><span class="scr__ok" aria-hidden="true">✓</span><p class="scr__h"><span class="bf" style="font:800 15px/1.2 var(--body);text-transform:uppercase">Book your container</span><span class="af">Book your container</span></p><span class="scr__in"></span><span class="scr__in scr__in--s"></span><span class="scr__cta"><span class="bf" style="background:#f67a7f;border-radius:10px;font:500 15px var(--body);color:#2a0a0d">Get A Quote →</span><span class="af">Get a quote</span></span></div></div></div>
+          <ul class="chips">
+            <li data-at=".6"><strong>3 → 1</strong>Aligned teams</li>
+            <li data-at=".66"><strong>1 owner</strong>Clear ownership</li>
+            <li data-at=".72"><strong>Standards</strong>Repeatable quality</li>
+          </ul>
+        </div>
+        <div class="lower lower--center">
+          <h2 id="out-h" class="visually-hidden">Outcome</h2>
+          <ol class="caps">
+            <li data-from=".1" data-to=".34">Remember these three screens?</li>
+            <li data-from=".34" data-to=".58">Same product areas. Now one language.</li>
+            <li data-from=".58" data-to=".82">One owner, shared components, and standards instead of one‑off interpretation.</li>
+            <li data-from=".82" data-to="1.01"><strong>Quality got easier to repeat.</strong></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene--end" data-act="5" aria-label="What leadership said">
       <div class="endwrap">
         <canvas class="swatches swatches--calm" data-swatches="calm" aria-hidden="true"></canvas>
-      <figure class="endcard" data-r>
-        <blockquote><p>“Quality and consistency of PODS designs from all teams has greatly risen.”</p></blockquote>
-        <figcaption>VP of Digital Design, PODS</figcaption>
-      </figure>
+        <figure class="endcard" data-r>
+          <blockquote><p>“Quality and consistency of PODS designs from all teams has greatly risen.”</p></blockquote>
+          <figcaption>VP of Digital Design, PODS</figcaption>
+        </figure>
       </div>
     </section>
 
