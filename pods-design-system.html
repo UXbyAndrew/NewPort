@@ -71,9 +71,15 @@
     </section>
 
     <!-- ACT I: THE PROBLEM — the noise -->
-    <section class="scene pinned pinned--long" id="act-problem" data-scene="noise" data-act="0" aria-labelledby="problem-h">
+    <section class="scene pinned pinned--long fade" id="act-problem" data-scene="noise" data-act="0" aria-labelledby="problem-h">
       <div class="stage">
         <canvas class="swatches" data-swatches="chaos" aria-hidden="true"></canvas>
+        <div class="specimens" aria-hidden="true">
+          <span style="--x:58%;--y:22%;--r:-5deg;--dl:0s;font:600 clamp(26px,3vw,44px)/1 var(--display);letter-spacing:-.03em">Book your container</span>
+          <span style="--x:66%;--y:40%;--r:3deg;--dl:-3s;font:300 clamp(22px,2.6vw,38px)/1 var(--body);letter-spacing:.08em">Book your container</span>
+          <span style="--x:54%;--y:58%;--r:-2deg;--dl:-6s;font:italic 400 clamp(24px,2.8vw,40px)/1 Georgia,serif">Book your container</span>
+          <span style="--x:64%;--y:74%;--r:4deg;--dl:-9s;font:800 clamp(16px,1.8vw,26px)/1 var(--body);text-transform:uppercase;letter-spacing:.02em">Book your container</span>
+        </div>
         <div class="lower">
           <p class="act">Act I — The problem</p>
           <h2 id="problem-h" class="visually-hidden">The problem</h2>
@@ -102,7 +108,7 @@
     </section>
 
     <!-- ACT II: FOUNDATIONS — the noise resolves -->
-    <section class="scene pinned pinned--long" id="act-foundations" data-scene="collapse" data-act="2" aria-labelledby="found-h">
+    <section class="scene pinned pinned--long fade" id="act-foundations" data-scene="collapse" data-act="2" aria-labelledby="found-h">
       <div class="stage">
         <canvas class="swatches" data-swatches="collapse" aria-hidden="true"></canvas>
         <div class="counter" aria-hidden="true"><span data-count>800+</span><small data-count-unit>colors</small></div>
@@ -119,15 +125,15 @@
     </section>
 
     <!-- Camera over the real palette doc -->
-    <section class="scene pinned" data-scene="cam" data-act="2" aria-label="The palette documentation"
-      data-cam='[[0,1,0.5,0.5],[0.35,2.4,0.36,0.54],[0.7,2.4,0.36,0.72],[1,1.15,0.5,0.5]]'>
+    <section class="scene pinned fade" data-scene="cam" data-act="2" aria-label="The palette documentation"
+      data-cam='[[0,1,0.5,0.5],[0.14,1,0.5,0.5],[0.3,2.3,0.355,0.52],[0.52,2.3,0.355,0.52],[0.64,2.3,0.355,0.71],[0.84,2.3,0.355,0.71],[1,1.05,0.5,0.5]]' data-spots='[[0.3,0.53,0.145,0.44,0.565,0.6],[0.64,0.85,0.145,0.625,0.565,0.79]]'>
       <div class="stage stage--cam">
-        <div class="cam"><img class="cam__img" src="assets/img/pods/full-color.webp" alt="PODS primary color palette documentation: neutral, primary red, Oasis blue, accent blue, success, warning, and destructive ramps" width="3033" height="1910" loading="lazy"></div>
+        <div class="cam"><div class="cam__inner"><img class="cam__img" src="assets/img/pods/full-color.webp" alt="PODS primary color palette documentation: neutral, primary red, Oasis blue, accent blue, success, warning, and destructive ramps" width="3033" height="1910" loading="lazy"><span class="spot" aria-hidden="true"></span></div></div>
         <div class="lower lower--light">
           <ol class="caps">
-            <li data-from="0" data-to=".3">The real thing: the palette, documented.</li>
-            <li data-from=".3" data-to=".62">Primary red: ten named steps, from tint to shade.</li>
-            <li data-from=".62" data-to=".86">Oasis blue: the same structure, so every ramp reads the same way.</li>
+            <li data-from="0" data-to=".22">The real thing: the palette, documented.</li>
+            <li data-from=".22" data-to=".56">Primary red: ten named steps, from tint to shade.</li>
+            <li data-from=".56" data-to=".86">Oasis blue: the same structure, so every ramp reads the same way.</li>
             <li data-from=".86" data-to="1.01">Type and color rolled out everywhere. Engineering saw low risk.</li>
           </ol>
         </div>
@@ -156,33 +162,33 @@
     </section>
 
     <!-- ACT III: COMPONENTS — camera over the button system -->
-    <section class="scene pinned pinned--long" id="act-components" data-scene="cam" data-act="4" aria-labelledby="comp-h"
-      data-cam='[[0,1,0.5,0.5],[0.22,2.6,0.38,0.3],[0.44,4,0.235,0.32],[0.66,2.6,0.78,0.3],[1,1,0.5,0.5]]'>
+    <section class="scene pinned fade pinned--long" id="act-components" data-scene="cam" data-act="4" aria-labelledby="comp-h"
+      data-cam='[[0,1,0.5,0.5],[0.1,1,0.5,0.5],[0.2,1.25,0.585,0.565],[0.34,1.25,0.585,0.565],[0.46,3.2,0.233,0.3],[0.62,3.2,0.233,0.3],[0.72,2.4,0.785,0.3],[0.88,2.4,0.785,0.3],[1,1,0.5,0.5]]' data-spots='[[0.2,0.35,0.195,0.17,0.975,0.96],[0.46,0.63,0.198,0.185,0.27,0.41],[0.72,0.89,0.6,0.185,0.975,0.41]]'>
       <div class="stage stage--cam">
-        <div class="cam"><img class="cam__img" src="assets/img/pods/full-buttons.webp" alt="The PODS button system: every style and size across default, hover, pressed, focus, and disabled states, in red and blue" width="2341" height="1449" loading="lazy"></div>
+        <div class="cam"><div class="cam__inner"><img class="cam__img" src="assets/img/pods/full-buttons.webp" alt="The PODS button system: every style and size across default, hover, pressed, focus, and disabled states, in red and blue" width="2341" height="1449" loading="lazy"><span class="spot" aria-hidden="true"></span></div></div>
         <div class="lower lower--light">
           <p class="act">Act III — Components</p>
           <h2 id="comp-h" class="visually-hidden">Components</h2>
           <ol class="caps">
-            <li data-from="0" data-to=".2">Then the patterns teams used most, and misused most.</li>
-            <li data-from=".2" data-to=".42">Every style and size, in one matrix.</li>
-            <li data-from=".42" data-to=".64">Every state defined: default, hover, pressed, focus, disabled.</li>
-            <li data-from=".64" data-to=".86">Red drives top‑of‑funnel actions. Blue carries mid‑funnel decisions.</li>
-            <li data-from=".86" data-to="1.01">One source of truth for all three product areas.</li>
+            <li data-from="0" data-to=".17">Then the patterns teams used most, and misused most.</li>
+            <li data-from=".17" data-to=".4">Every style and size, in one matrix.</li>
+            <li data-from=".4" data-to=".66">Every state defined: default, hover, pressed, focus, disabled.</li>
+            <li data-from=".66" data-to=".92">Red drives top‑of‑funnel actions. Blue carries mid‑funnel decisions.</li>
+            <li data-from=".92" data-to="1.01">One source of truth for all three product areas.</li>
           </ol>
         </div>
       </div>
     </section>
 
-    <section class="scene pinned" data-scene="cam" data-act="4" aria-label="Component documentation"
-      data-cam='[[0,1,0.5,0.5],[0.3,2.1,0.61,0.42],[0.62,3.2,0.885,0.36],[1,1,0.5,0.5]]'>
+    <section class="scene pinned fade" data-scene="cam" data-act="4" aria-label="Component documentation"
+      data-cam='[[0,1,0.5,0.5],[0.14,1,0.5,0.5],[0.3,2,0.615,0.41],[0.52,2,0.615,0.41],[0.64,3,0.887,0.34],[0.84,3,0.887,0.34],[1,1,0.5,0.5]]' data-spots='[[0.3,0.53,0.445,0.1,0.785,0.72],[0.64,0.85,0.795,0.2,0.98,0.48]]'>
       <div class="stage stage--cam">
-        <div class="cam"><img class="cam__img" src="assets/img/pods/full-docs.webp" alt="PODS button guidelines: types, usage with do and don't examples, and dynamic loading states" width="2816" height="1200" loading="lazy"></div>
+        <div class="cam"><div class="cam__inner"><img class="cam__img" src="assets/img/pods/full-docs.webp" alt="PODS button guidelines: types, usage with do and don't examples, and dynamic loading states" width="2816" height="1200" loading="lazy"><span class="spot" aria-hidden="true"></span></div></div>
         <div class="lower lower--light">
           <ol class="caps">
-            <li data-from="0" data-to=".28">And every component ships with its documentation.</li>
-            <li data-from=".28" data-to=".6">Do's and don'ts replaced tribal knowledge. Reviews got faster.</li>
-            <li data-from=".6" data-to=".88">Edge cases, like loading, were visible before implementation began.</li>
+            <li data-from="0" data-to=".22">And every component ships with its documentation.</li>
+            <li data-from=".22" data-to=".58">Do's and don'ts replaced tribal knowledge. Reviews got faster.</li>
+            <li data-from=".58" data-to=".88">Edge cases, like loading, were visible before implementation began.</li>
             <li data-from=".88" data-to="1.01">The library doubles as onboarding.</li>
           </ol>
         </div>

@@ -126,22 +126,38 @@
   /* ---------- Camera moves over full-res work ---------- */
   const makeCam = sec => {
     const keys = JSON.parse(sec.dataset.cam);            // [p, scale, focusX, focusY]
-    const img = $('.cam__img', sec), stage = $('.stage', sec);
-    let bw = 0, bh = 0, W = 0, H = 0;
+    const spots = JSON.parse(sec.dataset.spots || '[]');  // [from, to, x0, y0, x1, y1]
+    const inner = $('.cam__inner', sec), img = $('.cam__img', sec), spot = $('.spot', sec), stage = $('.stage', sec);
     const ar = +img.getAttribute('width') / +img.getAttribute('height');
+    let bw = 0, bh = 0, W = 0, H = 0, zk = 1, curSpot = -1;
     const resize = () => {
       W = stage.clientWidth; H = stage.clientHeight;
-      bw = Math.min(W * .9, H * .8 * ar); bh = bw / ar;
-      img.style.width = bw + 'px';
+      bw = Math.min(W * .86, H * .74 * ar); bh = bw / ar;
+      zk = W < 760 ? 1.6 : 1;                               // push in closer on phones
+      inner.style.width = bw + 'px'; inner.style.height = bh + 'px';
     };
     const set = p => {
       let i = 0; while (i < keys.length - 2 && p > keys[i + 1][0]) i++;
       const [p0, s0, x0, y0] = keys[i], [p1, s1, x1, y1] = keys[i + 1];
       const t = easeIO(clamp((p - p0) / Math.max(p1 - p0, 1e-4), 0, 1));
-      const s = lerp(s0, s1, t), fx = lerp(x0, x1, t), fy = lerp(y0, y1, t);
-      const cy = H * (s > 1.3 ? .42 : .46);                // leave room for the caption below
+      let s = lerp(s0, s1, t); if (s > 1.05) s = 1 + (s - 1) * zk;
+      const fx = lerp(x0, x1, t), fy = lerp(y0, y1, t);
+      const cy = H * (s > 1.3 ? .42 : .47);                 // leave room for the caption
       const tx = W / 2 - fx * bw * s, ty = cy - fy * bh * s;
-      img.style.transform = `translate3d(${tx.toFixed(1)}px, ${ty.toFixed(1)}px, 0) scale(${s.toFixed(4)})`;
+      inner.style.transform = `translate3d(${tx.toFixed(1)}px, ${ty.toFixed(1)}px, 0) scale(${s.toFixed(4)})`;
+      inner.style.setProperty('--s', s.toFixed(3));
+      inner.style.setProperty('--r', (1 - clamp((s - 1) / .4, 0, 1)).toFixed(3)); // rounded "screen" only when wide
+      // spotlight the region the caption is talking about
+      const k = spots.findIndex(r => p >= r[0] && p < r[1]);
+      if (k !== curSpot) {
+        curSpot = k;
+        if (k >= 0) {
+          const [, , a, b, c, d] = spots[k];
+          spot.style.left = (a * 100) + '%'; spot.style.top = (b * 100) + '%';
+          spot.style.width = ((c - a) * 100) + '%'; spot.style.height = ((d - b) * 100) + '%';
+        }
+        spot.classList.toggle('on', k >= 0);
+      }
     };
     return { resize, set };
   };
@@ -218,13 +234,18 @@
   const frame = () => {
     ticking = false;
     const sy = scrollY;
+    let moving = false;
     for (const s of scenes) {
-      const p = reduced ? 1 : clamp((sy - s.top) / s.len, 0, 1);
+      const target = reduced ? 1 : clamp((sy - s.top) / s.len, 0, 1);
+      // ease toward the scroll position so camera moves glide instead of stepping
+      let p = s.p < 0 || reduced ? target : lerp(s.p, target, .16);
+      if (Math.abs(target - p) < .0006) p = target; else moving = true;
       if (p === s.p) continue;
       s.p = p;
       s.el.style.setProperty('--p', p.toFixed(4));
       if (s.update) s.update(p);
     }
+    if (moving) kick();
     const max = document.documentElement.scrollHeight - vh;
     scrub.style.setProperty('--sp', (sy / Math.max(max, 1)).toFixed(4));
     scrub.classList.toggle('is-on', sy > vh * 1.2);
