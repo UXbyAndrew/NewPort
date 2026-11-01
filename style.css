@@ -565,3 +565,89 @@ button { font: inherit; color: inherit; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; transition-delay: 0s !important; }
   .grain { display: none; }
 }
+
+/* ==========================================================================
+   Delight pass
+   ========================================================================== */
+
+/* Memoji waves hello */
+.brand img { transition: transform .4s var(--ease); transform-origin: 70% 80%; }
+.brand:hover img { animation: wave 1s var(--ease); }
+@keyframes wave { 15% { transform: rotate(14deg); } 30% { transform: rotate(-8deg); } 45% { transform: rotate(14deg); } 60% { transform: rotate(-4deg); } 75%, 100% { transform: rotate(0); } }
+
+/* Draggable hero cards */
+.has-drag .fan-card { cursor: grab; pointer-events: auto; }
+.has-drag .fan-card.is-dragging { cursor: grabbing; z-index: 5; transition: none !important; box-shadow: 0 60px 100px -30px rgba(13, 13, 15, .55); }
+.fan-card.is-springing { transition: transform 1s cubic-bezier(.34, 1.56, .64, 1) !important; }
+.fan-card {
+  translate: var(--dx, 0px) var(--dy, 0px);
+  rotate: var(--dr, 0deg);
+}
+.js.is-ready .fan-card { translate: var(--dx, 0px) var(--dy, 0px); }
+.fan-hint {
+  position: absolute; right: 8%; bottom: 4%; z-index: 6; pointer-events: none;
+  display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+  background: var(--ink); color: var(--paper); font-size: 13px; font-weight: 500;
+  opacity: 0; translate: 0 8px; transition: opacity .5s var(--ease), translate .5s var(--ease);
+}
+.has-drag.is-ready .fan-hint { opacity: 1; translate: 0 0; transition-delay: 1.6s; }
+.fan-hint.is-gone { opacity: 0 !important; translate: 0 8px !important; transition-delay: 0s !important; }
+
+/* Visible case-study affordance (works for touch + keyboard) */
+.project__cta {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 32px;
+  font-size: 15px; font-weight: 500; padding-bottom: 4px;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+}
+.project__cta span { display: inline-block; transition: transform .5s var(--ease); }
+.project__link:hover .project__cta span, .project__link:focus-visible .project__cta span { transform: translate(3px, -3px); }
+.project__link:focus-visible { outline-offset: 6px; }
+
+/* Experience: floating preview that follows the cursor */
+.preview {
+  position: fixed; left: 0; top: 0; z-index: 40; pointer-events: none;
+  width: 320px; aspect-ratio: 4 / 3; margin: -120px 0 0 -160px; border-radius: 18px; overflow: hidden;
+  box-shadow: 0 40px 80px -30px rgba(13, 13, 15, .5);
+  opacity: 0; scale: .6; transition: opacity .35s var(--ease), scale .5s var(--ease);
+  display: none;
+}
+.has-cursor .preview { display: block; }
+.preview.is-on { opacity: 1; scale: 1; }
+.preview img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Section indicator */
+.where {
+  position: fixed; left: var(--gutter); bottom: 24px; z-index: 95; pointer-events: none;
+  display: flex; gap: 10px; align-items: baseline; padding: 8px 14px; border-radius: 999px;
+  background: color-mix(in srgb, var(--paper) 80%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--line); font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+  opacity: 0; translate: 0 12px; transition: opacity .5s var(--ease), translate .5s var(--ease), background .4s, color .4s, border-color .4s;
+}
+.where.is-on { opacity: 1; translate: 0 0; }
+.where.on-dark { background: color-mix(in srgb, var(--ink-2) 80%, transparent); color: var(--paper); border-color: var(--line-ink); }
+.where__num { color: var(--accent); font-variant-numeric: tabular-nums; }
+@media (max-width: 1080px) { .where { display: none; } }
+
+/* Testimonials proof row */
+.proof { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 32px; margin-top: 32px; }
+.proof__faces { display: flex; }
+.proof__faces img { width: 44px; height: 44px; border-radius: 50%; border: 3px solid var(--paper); margin-left: -12px; object-fit: cover; transition: transform .4s var(--ease); }
+.proof__faces img:first-child { margin-left: 0; }
+.proof__faces:hover img { transform: translateY(-4px); }
+.proof__faces:hover img:nth-child(2) { transition-delay: .04s; } .proof__faces:hover img:nth-child(3) { transition-delay: .08s; }
+.proof__faces:hover img:nth-child(4) { transition-delay: .12s; } .proof__faces:hover img:nth-child(5) { transition-delay: .16s; } .proof__faces:hover img:nth-child(6) { transition-delay: .2s; }
+.proof__stat { color: var(--muted); font-size: 15px; }
+.proof__stat strong { display: block; color: var(--ink); font: 500 32px/1 var(--display); letter-spacing: -.02em; }
+
+/* Outlined CTA band */
+.band { overflow: hidden; padding: clamp(24px, 4vw, 48px) 0; border-top: 1px solid var(--line); }
+.band__track { display: flex; width: max-content; will-change: transform; }
+.band__group { display: flex; align-items: center; gap: .4em; padding-right: .4em; white-space: nowrap; font: 500 clamp(56px, 9vw, 150px)/1 var(--display); letter-spacing: -.04em; }
+.band__group li:not(.star) { color: transparent; -webkit-text-stroke: 1.5px var(--ink); transition: color .5s var(--ease); }
+.band:hover .band__group li:not(.star) { color: var(--ink); }
+.band .star { color: var(--accent); font-size: .5em; }
+
+/* Scramble text uses tabular rhythm while decoding */
+.scr { display: inline-block; }
+.eyebrow .scr { color: inherit; letter-spacing: inherit; }
+.kind { padding-bottom: clamp(48px, 6vw, 96px); }
