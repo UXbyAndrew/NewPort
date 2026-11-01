@@ -304,3 +304,94 @@ html:not(.js) .spot, html:not(.js) .specimens { display: none; }
 }
 html:not(.js) .cam { position: relative; width: 100%; }
 html:not(.js) .cam__img { height: auto; }
+
+/* ==========================================================================
+   Pass 3: act cards, built scenes, live exchange, closing callback
+   ========================================================================== */
+
+/* Captions arrive just after a scene settles */
+.js .fade .stage > .lower { opacity: min(1, calc((var(--p, 0) - .05) * 10), calc((1 - var(--p, 0)) * 10)); }
+
+/* Act title cards */
+.actcard {
+  position: absolute; inset: 0; z-index: 5; display: grid; place-content: center; text-align: center; pointer-events: none;
+  background: radial-gradient(60% 50% at 50% 50%, rgba(8, 8, 10, .92), rgba(8, 8, 10, .6) 70%, transparent);
+  font: 500 clamp(48px, 8vw, 132px)/.95 var(--display); letter-spacing: -.045em;
+}
+.actcard span { display: block; margin-bottom: 18px; font: 600 13px/1 var(--body); letter-spacing: .3em; text-transform: uppercase; color: var(--red); }
+.js .fade .stage > .actcard { opacity: min(1, calc(var(--p, 0) * 40), calc((.11 - var(--p, 0)) * 16)); transform: scale(calc(1 + var(--p, 0) * .6)); }
+
+/* Caption progress dots */
+.dots { display: flex; gap: 6px; margin-top: 16px; }
+.dots i { width: 18px; height: 2px; border-radius: 2px; background: var(--faint); transition: background .4s, width .5s var(--ease); }
+.dots i.done { background: rgba(242, 240, 235, .45); }
+.dots i.on { background: var(--red); width: 30px; }
+
+/* Turning point, built node by node */
+.stage--build { display: grid; grid-template-rows: auto 1fr; align-content: start; justify-items: center; padding: 96px var(--gutter) 0; }
+.build__head .big-line { margin-top: 14px; max-width: 22ch; }
+.stage--build .hub { width: min(760px, 100%); margin: clamp(24px, 5vh, 56px) auto 0; gap: clamp(20px, 4vh, 40px) 16px; align-self: start; }
+.stage--build .hub__lines { opacity: 1 !important; }
+.stage--build .hub__lines path { stroke-dasharray: 1; stroke-dashoffset: 1; stroke-width: 1.5; opacity: .9; transition: stroke-dashoffset 1s var(--ease); }
+.stage--build .hub__lines path.on { stroke-dashoffset: 0; }
+.stage--build .node { opacity: 0; transform: translateY(14px) scale(.96); transition: opacity .7s var(--ease), transform .9s var(--ease), box-shadow .8s; }
+.stage--build .node.on { opacity: 1; transform: none; }
+.stage--build .node--core.on { box-shadow: 0 0 0 1px var(--red), 0 0 60px -10px rgba(233, 46, 61, .6); }
+.lower--center { left: 50%; transform: translateX(-50%); text-align: center; }
+.lower--center .dots { justify-content: center; }
+.lower--center .caps li { font-size: clamp(19px, 1.9vw, 28px); }
+
+/* Trade-off as a live exchange */
+.stage--chat { padding: 80px var(--gutter) 60px; }
+.chat { width: min(900px, 100%); }
+.chat__h { text-align: left; margin-top: 12px; }
+.stage--chat .dialogue { margin-top: clamp(24px, 4vh, 48px); max-width: none; }
+.stage--chat .line, .stage--chat .lanes, .typing { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .8s var(--ease); }
+.stage--chat .on { opacity: 1; transform: none; }
+.typing { justify-self: end; display: flex; gap: 6px; padding: 18px 22px; border-radius: 18px; background: var(--black-2); border: 1px solid var(--faint); height: 0; padding-block: 0; overflow: hidden; }
+.typing.on { height: auto; padding-block: 18px; }
+.typing i { width: 8px; height: 8px; border-radius: 50%; background: var(--dim); animation: blink 1.2s infinite; }
+.typing i:nth-child(2) { animation-delay: .2s; } .typing i:nth-child(3) { animation-delay: .4s; }
+@keyframes blink { 0%, 60%, 100% { opacity: .25; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
+.stage--chat .lanes { margin-top: clamp(28px, 5vh, 56px); }
+.stage--chat .lane__fill { transform: scaleX(clamp(0, calc(var(--lp, 0) / .3), 1)); }
+.stage--chat .seg::before { transform: scaleX(clamp(0, calc((var(--lp, 0) - .3 - var(--i) * .15) / .14), 1)); }
+.stage--chat .lanes__cap { text-align: left; }
+
+/* Closing callback: the quote over the now-ordered palette */
+.endwrap { position: relative; display: grid; place-items: center; min-height: 80svh; margin-top: clamp(80px, 12vh, 140px); }
+.swatches--calm { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .2;
+  -webkit-mask-image: radial-gradient(closest-side, #000 40%, transparent); mask-image: radial-gradient(closest-side, #000 40%, transparent); }
+.endwrap .endcard { position: relative; z-index: 1; margin: 0; }
+
+@media (max-width: 760px) {
+  .stage--build { padding-top: 84px; }
+  .stage--build .hub { grid-template-columns: 1fr 1fr; grid-template-areas: "core core" "top top" "left right"; gap: 12px; margin-top: 20px; }
+  .stage--build .hub__lines { display: none; }
+  .stage--build .node { padding: 12px 14px; }
+  .lower--center { width: calc(100% - 2 * var(--gutter)); }
+  .stage--chat { padding-top: 72px; }
+  .stage--chat .line { font-size: 17px; padding: 14px 16px; }
+  .stage--chat .lane__name strong { font-size: 18px; }
+  .stage--chat .lane__track { height: 32px; }
+}
+@media (max-height: 760px) and (min-width: 761px) {
+  .stage--build .node { padding: 12px 16px; }
+  .stage--build .node__role { font-size: 13px; }
+  .chat__h { font-size: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actcard, .dots, .typing { display: none; }
+  .stage--build .node, .stage--chat .line, .stage--chat .lanes { opacity: 1; transform: none; }
+  .stage--build .hub__lines path { stroke-dashoffset: 0; }
+  .stage--chat .lanes { --lp: 1; }
+  .lower--center { transform: none; left: auto; }
+}
+html:not(.js) .actcard, html:not(.js) .typing { display: none; }
+html:not(.js) .stage--build .node, html:not(.js) .stage--chat .line, html:not(.js) .stage--chat .lanes { opacity: 1; transform: none; }
+html:not(.js) .stage--chat .lanes { --lp: 1; }
+html:not(.js) .lower--center { transform: none; left: auto; }
+html:not(.js) .swatches--calm { display: none; }
+.js .fade .stage > .counter { opacity: min(1, calc((var(--p, 0) - .09) * 10), calc((1 - var(--p, 0)) * 14)); }
+@media (prefers-reduced-motion: reduce) { .js .fade .stage > .counter { opacity: 1; } }
