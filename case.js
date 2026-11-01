@@ -271,6 +271,10 @@
         if (timer) timer.textContent = m >= 60 ? '60+' : Math.round(m);
       } });
     }
+    else if (kind === 'resolve') {
+      const caps = timed(sec), st = steps(sec), stage = $('.stage', sec);
+      add(sec, { update: p => { caps(p); st(p); stage.classList.toggle('resolved', p >= .36); } });
+    }
     else if (kind === 'build') {
       const caps = timed(sec), st = steps(sec);
       add(sec, { update: p => { caps(p); st(p); } });
@@ -281,8 +285,8 @@
     }
     else if (kind === 'dial') {
       const arc = $('.dial__arc', sec), num = $('[data-dial]', sec), C = 2 * Math.PI * 88;
-      add(sec, { mode: 'pass', update: p => {
-        const t = easeOut(p), m = 60 - 42.5 * t;
+      add(sec, { update: p => {
+        const t = easeOut(clamp((p - .12) / .7, 0, 1)), m = 60 - 42.5 * t;
         arc.style.strokeDashoffset = (C * (1 - m / 60)).toFixed(1);
         num.textContent = t > .98 ? '15–20' : t < .02 ? '60+' : Math.round(m);
       } });
