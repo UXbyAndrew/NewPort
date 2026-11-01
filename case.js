@@ -262,6 +262,15 @@
       add(sec, { update: p => { cam.set(p); caps(p); } });
     }
     else if (kind === 'lanes') add(sec, { mode: 'pass' });
+    else if (kind === 'problem') {
+      const caps = timed(sec), st = steps(sec), timer = $('[data-timer]', sec);
+      add(sec, { update: p => {
+        caps(p); st(p);
+        // the handoff clock climbs past the hour while the questions pile up
+        const m = clamp((p - .56) / .17, 0, 1) * 60;
+        if (timer) timer.textContent = m >= 60 ? '60+' : Math.round(m);
+      } });
+    }
     else if (kind === 'build') {
       const caps = timed(sec), st = steps(sec);
       add(sec, { update: p => { caps(p); st(p); } });

@@ -395,3 +395,99 @@ html:not(.js) .lower--center { transform: none; left: auto; }
 html:not(.js) .swatches--calm { display: none; }
 .js .fade .stage > .counter { opacity: min(1, calc((var(--p, 0) - .09) * 10), calc((1 - var(--p, 0)) * 14)); }
 @media (prefers-reduced-motion: reduce) { .js .fade .stage > .counter { opacity: 1; } }
+
+/* ==========================================================================
+   Act I — four illustrated beats, one per caption
+   ========================================================================== */
+.beats { position: absolute; inset: 0; display: grid; place-items: center; padding: 90px var(--gutter) 230px; }
+.beats__tag { position: absolute; top: 84px; right: var(--gutter); font: 500 11px/1 ui-monospace, Menlo, monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); opacity: .7; }
+.beat { grid-area: 1 / 1; width: min(1000px, 100%); display: grid; justify-items: center; opacity: 0; pointer-events: none; transition: opacity .6s var(--ease); }
+.beat.on { opacity: 1; }
+.beat > *, .beat .vb, .beat .scr { transition: opacity .7s var(--ease), transform .9s var(--ease); }
+
+/* 1 · type sets */
+.beat--type { gap: clamp(14px, 2.4vh, 26px); }
+.ts { display: flex; align-items: baseline; justify-content: space-between; gap: 32px; width: 100%; padding-bottom: clamp(10px, 1.8vh, 18px); border-bottom: 1px solid var(--faint);
+  opacity: 0; transform: translateX(-30px); }
+.ts small { font: 500 12px/1 ui-monospace, Menlo, monospace; color: var(--dim); white-space: nowrap; }
+.beat--type.on .ts { opacity: 1; transform: none; transition-delay: calc(var(--i) * 110ms); }
+
+/* 2 · button zoo */
+.beat__label { margin-bottom: 28px; font: 500 13px/1 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+.vbs { display: grid; grid-template-columns: repeat(4, auto); gap: clamp(16px, 2.4vw, 28px) clamp(16px, 3vw, 40px); justify-content: center; align-items: center; justify-items: center; }
+.vb { display: inline-flex; align-items: center; justify-content: center; padding: 12px 22px; color: #fff; white-space: nowrap; }
+.beat--btns .vb { opacity: 0; transform: translateY(16px) scale(.92); }
+.beat--btns.on .vb { opacity: 1; transform: none; transition-delay: calc(var(--i) * 55ms); }
+
+/* 3 · questions engineers had to answer */
+.beat--gaps { gap: 56px; }
+.gap-btn { position: relative; display: grid; place-items: center; width: 320px; height: 220px; }
+.gap-btn .vb { position: relative; z-index: 1; padding: 16px 30px; outline: 1px dashed rgba(242, 240, 235, .35); outline-offset: 10px; }
+.q {
+  position: absolute; left: 50%; top: 50%; padding: 8px 12px; border-radius: 999px; white-space: nowrap;
+  background: var(--black-2); border: 1px solid rgba(233, 46, 61, .5); color: #ff8a93; font: 500 14px/1 var(--body);
+  transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(.6); opacity: 0;
+  transition: opacity .4s var(--ease), transform .7s cubic-bezier(.34, 1.56, .64, 1);
+}
+.q.on { opacity: 1; transform: translate(-50%, -50%) translate(var(--tx), var(--ty)); }
+.timer { display: flex; align-items: baseline; gap: 12px; padding: 12px 20px; border-radius: 12px; border: 1px solid var(--faint); background: var(--black-2); }
+.timer span { font-size: 13px; color: var(--dim); }
+.timer b { font: 500 32px/1 var(--display); font-variant-numeric: tabular-nums; color: var(--fg); min-width: 2.2ch; text-align: right; }
+.timer small { font-size: 13px; color: var(--dim); }
+
+/* 4 · three product areas, three looks */
+.scrs { display: grid; grid-template-columns: repeat(3, minmax(0, 220px)); gap: clamp(14px, 2.4vw, 32px); justify-content: center; }
+.scr { opacity: 0; transform: translateY(30px); }
+.beat--screens.on .scr { opacity: 1; transform: none; transition-delay: calc(var(--i) * 120ms); }
+.scr__area { margin-bottom: 12px; text-align: center; font: 600 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.scr__body { display: grid; gap: 12px; padding: 22px 18px; aspect-ratio: 9 / 13; align-content: start; border-radius: 22px; background: #f5f4f1; color: #111; box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .9); }
+.scr__h { margin-bottom: 6px; }
+.scr__in { height: 34px; border-radius: 8px; background: #e5e3de; }
+.scr__in--s { width: 60%; }
+.scr__cta { margin-top: auto; justify-self: stretch; display: grid; place-items: center; min-height: 44px; color: #fff; }
+.beat--screens .scr__body { min-height: 0; }
+
+@media (max-width: 900px) {
+  .vbs { grid-template-columns: repeat(3, auto); }
+}
+@media (max-width: 760px) {
+  .beats { padding: 80px var(--gutter) 220px; }
+  .ts { flex-direction: column; gap: 6px; align-items: flex-start; }
+  .vbs { grid-template-columns: repeat(2, auto); gap: 12px 14px; }
+  .vb { padding: 10px 16px; font-size: 13px !important; }
+  .beat--btns .vb:nth-child(n+9) { display: none; }
+  .gap-btn { width: 240px; height: 200px; transform: scale(.85); }
+  .q { font-size: 12px; padding: 6px 10px; }
+  .scrs { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .scr__body { padding: 12px 10px; gap: 8px; border-radius: 14px; }
+  .scr__h { font-size: 13px !important; }
+  .scr__in { height: 18px; }
+  .scr__cta { min-height: 30px; font-size: 10px !important; }
+  .scr__area { font-size: 9px; }
+}
+@media (max-height: 760px) and (min-width: 761px) {
+  .beats { padding-bottom: 200px; }
+  .scr__body { aspect-ratio: 9 / 11; }
+  .gap-btn { height: 180px; }
+}
+
+/* Reduced motion / no JS: show the four beats as a calm sequence */
+@media (prefers-reduced-motion: reduce) {
+  .beats { position: relative; display: grid; gap: 80px; padding: 40px 0; }
+  .beat { grid-area: auto; opacity: 1; }
+  .beat .ts, .beat .vb, .beat .scr, .q { opacity: 1 !important; transform: none !important; }
+  .q { position: static; display: inline-block; margin: 4px; }
+  .gap-btn { height: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .beats__tag { position: static; }
+}
+html:not(.js) .beats { position: relative; display: grid; gap: 80px; padding: 40px 0; }
+html:not(.js) .beat { grid-area: auto; opacity: 1; }
+html:not(.js) .beat .ts, html:not(.js) .beat .vb, html:not(.js) .beat .scr, html:not(.js) .q { opacity: 1; transform: none; }
+html:not(.js) .q { position: static; display: inline-block; margin: 4px; }
+html:not(.js) .gap-btn { height: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+html:not(.js) .beats__tag { position: static; }
+@media (min-width: 1100px) and (min-height: 801px) {
+  .vbs { transform: scale(1.3); margin: 4vh 0; }
+  .gap-btn { transform: scale(1.3); margin-bottom: 30px; }
+  .scrs { grid-template-columns: repeat(3, minmax(0, 250px)); }
+}

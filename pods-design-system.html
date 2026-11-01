@@ -71,18 +71,45 @@
     </section>
 
     <!-- ACT I: THE PROBLEM — the noise -->
-    <section class="scene pinned pinned--long fade" id="act-problem" data-scene="noise" data-act="0" aria-labelledby="problem-h">
+    <section class="scene pinned pinned--long fade" id="act-problem" data-scene="problem" data-act="0" aria-labelledby="problem-h">
       <div class="stage">
         <div class="actcard" aria-hidden="true"><span>Act I</span>The problem</div>
-        <canvas class="swatches" data-swatches="chaos" aria-hidden="true"></canvas>
+        <div class="beats" aria-hidden="true">
+          <p class="beats__tag">Illustrative</p>
+
+          <!-- 1 · four inherited type sets -->
+          <div class="beat beat--type" data-at=".1" data-until=".32">
+            <p class="ts" style="--i:0"><span style="font:600 clamp(30px,4.4vw,64px)/1 var(--display);letter-spacing:-.03em">Book your container</span><small>Type set A · Display 600</small></p>
+            <p class="ts" style="--i:1"><span style="font:300 clamp(26px,3.8vw,56px)/1 var(--body);letter-spacing:.08em">Book your container</span><small>Type set B · Light, wide</small></p>
+            <p class="ts" style="--i:2"><span style="font:italic 400 clamp(28px,4vw,60px)/1 Georgia,serif">Book your container</span><small>Type set C · Serif italic</small></p>
+            <p class="ts" style="--i:3"><span style="font:800 clamp(18px,2.6vw,38px)/1 var(--body);text-transform:uppercase">Book your container</span><small>Type set D · Heavy caps</small></p>
+          </div>
+
+          <!-- 2 · the same button, solved differently -->
+          <div class="beat beat--btns" data-at=".32" data-until=".54">
+            <p class="beat__label">Same button. Different every time.</p>
+            <div class="vbs"><span class="vb" style="--i:0;background:#e92e3d;border-radius:0;font:600 15px var(--body);">Get a quote</span><span class="vb" style="--i:1;background:#ce2130;border-radius:8px;font:600 16px var(--body);">Get a Quote →</span><span class="vb" style="--i:2;background:#ef606b;border-radius:999px;font:700 12px var(--body);letter-spacing:.1em">GET A QUOTE</span><span class="vb" style="--i:3;background:transparent;border-radius:4px;font:500 15px var(--body);box-shadow:inset 0 0 0 2px #e92e3d;color:#ff6b77">Get a quote</span><span class="vb" style="--i:4;background:#b11326;border-radius:2px;font:italic 400 17px Georgia,serif;">Get quote</span><span class="vb" style="--i:5;background:#f67a7f;border-radius:12px;font:300 15px var(--body);color:#2a0a0d">Get a quote</span><span class="vb" style="--i:6;background:#9b0000;border-radius:6px;font:600 14px var(--display);">Get A Quote</span><span class="vb" style="--i:7;background:#e92e3d;border-radius:999px;font:600 12px var(--body);padding:8px 16px">Quote</span><span class="vb" style="--i:8;background:#de3545;border-radius:0;font:800 13px var(--body);">GET QUOTE ›</span><span class="vb" style="--i:9;background:#d42a3a;border-radius:10px;font:600 18px var(--display);padding:16px 30px">Get a quote</span><span class="vb" style="--i:10;background:#c41e2e;border-radius:3px;font:500 14px var(--body);">Request a quote</span><span class="vb" style="--i:11;background:transparent;border-radius:0;font:600 15px var(--body);color:#ff6b77;text-decoration:underline;text-underline-offset:5px">Get a quote →</span></div>
+          </div>
+
+          <!-- 3 · gaps engineers had to fill -->
+          <div class="beat beat--gaps" data-at=".54" data-until=".77">
+            <div class="gap-btn"><span class="vb" style="background:#e92e3d;border-radius:6px;font:600 18px var(--body)">Get a quote</span><span class="q" data-at="0.560" style="--tx:-118%;--ty:-160%">Which red?</span><span class="q" data-at="0.585" style="--tx:110%;--ty:-150%">Hover state?</span><span class="q" data-at="0.610" style="--tx:-150%;--ty:-20%">Focus ring?</span><span class="q" data-at="0.635" style="--tx:150%;--ty:10%">Disabled?</span><span class="q" data-at="0.660" style="--tx:-110%;--ty:150%">Loading?</span><span class="q" data-at="0.685" style="--tx:95%;--ty:160%">Radius?</span><span class="q" data-at="0.710" style="--tx:5%;--ty:-260%">Spacing?</span></div>
+            <p class="timer"><span>Handoff walkthrough</span><b data-timer>0</b><small>min</small></p>
+          </div>
+
+          <!-- 4 · three product areas, three looks -->
+          <div class="beat beat--screens" data-at=".77" data-until="2">
+            <div class="scrs"><div class="scr" style="--i:0"><p class="scr__area">Discovery</p><div class="scr__body"><p class="scr__h" style="font:600 22px/1.05 var(--display)">Book your container</p><span class="scr__in"></span><span class="scr__in scr__in--s"></span><span class="scr__cta" style="background:#e92e3d;border-radius:0;font:600 14px var(--body)">Get a quote</span></div></div><div class="scr" style="--i:1"><p class="scr__area">Booking</p><div class="scr__body"><p class="scr__h" style="font:italic 400 22px/1.1 Georgia,serif">Book your container</p><span class="scr__in"></span><span class="scr__in scr__in--s"></span><span class="scr__cta" style="background:#b11326;border-radius:999px;font:700 12px var(--body);letter-spacing:.08em">GET A QUOTE</span></div></div><div class="scr" style="--i:2"><p class="scr__area">Post‑Booking</p><div class="scr__body"><p class="scr__h" style="font:800 15px/1.2 var(--body);text-transform:uppercase">Book your container</p><span class="scr__in"></span><span class="scr__in scr__in--s"></span><span class="scr__cta" style="background:#f67a7f;border-radius:10px;font:500 15px var(--body);color:#2a0a0d">Get A Quote →</span></div></div></div>
+          </div>
+        </div>
         <div class="lower">
           <p class="act">Act I — The problem</p>
           <h2 id="problem-h" class="visually-hidden">The problem</h2>
           <ol class="caps">
-            <li data-from=".1" data-to=".25">Four design teams. Each inherited its own type set, and its own rules.</li>
-            <li data-from=".25" data-to=".5">800+ colors. Designers solved the same problems differently.</li>
-            <li data-from=".5" data-to=".75">Engineers filled the gaps. Handoffs ran past an hour.</li>
-            <li data-from=".75" data-to="1.01"><strong>Consistency depended on whoever touched the file last.</strong></li>
+            <li data-from=".1" data-to=".32">Four design teams. Each inherited its own type set, and its own rules.</li>
+            <li data-from=".32" data-to=".54">800+ colors. Designers solved the same problems differently.</li>
+            <li data-from=".54" data-to=".77">Engineers filled the gaps. Handoffs ran past an hour.</li>
+            <li data-from=".77" data-to="1.01"><strong>Consistency depended on whoever touched the file last.</strong></li>
           </ol>
         </div>
       </div>
