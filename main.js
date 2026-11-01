@@ -15,7 +15,8 @@
   $$('[data-split]').forEach(el => {
     const words = el.textContent.trim().split(/\s+/);
     el.setAttribute('aria-label', el.textContent.trim());
-    el.innerHTML = words.map((w, i) => `<span class="w" aria-hidden="true"><span class="wi" style="--d:${i}">${w}</span></span>`).join(' ');
+    const accent = +(el.dataset.accent || 0);
+    el.innerHTML = words.map((w, i) => `<span class="w" aria-hidden="true"><span class="wi${i < accent ? ' accent' : ''}" style="--d:${i}">${w}</span></span>`).join(' ');
   });
 
   /* Words for scroll-highlight paragraphs */
@@ -129,7 +130,7 @@
   const where = $('.where');
   const whereNum = where && $('.where__num', where);
   const whereName = where && $('.where__name', where);
-  const whereSections = $$('section, footer').map(el => {
+  const whereSections = $$('section').map(el => {
     const eb = $('.eyebrow', el); const n = eb && $('span', eb);
     return n ? { el, num: n.textContent.trim(), name: eb.textContent.replace(n.textContent, '').trim() } : null;
   }).filter(Boolean);
@@ -463,6 +464,19 @@
       requestAnimationFrame(loop);
     };
     loop();
+  }
+
+  /* ---------- Lightbox for case study images ---------- */
+  const lb = $('.lightbox');
+  if (lb && typeof lb.showModal === 'function') {
+    const lbImg = $('img', lb);
+    $$('[data-zoom]').forEach(btn => btn.addEventListener('click', () => {
+      const img = $('img', btn);
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt;
+      lb.showModal();
+    }));
+    lb.addEventListener('click', e => { if (e.target === lb || e.target === lbImg || e.target.closest('.lightbox__close')) lb.close(); });
   }
 
   /* ---------- Copy email ---------- */
