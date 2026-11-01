@@ -279,9 +279,7 @@
     loop();
     document.addEventListener('pointerover', e => {
       const labelled = e.target.closest('[data-cursor]');
-      const hoverable = e.target.closest('a, button');
       cursor.classList.toggle('is-label', !!labelled);
-      cursor.classList.toggle('is-hover', !labelled && !!hoverable);
       if (labelled) label.textContent = labelled.dataset.cursor;
     });
     document.addEventListener('pointerleave', () => cursor.style.opacity = 0);
@@ -302,6 +300,87 @@
         el.style.transition = 'transform .7s cubic-bezier(.22,1,.36,1), background .3s, color .3s';
         el.style.transform = '';
         setTimeout(() => { el.style.transition = ''; }, 700);
+      });
+    });
+  }
+
+  /* ---------- Rotating hero word ---------- */
+  const rot = $('[data-rotator]');
+  if (rot && !reduced) {
+    const items = [...rot.children];
+    let idx = 0;
+    setTimeout(() => setInterval(() => {
+      const cur = items[idx];
+      idx = (idx + 1) % items.length;
+      const nxt = items[idx];
+      cur.classList.remove('is-on'); cur.classList.add('is-out');
+      nxt.classList.remove('is-out'); nxt.classList.add('is-on');
+      setTimeout(() => {
+        // park the old word below without animating it back through view
+        cur.style.transition = 'none';
+        cur.classList.remove('is-out');
+        void cur.offsetWidth;
+        cur.style.transition = '';
+      }, 950);
+    }, 2600), 1800);
+  }
+
+  /* ---------- Nav text roll ---------- */
+  $$('.nav a').forEach(a => {
+    const t = a.textContent.trim();
+    a.innerHTML = `<span class="roll" data-text="${t}">${t}</span>`;
+  });
+
+  /* ---------- Wordmark letters ---------- */
+  $$('.wm').forEach(wm => {
+    wm.innerHTML = [...wm.textContent].map(ch => `<span class="wl">${ch}</span>`).join('');
+  });
+
+  /* Fit the wordmark edge to edge, whatever font actually loads */
+  const wordmark = $('.wordmark');
+  const fitWordmark = () => {
+    if (!wordmark) return;
+    wordmark.style.fontSize = '';
+    const base = parseFloat(getComputedStyle(wordmark).fontSize);
+    const inner = [...wordmark.children].reduce((w, el) => w + el.getBoundingClientRect().width, 0);
+    const avail = wordmark.clientWidth - 2 * Math.min(innerWidth * 0.02, 24);
+    if (inner > 0) wordmark.style.fontSize = Math.min(base * avail / inner, 300).toFixed(1) + 'px';
+  };
+  fitWordmark();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWordmark);
+  let fitTimer;
+  addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitWordmark, 150); });
+
+  /* ---------- Hero glow follows pointer; case images tilt ---------- */
+  if (finePointer && !reduced) {
+    const glow = $('.hero__glow');
+    const hero = $('.hero');
+    if (glow && hero) {
+      let gx = innerWidth * 0.75, gy = innerHeight * 0.45, tx = gx, ty = gy;
+      hero.addEventListener('pointermove', e => {
+        const r = hero.getBoundingClientRect();
+        tx = e.clientX - r.left; ty = e.clientY - r.top;
+      });
+      const loop = () => {
+        gx = lerp(gx, tx, 0.05); gy = lerp(gy, ty, 0.05);
+        glow.style.setProperty('--gx', gx.toFixed(1) + 'px');
+        glow.style.setProperty('--gy', gy.toFixed(1) + 'px');
+        requestAnimationFrame(loop);
+      };
+      loop();
+    }
+    $$('.project__link').forEach(link => {
+      const media = $('.project__media', link);
+      link.addEventListener('pointermove', e => {
+        const r = media.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        media.style.setProperty('--tx', (x * 8).toFixed(2) + 'deg');
+        media.style.setProperty('--ty', (y * -8).toFixed(2) + 'deg');
+      });
+      link.addEventListener('pointerleave', () => {
+        media.style.setProperty('--tx', '0deg');
+        media.style.setProperty('--ty', '0deg');
       });
     });
   }
