@@ -112,7 +112,7 @@
 
   /* ---------- Scroll-driven frame loop ---------- */
   const progress = $('.progress');
-  const marquee = $('[data-marquee]');
+  const marquees = $$('[data-marquee]');
   const quoteRows = rows;
   const projects = $$('.project');
   const highlights = $$('[data-highlight]');
@@ -125,13 +125,23 @@
 
   projects.forEach((p, i) => p.style.setProperty('--n', i));
 
-  // Duplicate marquee content for a seamless loop
-  if (marquee) {
-    const g = marquee.firstElementChild;
-    for (let i = 0; i < 3; i++) { const c = g.cloneNode(true); c.setAttribute('aria-hidden', 'true'); marquee.appendChild(c); }
-  }
+  // Section indicator data, read from each section's eyebrow
+  const where = $('.where');
+  const whereNum = where && $('.where__num', where);
+  const whereName = where && $('.where__name', where);
+  const whereSections = $$('section, footer').map(el => {
+    const eb = $('.eyebrow', el); const n = eb && $('span', eb);
+    return n ? { el, num: n.textContent.trim(), name: eb.textContent.replace(n.textContent, '').trim() } : null;
+  }).filter(Boolean);
 
-  let lastY = scrollY, velocity = 0, mqX = 0;
+  // Duplicate marquee content for a seamless loop
+  marquees.forEach(m => {
+    const g = m.firstElementChild;
+    for (let i = 0; i < 3; i++) { const c = g.cloneNode(true); c.setAttribute('aria-hidden', 'true'); m.appendChild(c); }
+  });
+  const mqX = marquees.map(() => 0);
+
+  let lastY = scrollY, velocity = 0;
   const rowX = quoteRows.map(() => 0);
   const hoverPaused = quoteRows.map(() => false);
   quoteRows.forEach((row, i) => {
@@ -165,14 +175,25 @@
     sections.forEach((s, i) => { const r = s.getBoundingClientRect(); if (r.top < vh * 0.4 && r.bottom > vh * 0.4) active = i; });
     navLinks.forEach((a, i) => a.classList.toggle('is-active', i === active));
 
+    // section indicator
+    if (where) {
+      let cur = null;
+      whereSections.forEach(s => { const r = s.el.getBoundingClientRect(); if (r.top < vh * 0.5 && r.bottom > vh * 0.5) cur = s; });
+      where.classList.toggle('is-on', !!cur);
+      if (cur && whereNum.textContent !== cur.num) { whereNum.textContent = cur.num; whereName.textContent = cur.name; }
+      const wr = where.getBoundingClientRect();
+      where.classList.toggle('on-dark', darkSections.some(s => { const r = s.getBoundingClientRect(); return r.top <= wr.top && r.bottom >= wr.bottom; }));
+    }
+
     if (!reduced) {
       // marquee reacts to scroll velocity
-      if (marquee) {
-        const w = marquee.firstElementChild.offsetWidth;
-        mqX -= 0.6 + Math.abs(velocity) * 0.35;
-        if (-mqX >= w) mqX += w;
-        marquee.style.transform = `translate3d(${mqX}px,0,0) skewX(${clamp(-velocity * 0.15, -8, 8)}deg)`;
-      }
+      marquees.forEach((m, i) => {
+        const w = m.firstElementChild.offsetWidth;
+        const speed = +(m.dataset.speed || 0.6);
+        mqX[i] -= speed + Math.abs(velocity) * 0.35;
+        if (-mqX[i] >= w) mqX[i] += w;
+        m.style.transform = `translate3d(${mqX[i].toFixed(1)}px,0,0) skewX(${clamp(-velocity * 0.15, -8, 8).toFixed(2)}deg)`;
+      });
       quoteRows.forEach((row, i) => {
         const set = row.firstElementChild; if (!set) return;
         const w = set.offsetWidth;
@@ -383,6 +404,97 @@
         media.style.setProperty('--ty', '0deg');
       });
     });
+  }
+
+  /* ---------- Eyebrow labels decode into place ---------- */
+  const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/_-';
+  $$('.eyebrow').forEach(eb => {
+    const node = [...eb.childNodes].reverse().find(n => n.nodeType === 3 && n.textContent.trim());
+    if (!node) return;
+    const span = document.createElement('span');
+    span.className = 'scr';
+    span.textContent = node.textContent;
+    eb.replaceChild(span, node);
+    if (reduced) return;
+    const final = span.textContent;
+    const scrIO = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      scrIO.disconnect();
+      const t0 = performance.now(), dur = 700;
+      const run = now => {
+        const p = clamp((now - t0) / dur, 0, 1);
+        const settled = Math.floor(p * final.length);
+        span.textContent = [...final].map((ch, i) => i < settled || ch === ' ' ? ch : glyphs[(Math.random() * glyphs.length) | 0]).join('');
+        if (p < 1) requestAnimationFrame(run); else span.textContent = final;
+      };
+      requestAnimationFrame(run);
+    }), { threshold: 1 });
+    scrIO.observe(eb);
+  });
+
+  /* ---------- Hero cards: drag, fling, spring back ---------- */
+  if (fan && finePointer && !reduced) {
+    root.classList.add('has-drag');
+    const hint = document.createElement('div');
+    hint.className = 'fan-hint';
+    hint.textContent = 'Drag me ✦';
+    fan.appendChild(hint);
+    let z = 10;
+    $$('.fan-card', fan).forEach(card => {
+      let sx = 0, sy = 0, dragging = false, lastX = 0;
+      card.addEventListener('pointerdown', e => {
+        dragging = true; sx = e.clientX; sy = e.clientY; lastX = e.clientX;
+        card.setPointerCapture(e.pointerId);
+        card.classList.remove('is-springing');
+        card.classList.add('is-dragging');
+        card.style.zIndex = ++z;
+        hint.classList.add('is-gone');
+        e.preventDefault();
+      });
+      card.addEventListener('pointermove', e => {
+        if (!dragging) return;
+        const dx = e.clientX - sx, dy = e.clientY - sy;
+        const vx = e.clientX - lastX; lastX = e.clientX;
+        card.style.setProperty('--dx', dx + 'px');
+        card.style.setProperty('--dy', dy + 'px');
+        card.style.setProperty('--dr', clamp(vx * 1.2 + dx * 0.04, -25, 25).toFixed(1) + 'deg');
+      });
+      const release = () => {
+        if (!dragging) return;
+        dragging = false;
+        card.classList.remove('is-dragging');
+        card.classList.add('is-springing');
+        card.style.setProperty('--dx', '0px');
+        card.style.setProperty('--dy', '0px');
+        card.style.setProperty('--dr', '0deg');
+        setTimeout(() => card.classList.remove('is-springing'), 1000);
+      };
+      card.addEventListener('pointerup', release);
+      card.addEventListener('pointercancel', release);
+    });
+  }
+
+  /* ---------- Experience rows: floating preview ---------- */
+  const preview = $('.preview');
+  if (preview && finePointer && !reduced) {
+    const pimg = $('img', preview);
+    let px = 0, py = 0, tx = 0, ty = 0, lastPX = 0;
+    addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    $$('.role[data-img]').forEach(role => {
+      role.addEventListener('pointerenter', e => {
+        if (!preview.classList.contains('is-on')) { px = e.clientX; py = e.clientY; }
+        pimg.src = role.dataset.img;
+        preview.classList.add('is-on');
+      });
+      role.addEventListener('pointerleave', () => preview.classList.remove('is-on'));
+    });
+    const loop = () => {
+      px = lerp(px, tx + 40, 0.14); py = lerp(py, ty, 0.14);
+      const tilt = clamp((px - lastPX) * 0.6, -10, 10); lastPX = px;
+      preview.style.transform = `translate3d(${px.toFixed(1)}px, ${py.toFixed(1)}px, 0) rotate(${tilt.toFixed(2)}deg)`;
+      requestAnimationFrame(loop);
+    };
+    loop();
   }
 
   /* ---------- Copy email ---------- */

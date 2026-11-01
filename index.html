@@ -29,6 +29,8 @@
 
   <div class="grain" aria-hidden="true"></div>
   <div class="progress" aria-hidden="true"><span></span></div>
+  <div class="where" aria-hidden="true"><span class="where__num"></span><span class="where__name"></span></div>
+  <div class="preview" aria-hidden="true"><img alt=""></div>
   <div class="cursor" aria-hidden="true"><span class="cursor__label">View</span></div>
 
   <!-- Header -->
@@ -137,6 +139,7 @@
               <h3 class="project__title">Pre‑Quote Strategy</h3>
               <p class="project__desc">A decision framework built from data and user insights, giving teams a shared way to decide what goes in front of customers before they ever get a quote.</p>
               <ul class="chips"><li>Strategy</li><li>Research</li><li>Data</li></ul>
+              <span class="project__cta">Read case study <span aria-hidden="true">↗</span></span>
             </div>
             <div class="project__media"><img src="assets/img/work-prequote.webp" alt="Two phones showing the pre-quote mobile flow" loading="lazy" width="512" height="384"></div>
           </a>
@@ -148,6 +151,7 @@
               <h3 class="project__title">PODS Design System</h3>
               <p class="project__desc">From a loose pattern library to a governed product language: reusable components, layout guidance and interaction patterns that cut implementation ambiguity across teams.</p>
               <ul class="chips"><li>Design systems</li><li>Governance</li><li>Components</li></ul>
+              <span class="project__cta">Read case study <span aria-hidden="true">↗</span></span>
             </div>
             <div class="project__media"><img src="assets/img/work-pods.webp" alt="Laptop displaying the PODS design system documentation" loading="lazy" width="1600" height="1200"></div>
           </a>
@@ -159,6 +163,7 @@
               <h3 class="project__title">Cirkul Homepage</h3>
               <p class="project__desc">A homepage and shopping redesign that contributed to $90M+ in revenue and 2M+ products sold across 37M+ sessions.</p>
               <p class="project__metric"><strong>$90M</strong> revenue</p>
+              <span class="project__cta">Read case study <span aria-hidden="true">↗</span></span>
             </div>
             <div class="project__media"><img src="assets/img/work-cirkul.webp" alt="Cirkul homepage shown on a laptop and a phone" loading="lazy" width="1376" height="768"></div>
           </a>
@@ -170,6 +175,7 @@
               <h3 class="project__title">Nav Redesign</h3>
               <p class="project__desc">Information architecture and navigation rebuilt around how people actually look for things, validated with first‑click testing.</p>
               <p class="project__metric"><strong>+11%</strong> first‑click success</p>
+              <span class="project__cta">Read case study <span aria-hidden="true">↗</span></span>
             </div>
             <div class="project__media"><img src="assets/img/work-nav.webp" alt="Redesigned navigation menu with product categories" loading="lazy" width="1600" height="1030"></div>
           </a>
@@ -273,11 +279,11 @@
         <p class="section-sub" data-reveal>I've had the delight of working with, leading, and mentoring some amazing people while improving the metrics that matter.</p>
       </div>
       <ul class="roles">
-        <li class="role" data-reveal>
+        <li class="role" data-reveal data-img="assets/img/work-pods.webp">
           <span class="role__co">PODS</span><span class="role__title">Senior UX Designer</span><span class="role__yr">2025 – 2026</span>
           <p class="role__desc">Defined reusable components, layout guidance, and interaction patterns for the PODS design system, improving consistency across design teams.</p>
         </li>
-        <li class="role" data-reveal>
+        <li class="role" data-reveal data-img="assets/img/work-cirkul-laptop.webp">
           <span class="role__co">Cirkul</span><span class="role__title">Lead UX Designer</span><span class="role__yr">2023 – 2025</span>
           <p class="role__desc">Contributed to $90M+ in revenue and 2M+ products sold through optimized homepage and e‑commerce experiences across 37M+ sessions.</p>
         </li>
@@ -285,7 +291,7 @@
           <span class="role__co">SKILLZ</span><span class="role__title">UX Designer</span><span class="role__yr">2018 – 2023</span>
           <p class="role__desc">Redesigned core information architecture, user flows, and product experiences, simplifying complex surfaces and improving usability.</p>
         </li>
-        <li class="role" data-reveal>
+        <li class="role" data-reveal data-img="assets/img/andrew-workshop.webp">
           <span class="role__co">Freelance</span><span class="role__title">Product Designer</span><span class="role__yr">2018 – Present</span>
           <p class="role__desc">Partnering with product and business teams on feature prioritization, UX strategy, and customer journey improvements across verticals.</p>
         </li>
@@ -297,6 +303,13 @@
       <div class="section-head">
         <p class="eyebrow"><span>(05)</span> Testimonials</p>
         <h2 id="kind-title" class="section-title" data-split>Kind words from great people.</h2>
+        <div class="proof" data-reveal>
+          <div class="proof__faces" aria-hidden="true">
+            <img src="assets/img/t-barry.webp" alt="" width="48" height="48"><img src="assets/img/t-maya.webp" alt="" width="48" height="48"><img src="assets/img/t-brandon.webp" alt="" width="48" height="48"><img src="assets/img/t-melanie.webp" alt="" width="48" height="48"><img src="assets/img/t-nick.webp" alt="" width="48" height="48"><img src="assets/img/t-victoria.webp" alt="" width="48" height="48">
+          </div>
+          <p class="proof__stat"><strong>4.9/5</strong> average rating</p>
+          <p class="proof__stat"><strong>100+</strong> happy clients worldwide</p>
+        </div>
       </div>
       <div class="kind__rows">
         <div class="kind__row" data-quotes></div>
@@ -312,6 +325,11 @@
         <li class="quote"><p>Not only is he talented, but his expertise in UX and his professional, leader approach to different challenges has left a mark here and on everyone who had the pleasure to work with him.</p><footer><img src="assets/img/t-victoria.webp" alt="" width="48" height="48" loading="lazy"><span><strong>Victoria Ballanti</strong>Senior Designer</span></footer></li>
       </ul>
     </section>
+    <div class="band" aria-hidden="true">
+      <div class="band__track" data-marquee data-speed="1.1">
+        <ul class="band__group"><li>Open to new projects</li><li class="star">✳</li><li>Let's build something great</li><li class="star">✳</li></ul>
+      </div>
+    </div>
   </main>
 
   <!-- CONTACT / FOOTER -->
