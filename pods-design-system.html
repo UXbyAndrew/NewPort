@@ -4,216 +4,321 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PODS Design System — Andrew Arquines</title>
-  <meta name="description" content="One system: how Andrew Arquines united three PODS product areas under a single, governed design language.">
+  <meta name="description" content="How Andrew Arquines turned PODS' scattered pattern library into one governed design language for three product areas, in four weeks.">
   <meta name="theme-color" content="#0d0d0f">
   <meta property="og:title" content="PODS Design System — Andrew Arquines">
-  <meta property="og:description" content="One system: uniting three product teams under a single design language.">
+  <meta property="og:description" content="A design system in name. Not in practice. Until now.">
   <meta property="og:image" content="assets/img/work-pods.webp">
   <link rel="icon" href="assets/img/memoji.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=chillax@200,300,400,500,600,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="case.css">
-  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="journey.css">
 </head>
 
-<body class="case">
-  <a class="skip" href="#case-main">Skip to content</a>
+<body class="cj">
+  <a class="skip" href="#noise">Skip to the story</a>
 
-  <div class="grain" aria-hidden="true"></div>
-  <div class="progress" aria-hidden="true"><span></span></div>
-  <div class="where" aria-hidden="true"><span class="where__num"></span><span class="where__name"></span></div>
-  <div class="cursor" aria-hidden="true"><span class="cursor__label">View</span></div>
-
-  <header class="header">
+  <header class="header cj-header">
     <a class="brand" href="index.html" aria-label="UXbyAndrew, home">
       <img src="assets/img/memoji.webp" alt="" width="32" height="32">
       <span>UX<em>by</em>Andrew</span>
     </a>
-    <nav class="nav" aria-label="Primary">
-      <a href="index.html#work">Work</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#process">Process</a>
-      <a href="index.html#kind-words">Kind words</a>
-    </nav>
-    <a class="pill-cta" href="#contact" data-magnetic>
-      <span class="dot" aria-hidden="true"></span> Let's talk
-    </a>
+    <a class="cj-back" href="index.html#work"><span aria-hidden="true">←</span> All work</a>
+    <a class="pill-cta" href="#cta"><span class="dot" aria-hidden="true"></span> <span class="lg">Request the walkthrough</span><span class="sm">Let's talk</span></a>
   </header>
 
-  <main id="case-main">
-    <!-- 1–2. Exclusivity tag + headline -->
-    <section class="case-hero" aria-labelledby="case-title">
-      <div class="case-hero__top" data-intro>
-        <a class="back" href="index.html#work"><span aria-hidden="true">←</span> All work</a>
-        <p class="lock-tag">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-          Full case study available during presentation only
-        </p>
+  <!-- Chapter rail: styled like a Figma layers panel -->
+  <nav class="rail" aria-label="Case study chapters">
+    <p class="rail__file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h9l5 5v13H5z"/><path d="M14 3v5h5"/></svg>PODS_Design_System</p>
+    <ol>
+      <li><a href="#noise"><span class="rail__n">01</span><span class="rail__t">The noise</span><span class="rail__bar"></span></a></li>
+      <li><a href="#ownership"><span class="rail__n">02</span><span class="rail__t">Ownership</span><span class="rail__bar"></span></a></li>
+      <li><a href="#foundations"><span class="rail__n">03</span><span class="rail__t">Foundations</span><span class="rail__bar"></span></a></li>
+      <li><a href="#tradeoff"><span class="rail__n">04</span><span class="rail__t">The trade‑off</span><span class="rail__bar"></span></a></li>
+      <li><a href="#components"><span class="rail__n">05</span><span class="rail__t">Components</span><span class="rail__bar"></span></a></li>
+      <li><a href="#outcome"><span class="rail__n">06</span><span class="rail__t">Outcome</span><span class="rail__bar"></span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <!-- ============ COLD OPEN ============ -->
+    <section class="cj-hero" id="top" aria-labelledby="cj-title" data-scene="hero">
+      <div class="frags" aria-hidden="true">
+        <figure class="frag" style="--x:4%;--y:16%;--w:21%;--r:-9deg;--k:1.2"><img src="assets/img/pods/crop-btn-red.webp" alt=""><figcaption>Buttons_v2_copy</figcaption></figure>
+        <figure class="frag" style="--x:71%;--y:12%;--w:24%;--r:7deg;--k:-1"><img src="assets/img/pods/crop-palette-rb.webp" alt=""><figcaption>colors_FINAL</figcaption></figure>
+        <figure class="frag" style="--x:87%;--y:46%;--w:10%;--r:-5deg;--k:1.4"><img src="assets/img/pods/crop-type.webp" alt=""><figcaption>Type (Booking)</figcaption></figure>
+        <figure class="frag" style="--x:1%;--y:70%;--w:15%;--r:6deg;--k:-1.3"><img src="assets/img/pods/color-hierarchy.webp" alt=""><figcaption>tokens?</figcaption></figure>
+        <figure class="frag" style="--x:85%;--y:84%;--w:11%;--r:-12deg;--k:.9"><img src="assets/img/pods/crop-docs-loading.webp" alt=""><figcaption>Loading — WIP</figcaption></figure>
+                <p class="note" style="--x:22%;--y:10%;--r:-4deg;--k:1.6">who owns this?</p>
+        <p class="note note--b" style="--x:80%;--y:36%;--r:5deg;--k:-1.5">which red?</p>
       </div>
 
-      <h1 id="case-title" class="case-title" data-split data-accent="2">One system: uniting three product teams under a single design language.</h1>
+      <div class="cj-hero__in">
+        <p class="kicker cj-in" style="--d:0">Case study · PODS · Design system</p>
+        <h1 id="cj-title" class="cj-title">
+          <span class="cj-line cj-in" style="--d:1">A design system in name.</span>
+          <span class="cj-line cj-line--break cj-in" style="--d:2" aria-label="Not in practice."><span aria-hidden="true">N</span><span aria-hidden="true">o</span><span aria-hidden="true">t</span><span aria-hidden="true">&nbsp;</span><span aria-hidden="true">i</span><span aria-hidden="true">n</span><span aria-hidden="true">&nbsp;</span><span aria-hidden="true">p</span><span aria-hidden="true">r</span><span aria-hidden="true">a</span><span aria-hidden="true">c</span><span aria-hidden="true">t</span><span aria-hidden="true">i</span><span aria-hidden="true">c</span><span aria-hidden="true">e</span><span aria-hidden="true">.</span></span>
+        </h1>
+        <p class="cj-sub cj-in" style="--d:3">How I turned a scattered pattern library into one governed language for three PODS product areas, in four weeks.</p>
 
-      <dl class="case-meta" data-reveal>
-        <div><dt>Client</dt><dd>PODS</dd></div>
-        <div><dt>Role</dt><dd>Senior UX Designer, system direction</dd></div>
-        <div><dt>Scope</dt><dd>Foundations, components, governance</dd></div>
-        <div><dt>Timeline</dt><dd>4 weeks · 2026</dd></div>
-      </dl>
+        <dl class="tldr cj-in" style="--d:4">
+          <div><dt>Problem</dt><dd>Competing foundations, no owner, hour‑long handoffs.</dd></div>
+          <div><dt>My move</dt><dd>Ownership first, then foundations, then a rollout engineering could say yes to.</dd></div>
+          <div><dt>Result</dt><dd>One system across three product areas. Handoffs down to 15–20 minutes.</dd></div>
+        </dl>
 
-      <figure class="case-cover" data-reveal>
-        <div class="parallax" data-parallax="0.08">
-          <img src="assets/img/work-pods.webp" alt="The PODS design system documentation open on a laptop" width="1600" height="1200">
-        </div>
-      </figure>
-    </section>
-
-    <!-- 3–5. Stakes, problem, teaser -->
-    <section class="case-story" aria-label="Context">
-      <div class="case-row" data-reveal>
-        <p class="eyebrow"><span>(01)</span> The stakes</p>
-        <p class="case-copy">PODS runs its customer journey across three product areas: Discovery, Booking, and Post‑Booking. Each has its own designers, and all of them ship through shared engineering.</p>
-      </div>
-      <div class="case-row" data-reveal>
-        <p class="eyebrow"><span>(02)</span> The problem</p>
-        <p class="case-copy">The design system existed in name only: loose files, competing foundations, and no owner. Teams solved the same problems differently, engineers filled the gaps, and handoffs ran past an hour. Consistency depended on whoever touched the file last.</p>
-      </div>
-      <p class="case-teaser" data-highlight>Discover how I set up a shared contribution model and a hybrid rollout to bring three product areas onto one system in four weeks, without pulling engineers off the roadmap.</p>
-    </section>
-
-    <!-- 6. Proof metrics -->
-    <section class="impact case-impact" aria-label="Results">
-      <div class="impact__grid">
-        <div class="stat" data-reveal>
-          <p class="stat__num"><span data-count="800" data-suffix="+">800+</span></p>
-          <p class="stat__label">Colors consolidated into one tokenized palette</p>
-        </div>
-        <div class="stat" data-reveal>
-          <p class="stat__num">3&thinsp;→&thinsp;1</p>
-          <p class="stat__label">Competing product languages unified into one system</p>
-        </div>
-        <div class="stat" data-reveal>
-          <p class="stat__num">15–20<small>min</small></p>
-          <p class="stat__label">Implementation handoffs, down from hour‑plus walkthroughs</p>
-        </div>
-        <div class="stat" data-reveal>
-          <p class="stat__num"><span data-count="4" data-suffix=" wks">4 wks</span></p>
-          <p class="stat__label">From scattered file to governed system</p>
-        </div>
+        <ul class="meta cj-in" style="--d:5">
+          <li><span>Role</span>Senior UX Designer</li>
+          <li><span>Scope</span>Foundations · Components · Governance</li>
+          <li><span>Timeline</span>4 weeks · 2026</li>
+          <li><span>Read</span>90‑second skim · 6 chapters</li>
+        </ul>
       </div>
     </section>
 
-    <!-- 7. Visual gallery -->
-    <section class="case-gallery" aria-labelledby="gallery-title">
-      <div class="section-head">
-        <p class="eyebrow"><span>(03)</span> The system</p>
-        <h2 id="gallery-title" class="section-title" data-split>Standards, not artifacts.</h2>
+    <!-- ============ 01 · THE NOISE ============ -->
+    <section class="ch ch--noise pinned" id="noise" data-theme="dark" data-chapter="0" data-scene="noise" aria-labelledby="noise-t">
+      <div class="pin">
+        <div class="noise__field" aria-hidden="true">
+          <span class="spec" style="--x:62%;--y:16%;--r:-6deg;--vx:.6;--vy:-1;font:600 34px/1 var(--display);letter-spacing:-.03em">Book your container</span>
+          <span class="spec" style="--x:70%;--y:36%;--r:3deg;--vx:1.2;--vy:-.3;font:300 30px/1 var(--body);letter-spacing:.06em">Book your container</span>
+          <span class="spec" style="--x:64%;--y:56%;--r:-2deg;--vx:1;--vy:.5;font:italic 400 32px/1 Georgia,serif">Book your container</span>
+          <span class="spec" style="--x:68%;--y:76%;--r:5deg;--vx:.7;--vy:1;font:800 22px/1 var(--body);text-transform:uppercase;letter-spacing:.02em">Book your container</span>
+        </div>
+        <div class="ch__copy">
+          <p class="ch__label">Chapter 01 — The noise</p>
+          <h2 id="noise-t" class="ch__title">Four type sets. 800+ colors. No owner.</h2>
+          <p class="ch__body">PODS had a design system on paper: a Figma file of loose artifacts and competing foundations, with little guidance on how to use it.</p>
+          <ol class="pains">
+            <li class="pain" style="--at:.12">Designers solved the same problems differently.</li>
+            <li class="pain" style="--at:.3">Engineers filled the gaps.</li>
+            <li class="pain" style="--at:.48">Handoffs took over an hour.</li>
+            <li class="pain pain--hit" style="--at:.66">Consistency depended on who touched the file last.</li>
+          </ol>
+        </div>
       </div>
-      <div class="gallery">
-        <figure class="shot shot--wide" data-reveal>
-          <button type="button" class="shot__btn" data-zoom aria-label="Enlarge: color palette">
-            <img src="assets/img/pods/color.webp" alt="PODS color palette: neutrals, primary red, primary blue, accent, success, warning, and destructive ramps" loading="lazy" width="2000" height="1259">
-          </button>
-          <figcaption><strong>800+ colors → one palette.</strong> Every ramp named, tokenized, and ready for engineering.</figcaption>
-        </figure>
-        <figure class="shot" data-reveal>
-          <button type="button" class="shot__btn" data-zoom aria-label="Enlarge: typography">
-            <img src="assets/img/pods/typography.webp" alt="PODS typography: desktop and mobile heading scales and paragraph styles" loading="lazy" width="1317" height="707">
-          </button>
-          <figcaption><strong>One type scale.</strong> Replaced the separate type sets each team had inherited.</figcaption>
-        </figure>
-        <figure class="shot" data-reveal>
-          <button type="button" class="shot__btn" data-zoom aria-label="Enlarge: design tokens">
-            <img src="assets/img/pods/color-hierarchy.webp" alt="Figma variables panel showing semantic text color tokens for light and dark surfaces" loading="lazy" width="1160" height="671">
-          </button>
-          <figcaption><strong>Semantic tokens.</strong> One shared definition behind every color decision.</figcaption>
-        </figure>
-        <figure class="shot shot--wide" data-reveal>
-          <button type="button" class="shot__btn" data-zoom aria-label="Enlarge: button state matrix">
-            <img src="assets/img/pods/button-states.webp" alt="Button state matrix across every style and size, in red and blue variants" loading="lazy" width="2000" height="1238">
-          </button>
-          <figcaption><strong>Every state, defined.</strong> Red drives top of funnel; blue carries mid‑funnel decisions.</figcaption>
-        </figure>
-        <figure class="shot shot--wide" data-reveal>
-          <button type="button" class="shot__btn" data-zoom aria-label="Enlarge: button documentation">
-            <img src="assets/img/pods/button-docs.webp" alt="Button guidelines page with types, usage do's and don'ts, and dynamic states" loading="lazy" width="2000" height="852">
-          </button>
-          <figcaption><strong>Docs ship with every component.</strong> The library doubles as onboarding.</figcaption>
+    </section>
+
+    <!-- ============ 02 · OWNERSHIP ============ -->
+    <section class="ch ch--own" id="ownership" data-chapter="1" aria-labelledby="own-t">
+      <div class="ch__wrap own">
+        <div class="ch__copy">
+          <p class="ch__label">Chapter 02 — Ownership</p>
+          <h2 id="own-t" class="ch__title">I didn't start with components. I started with who owns what.</h2>
+          <p class="ch__body">Before touching a single component, I brought tech leads, PMs, engineers, and designers together to define how the system would actually run.</p>
+          <p class="margin-note"><span>Decision</span>Governance before pixels.</p>
+        </div>
+        <div class="hub" data-r>
+          <svg class="hub__lines" aria-hidden="true"><path/><path/><path/></svg>
+          <div class="node node--top">
+            <p class="node__team">Engineering</p>
+            <p class="node__role">Implementation partner</p>
+          </div>
+          <div class="node node--core">
+            <p class="node__team">Discovery design</p>
+            <p class="node__role">System direction owner</p>
+            <p class="node__desc">Defines standards, reviews quality, keeps the system coherent.</p>
+          </div>
+          <div class="node node--left">
+            <p class="node__team">Booking</p>
+            <p class="node__role">Needs &amp; QA partner</p>
+          </div>
+          <div class="node node--right">
+            <p class="node__team">Post‑Booking</p>
+            <p class="node__role">Feedback &amp; QA</p>
+          </div>
+          <p class="hub__cap">A shared contribution model: one owner, clear partners, real accountability.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 · FOUNDATIONS (pinned color collapse) ============ -->
+    <section class="ch ch--palette pinned" id="foundations" data-chapter="2" data-scene="palette" aria-labelledby="pal-t">
+      <div class="pin">
+        <div class="ch__copy pal__copy">
+          <p class="ch__label">Chapter 03 — Foundations</p>
+          <h2 id="pal-t" class="ch__title">Fix the basics first.</h2>
+          <p class="pal__count" aria-hidden="true"><span data-pal-num>800+</span><small data-pal-unit>colors in use</small></p>
+          <p class="ch__body">The palette came down from 800+ colors to seven named ramps, tokenized and ready for engineering.</p>
+          <button type="button" class="proof-link" data-zoom data-src="assets/img/pods/color.webp" data-alt="The final PODS color palette documentation">See the real palette doc ↗</button>
+        </div>
+        <div class="pal__stage">
+          <canvas class="pal__canvas" aria-hidden="true"></canvas>
+          <img class="pal__fallback" src="assets/img/pods/crop-palette-rb.webp" alt="PODS primary red and Oasis blue color ramps" width="850" height="453">
+        </div>
+      </div>
+    </section>
+
+    <section class="ch ch--type" data-chapter="2" aria-labelledby="type-t">
+      <div class="ch__wrap type">
+        <div class="ch__copy">
+          <h3 id="type-t" class="ch__sub">Four inherited type sets. One scale.</h3>
+          <p class="ch__body">Each design team had inherited its own typography and its own rules. It was the single biggest source of friction, so it went first.</p>
+          <ul class="tokens" aria-label="Foundations in the first release">
+            <li>Type</li><li>Color</li><li>Grid</li><li>Spacing</li><li>Radius</li><li>Shadows</li><li>Blurs</li><li>Icons</li>
+          </ul>
+        </div>
+        <div class="merge" data-scene="merge" aria-hidden="true">
+          <span class="merge__v" style="--ox:-90;--oy:-120;--r:-4deg;font:600 44px/1 var(--display);letter-spacing:-.03em">Book your container</span>
+          <span class="merge__v" style="--ox:70;--oy:-50;--r:3deg;font:300 40px/1 var(--body);letter-spacing:.06em">Book your container</span>
+          <span class="merge__v" style="--ox:-50;--oy:50;--r:-2deg;font:italic 400 42px/1 Georgia,serif">Book your container</span>
+          <span class="merge__v" style="--ox:90;--oy:120;--r:4deg;font:800 30px/1 var(--body);text-transform:uppercase">Book your container</span>
+          <span class="merge__final">Book your container<small>Heading / H2</small></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 · THE TRADE-OFF ============ -->
+    <section class="ch ch--trade" id="tradeoff" data-chapter="3" aria-labelledby="trade-t">
+      <div class="ch__wrap">
+        <div class="ch__copy ch__copy--wide">
+          <p class="ch__label">Chapter 04 — The trade‑off</p>
+          <h2 id="trade-t" class="ch__title">Consistency, without eating engineering hours.</h2>
+          <p class="ch__body">The hardest conversation wasn't design. PMs worried that renaming and retroactive updates would pull engineers off roadmap work. So I split the rollout.</p>
+        </div>
+        <div class="trade__row">
+          <p class="sticky-note" data-r><span>PM concern</span>Renaming + retroactive updates = engineering time off the roadmap.</p>
+        <div class="lanes" data-scene="lanes">
+          <div class="lane">
+            <p class="lane__name"><strong>Retroactive</strong> Type + color</p>
+            <div class="lane__track"><span class="lane__fill lane__fill--now"></span></div>
+            <p class="lane__why">Rolled out everywhere at once. Engineering saw low risk.</p>
+          </div>
+          <div class="lane">
+            <p class="lane__name"><strong>Forward</strong> Components</p>
+            <div class="lane__track lane__track--seg">
+              <span class="seg" style="--i:0"><span>Scheduled redesign</span></span>
+              <span class="seg" style="--i:1"><span>Planned cleanup</span></span>
+              <span class="seg" style="--i:2"><span>Scheduled redesign</span></span>
+              <span class="seg" style="--i:3"><span>Planned cleanup</span></span>
+            </div>
+            <p class="lane__why">Adopted as surfaces came up for redesign or cleanup anyway.</p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 · COMPONENTS ============ -->
+    <section class="ch ch--comp" id="components" data-chapter="4" aria-labelledby="comp-t">
+      <div class="ch__wrap">
+        <div class="ch__copy ch__copy--wide">
+          <p class="ch__label">Chapter 05 — Components</p>
+          <h2 id="comp-t" class="ch__title">Remove the guessing.</h2>
+          <p class="ch__body">Then the patterns teams used most, and misused most: buttons, inputs, dropdowns, accordions, alerts, calendars, and controls. Every state and every rule, written down. Try one.</p>
+        </div>
+
+        <div class="specimen" data-r>
+          <div class="specimen__bar">
+            <div class="seg-ctl" role="radiogroup" aria-label="Button state">
+              <button type="button" role="radio" aria-checked="true" data-state="default">Default</button>
+              <button type="button" role="radio" aria-checked="false" data-state="hover">Hover</button>
+              <button type="button" role="radio" aria-checked="false" data-state="focus">Focus</button>
+              <button type="button" role="radio" aria-checked="false" data-state="pressed">Pressed</button>
+              <button type="button" role="radio" aria-checked="false" data-state="disabled">Disabled</button>
+              <button type="button" role="radio" aria-checked="false" data-state="loading">Loading</button>
+            </div>
+            <div class="seg-ctl seg-ctl--intent" role="radiogroup" aria-label="Funnel stage">
+              <button type="button" role="radio" aria-checked="true" data-intent="red">Top of funnel</button>
+              <button type="button" role="radio" aria-checked="false" data-intent="blue">Mid‑funnel</button>
+            </div>
+          </div>
+          <div class="specimen__art">
+            <span class="specimen__layer" data-layer>Button / Primary / Red / Default</span>
+            <span class="pbtn" data-btn data-state="default" data-intent="red" aria-hidden="true"><span class="pbtn__spin"></span><span class="pbtn__label">Get a quote</span></span>
+            <span class="redline redline--h" aria-hidden="true"></span>
+            <span class="redline redline--v" aria-hidden="true"></span>
+            <p class="specimen__note" data-note>Red drives top‑of‑funnel actions.</p>
+          </div>
+        </div>
+
+        <div class="pillars">
+          <figure class="pillar" data-r>
+            <button type="button" class="pillar__img" data-zoom data-src="assets/img/pods/button-states.webp" data-alt="Full PODS button state matrix"><img src="assets/img/pods/crop-btn-red.webp" alt="Red button states across styles" loading="lazy" width="750" height="303"></button>
+            <figcaption><strong>States</strong>Default, hover, focus, disabled, loading, validation, and edge cases, documented in context.</figcaption>
+          </figure>
+          <figure class="pillar" data-r>
+            <button type="button" class="pillar__img" data-zoom data-src="assets/img/pods/button-docs.webp" data-alt="PODS button guidelines page"><img src="assets/img/pods/crop-docs-usage.webp" alt="Button usage guidance with do and don't examples" loading="lazy" width="700" height="545"></button>
+            <figcaption><strong>Rules</strong>Do's and don'ts replaced tribal knowledge, so reviews got faster.</figcaption>
+          </figure>
+          <figure class="pillar" data-r>
+            <button type="button" class="pillar__img" data-zoom data-src="assets/img/pods/button-docs.webp" data-alt="PODS button guidelines page"><img src="assets/img/pods/crop-docs-loading.webp" alt="Loading state guidance for dynamic buttons" loading="lazy" width="390" height="346"></button>
+            <figcaption><strong>Handoff</strong>Engineers saw interactions and edge cases before implementation began.</figcaption>
+          </figure>
+        </div>
+
+        <div class="dial" data-scene="dial">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <circle class="dial__track" cx="100" cy="100" r="84"/>
+            <circle class="dial__arc" cx="100" cy="100" r="84"/>
+          </svg>
+          <p class="dial__num" aria-hidden="true"><span data-dial-num>60+</span><small>min</small></p>
+          <div class="dial__copy">
+            <h3 class="ch__sub">Hour‑long walkthroughs became 15–20 minute conversations.</h3>
+            <p class="ch__body">With states, rules, and edge cases already documented, handoff stopped being a tour and became a focused implementation discussion.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 06 · OUTCOME ============ -->
+    <section class="ch ch--out" id="outcome" data-chapter="5" aria-labelledby="out-t">
+      <div class="ch__wrap">
+        <div class="ch__copy ch__copy--wide">
+          <p class="ch__label">Chapter 06 — Outcome</p>
+          <h2 id="out-t" class="ch__title">Quality got easier to repeat.</h2>
+          <p class="ch__body">Designers trusted the assets. Engineers had clear guidance. PMs had a rollout that respected delivery. The scattered file from chapter one, governed.</p>
+        </div>
+
+        <div class="board" data-r>
+          <figure class="cell cell--img" style="--r:-8deg;--tx:-40px;--ty:30px"><img src="assets/img/pods/crop-palette-rb.webp" alt="" loading="lazy"><figcaption>Color / Ramps</figcaption></figure>
+          <div class="cell cell--stat" style="--r:6deg;--tx:30px;--ty:-20px"><strong>3 → 1</strong><span>Aligned teams</span>One language across three product areas.</div>
+          <figure class="cell cell--img" style="--r:9deg;--tx:50px;--ty:40px"><img src="assets/img/pods/crop-btn-red.webp" alt="" loading="lazy"><figcaption>Button / States</figcaption></figure>
+          <div class="cell cell--stat" style="--r:-5deg;--tx:-30px;--ty:-30px"><strong>1 owner</strong><span>Clear ownership</span>A contribution model with accountability.</div>
+          <figure class="cell cell--img" style="--r:4deg;--tx:-20px;--ty:50px"><img src="assets/img/pods/crop-type.webp" alt="" loading="lazy"><figcaption>Type / Scale</figcaption></figure>
+          <div class="cell cell--stat" style="--r:-10deg;--tx:40px;--ty:-40px"><strong>Every state</strong><span>Repeatable quality</span>Standards replaced one‑off interpretation.</div>
+        </div>
+
+        <figure class="comment" data-r>
+          <div class="comment__head"><span class="comment__av" aria-hidden="true">VP</span><span><strong>VP of Digital Design</strong>PODS</span><span class="comment__ok">✓ Resolved</span></div>
+          <blockquote><p>“Quality and consistency of PODS designs from all teams has greatly risen.”</p></blockquote>
         </figure>
       </div>
     </section>
 
-    <!-- 8. Highlights -->
-    <section class="case-wins" aria-labelledby="wins-title">
-      <div class="section-head">
-        <p class="eyebrow"><span>(04)</span> What I owned</p>
-        <h2 id="wins-title" class="section-title" data-split>Highlights.</h2>
+    <!-- ============ CTA ============ -->
+    <section class="cj-cta" id="cta" aria-labelledby="cta-t">
+      <h2 id="cta-t" class="cj-cta__title">Want the full rollout story, including what I'd change?</h2>
+      <div class="cj-cta__act">
+        <div class="cta-spec">
+          <a class="pbtn pbtn--cta" href="mailto:uxbyandrew@yahoo.com?subject=PODS%20Design%20System%20walkthrough">Request the full walkthrough</a>
+          <span class="cta-spec__note">Button / Primary / Top of funnel</span>
+        </div>
+        <p class="cj-cta__alt">or email <a href="mailto:uxbyandrew@yahoo.com">uxbyandrew@yahoo.com</a> <button type="button" class="copy-btn" data-copy="uxbyandrew@yahoo.com">Copy</button></p>
       </div>
-      <ol class="wins">
-        <li class="win" data-reveal>
-          <span class="win__num">01</span>
-          <p><strong>Led system governance across three product areas.</strong> Set ownership and a contribution model with tech leads, PMs, engineers, and designers before touching a single component.</p>
-        </li>
-        <li class="win" data-reveal>
-          <span class="win__num">02</span>
-          <p><strong>Protected the roadmap with a hybrid rollout.</strong> Type and color shipped retroactively; components adopt forward as surfaces come up for redesign.</p>
-        </li>
-        <li class="win" data-reveal>
-          <span class="win__num">03</span>
-          <p><strong>Consolidated competing foundations.</strong> Type, color, spacing, radius, shadows, and iconography reduced to one tokenized source of truth.</p>
-        </li>
-        <li class="win" data-reveal>
-          <span class="win__num">04</span>
-          <p><strong>Turned documentation into speed.</strong> Documented states, edge cases, and usage rules cut hour‑plus handoffs to 15–20 minute implementation conversations.</p>
-        </li>
-      </ol>
-    </section>
-
-    <!-- 9. Testimonial -->
-    <section class="case-quote" aria-label="Testimonial">
-      <figure data-reveal>
-        <blockquote><p>“Quality and consistency of PODS designs from all teams has greatly risen.”</p></blockquote>
-        <figcaption>VP of Digital Design, PODS</figcaption>
-      </figure>
+      <a class="next" href="index.html#work">
+        <span class="next__label">More work</span>
+        <span class="next__title">Cirkul Homepage <em>$90M+ revenue</em></span>
+        <img src="assets/img/work-cirkul.webp" alt="" loading="lazy">
+        <span class="next__go" aria-hidden="true">→</span>
+      </a>
     </section>
   </main>
 
-  <!-- 10. Segmented CTA -->
-  <footer id="contact" class="contact">
-    <p class="eyebrow"><span>(05)</span> Hiring?</p>
-    <h2 class="contact__title" data-contact-title><span>Let's</span> <span>talk.</span></h2>
-    <p class="contact__sub">If you're a hiring manager, I'll walk you through the full case study: the rollout, the trade‑offs, and what I'd do next.</p>
-
-    <div class="contact__actions">
-      <a class="orb" href="mailto:uxbyandrew@yahoo.com?subject=PODS%20Design%20System%20case%20study" data-magnetic data-cursor="Email">
-        <span>Request it</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a>
-      <div class="contact__email">
-        <a href="mailto:uxbyandrew@yahoo.com?subject=PODS%20Design%20System%20case%20study">uxbyandrew@yahoo.com</a>
-        <button type="button" class="copy" data-copy="uxbyandrew@yahoo.com">Copy</button>
-      </div>
-    </div>
-
-    <div class="contact__bottom">
-      <ul class="socials">
-        <li><a href="https://www.linkedin.com/in/andrewarq/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
-        <li><a href="https://www.instagram.com/uxbyandrew" target="_blank" rel="noopener">Instagram ↗</a></li>
-      </ul>
-      <p>© <span data-year>2026</span> Andrew Arquines · Designed &amp; built with care</p>
-      <a class="totop" href="index.html#work">← All work</a>
-    </div>
+  <footer class="cj-foot">
+    <span>© <span data-year>2026</span> Andrew Arquines</span>
+    <span><a href="https://www.linkedin.com/in/andrewarq/" target="_blank" rel="noopener">LinkedIn ↗</a> · <a href="index.html">Home</a></span>
   </footer>
 
   <dialog class="lightbox" aria-label="Enlarged image">
     <button type="button" class="lightbox__close" aria-label="Close">×</button>
     <img alt="">
   </dialog>
-
   <div class="toast" role="status" aria-live="polite"></div>
 
-  <script src="main.js" defer></script>
+  <script src="case.js" defer></script>
 </body>
 </html>
