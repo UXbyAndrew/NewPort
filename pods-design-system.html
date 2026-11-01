@@ -73,6 +73,7 @@
     <!-- ACT I: THE PROBLEM — the noise -->
     <section class="scene pinned pinned--long fade" id="act-problem" data-scene="noise" data-act="0" aria-labelledby="problem-h">
       <div class="stage">
+        <div class="actcard" aria-hidden="true"><span>Act I</span>The problem</div>
         <canvas class="swatches" data-swatches="chaos" aria-hidden="true"></canvas>
         <div class="specimens" aria-hidden="true">
           <span style="--x:58%;--y:22%;--r:-5deg;--dl:0s;font:600 clamp(26px,3vw,44px)/1 var(--display);letter-spacing:-.03em">Book your container</span>
@@ -84,7 +85,7 @@
           <p class="act">Act I — The problem</p>
           <h2 id="problem-h" class="visually-hidden">The problem</h2>
           <ol class="caps">
-            <li data-from="0" data-to=".25">Four design teams. Each inherited its own type set, and its own rules.</li>
+            <li data-from=".1" data-to=".25">Four design teams. Each inherited its own type set, and its own rules.</li>
             <li data-from=".25" data-to=".5">800+ colors. Designers solved the same problems differently.</li>
             <li data-from=".5" data-to=".75">Engineers filled the gaps. Handoffs ran past an hour.</li>
             <li data-from=".75" data-to="1.01"><strong>Consistency depended on whoever touched the file last.</strong></li>
@@ -94,29 +95,42 @@
     </section>
 
     <!-- TURNING POINT: ownership -->
-    <section class="scene scene--decision" id="act-decision" data-act="1" aria-labelledby="decision-h">
-      <p class="act act--center" data-r>Turning point</p>
-      <h2 id="decision-h" class="big-line" data-r>I didn't start with components.<br><span>I started with who owns what.</span></h2>
-      <p class="narr" data-r>Before touching a single component, I brought tech leads, PMs, engineers, and designers together to decide how the system would actually run.</p>
-      <div class="hub" data-r>
-        <svg class="hub__lines" aria-hidden="true"><path/><path/><path/></svg>
-        <div class="node node--top"><p class="node__team">Engineering</p><p class="node__role">Implementation partner</p></div>
-        <div class="node node--core"><p class="node__team">Discovery design</p><p class="node__role">System direction owner</p><p class="node__desc">Sets the standards, reviews quality, keeps it coherent.</p></div>
-        <div class="node node--left"><p class="node__team">Booking</p><p class="node__role">Needs &amp; QA partner</p></div>
-        <div class="node node--right"><p class="node__team">Post‑Booking</p><p class="node__role">Feedback &amp; QA</p></div>
+    <section class="scene pinned fade" id="act-decision" data-scene="build" data-act="1" aria-labelledby="decision-h">
+      <div class="stage stage--build">
+        <div class="build__head">
+          <p class="act act--center">Turning point</p>
+          <h2 id="decision-h" class="big-line big-line--sm">I didn't start with components. <span>I started with who owns what.</span></h2>
+        </div>
+        <div class="hub">
+          <svg class="hub__lines" aria-hidden="true"><path pathLength="1" data-at=".34"/><path pathLength="1" data-at=".56"/><path pathLength="1" data-at=".78"/></svg>
+          <div class="node node--core" data-at=".12"><p class="node__team">Discovery design</p><p class="node__role">System direction owner</p></div>
+          <div class="node node--top" data-at=".34"><p class="node__team">Engineering</p><p class="node__role">Implementation partner</p></div>
+          <div class="node node--left" data-at=".56"><p class="node__team">Booking</p><p class="node__role">Needs &amp; QA partner</p></div>
+          <div class="node node--right" data-at=".78"><p class="node__team">Post‑Booking</p><p class="node__role">Feedback &amp; QA</p></div>
+        </div>
+        <div class="lower lower--center">
+          <ol class="caps">
+            <li data-from="0" data-to=".12">Before touching a single component, I brought tech leads, PMs, engineers, and designers together.</li>
+            <li data-from=".12" data-to=".34">Discovery design would own the system's direction: standards, quality, coherence.</li>
+            <li data-from=".34" data-to=".56">Engineering became the implementation partner.</li>
+            <li data-from=".56" data-to=".78">Booking brought real needs, and QA.</li>
+            <li data-from=".78" data-to="1.01">Post‑Booking closed the loop with feedback and QA. <strong>One owner, clear partners.</strong></li>
+          </ol>
+        </div>
       </div>
     </section>
 
     <!-- ACT II: FOUNDATIONS — the noise resolves -->
     <section class="scene pinned pinned--long fade" id="act-foundations" data-scene="collapse" data-act="2" aria-labelledby="found-h">
       <div class="stage">
+        <div class="actcard" aria-hidden="true"><span>Act II</span>Foundations</div>
         <canvas class="swatches" data-swatches="collapse" aria-hidden="true"></canvas>
         <div class="counter" aria-hidden="true"><span data-count>800+</span><small data-count-unit>colors</small></div>
         <div class="lower">
           <p class="act">Act II — Foundations</p>
           <h2 id="found-h" class="visually-hidden">Foundations</h2>
           <ol class="caps">
-            <li data-from="0" data-to=".3">First, the basics every screen depends on.</li>
+            <li data-from=".1" data-to=".3">First, the basics every screen depends on.</li>
             <li data-from=".3" data-to=".7">The same 800+ colors, consolidated.</li>
             <li data-from=".7" data-to="1.01"><strong>Seven named ramps. Tokenized and ready for engineering.</strong></li>
           </ol>
@@ -141,23 +155,28 @@
     </section>
 
     <!-- ACT II½: THE TRADE-OFF as a conversation -->
-    <section class="scene scene--trade" id="act-tradeoff" data-act="3" aria-labelledby="trade-h">
-      <p class="act act--center" data-r>The trade‑off</p>
-      <h2 id="trade-h" class="big-line" data-r>The hardest conversation wasn't about design.</h2>
-      <div class="dialogue">
-        <p class="line line--them" data-r><span>Product</span>Renaming and retroactive updates will pull engineers off the roadmap.</p>
-        <p class="line line--me" data-r><span>Me</span>Then we don't ship it all at once.</p>
-      </div>
-      <div class="lanes" data-scene="lanes">
-        <div class="lane">
-          <p class="lane__name"><strong>Now</strong>Type + color, retroactively</p>
-          <div class="lane__track"><span class="lane__fill"></span></div>
+    <section class="scene pinned fade" id="act-tradeoff" data-scene="chat" data-act="3" aria-labelledby="trade-h">
+      <div class="stage stage--chat">
+        <div class="chat">
+          <p class="act">The trade‑off</p>
+          <h2 id="trade-h" class="big-line big-line--sm chat__h">The hardest conversation wasn't about design.</h2>
+          <div class="dialogue">
+            <p class="line line--them" data-at=".06"><span>Product</span>Renaming and retroactive updates will pull engineers off the roadmap.</p>
+            <p class="typing" data-at=".22" data-until=".36" aria-hidden="true"><i></i><i></i><i></i></p>
+            <p class="line line--me" data-at=".36"><span>Me</span>Then we don't ship it all at once.</p>
+          </div>
+          <div class="lanes" data-at=".46">
+            <div class="lane">
+              <p class="lane__name"><strong>Now</strong>Type + color, retroactively</p>
+              <div class="lane__track"><span class="lane__fill"></span></div>
+            </div>
+            <div class="lane">
+              <p class="lane__name"><strong>Forward</strong>Components, as surfaces come up for redesign</p>
+              <div class="lane__track lane__track--seg"><span class="seg" style="--i:0"></span><span class="seg" style="--i:1"></span><span class="seg" style="--i:2"></span><span class="seg" style="--i:3"></span></div>
+            </div>
+            <p class="lanes__cap">Consistency, without eating engineering hours.</p>
+          </div>
         </div>
-        <div class="lane">
-          <p class="lane__name"><strong>Forward</strong>Components, as surfaces come up for redesign</p>
-          <div class="lane__track lane__track--seg"><span class="seg" style="--i:0"></span><span class="seg" style="--i:1"></span><span class="seg" style="--i:2"></span><span class="seg" style="--i:3"></span></div>
-        </div>
-        <p class="lanes__cap">Consistency, without eating engineering hours.</p>
       </div>
     </section>
 
@@ -165,12 +184,13 @@
     <section class="scene pinned fade pinned--long" id="act-components" data-scene="cam" data-act="4" aria-labelledby="comp-h"
       data-cam='[[0,1,0.5,0.5],[0.1,1,0.5,0.5],[0.2,1.25,0.585,0.565],[0.34,1.25,0.585,0.565],[0.46,3.2,0.233,0.3],[0.62,3.2,0.233,0.3],[0.72,2.4,0.785,0.3],[0.88,2.4,0.785,0.3],[1,1,0.5,0.5]]' data-spots='[[0.2,0.35,0.195,0.17,0.975,0.96],[0.46,0.63,0.198,0.185,0.27,0.41],[0.72,0.89,0.6,0.185,0.975,0.41]]'>
       <div class="stage stage--cam">
+        <div class="actcard" aria-hidden="true"><span>Act III</span>Components</div>
         <div class="cam"><div class="cam__inner"><img class="cam__img" src="assets/img/pods/full-buttons.webp" alt="The PODS button system: every style and size across default, hover, pressed, focus, and disabled states, in red and blue" width="2341" height="1449" loading="lazy"><span class="spot" aria-hidden="true"></span></div></div>
         <div class="lower lower--light">
           <p class="act">Act III — Components</p>
           <h2 id="comp-h" class="visually-hidden">Components</h2>
           <ol class="caps">
-            <li data-from="0" data-to=".17">Then the patterns teams used most, and misused most.</li>
+            <li data-from=".1" data-to=".17">Then the patterns teams used most, and misused most.</li>
             <li data-from=".17" data-to=".4">Every style and size, in one matrix.</li>
             <li data-from=".4" data-to=".66">Every state defined: default, hover, pressed, focus, disabled.</li>
             <li data-from=".66" data-to=".92">Red drives top‑of‑funnel actions. Blue carries mid‑funnel decisions.</li>
@@ -213,10 +233,13 @@
         <li data-r><strong>1 owner</strong><span>Clear ownership</span>A contribution model with accountability.</li>
         <li data-r><strong>Standards</strong><span>Repeatable quality</span>Replaced one‑off interpretation.</li>
       </ul>
+      <div class="endwrap">
+        <canvas class="swatches swatches--calm" data-swatches="calm" aria-hidden="true"></canvas>
       <figure class="endcard" data-r>
         <blockquote><p>“Quality and consistency of PODS designs from all teams has greatly risen.”</p></blockquote>
         <figcaption>VP of Digital Design, PODS</figcaption>
       </figure>
+      </div>
     </section>
 
     <!-- NEXT -->

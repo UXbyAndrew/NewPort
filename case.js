@@ -27,7 +27,25 @@
   // Timed lines: each <li data-from data-to> is "on" while progress is inside its range
   const timed = el => {
     const items = $$('li[data-from]', el).map(li => ({ li, a: +li.dataset.from, b: +li.dataset.to }));
-    return p => items.forEach(it => it.li.classList.toggle('on', p >= it.a && p < it.b));
+    // progress dots under each caption list, so you know where you are in a scene
+    let dots = [];
+    const caps = $('.lower .caps', el);
+    if (caps && items.length > 1) {
+      const wrap = document.createElement('div');
+      wrap.className = 'dots'; wrap.setAttribute('aria-hidden', 'true');
+      dots = items.map(() => wrap.appendChild(document.createElement('i')));
+      caps.after(wrap);
+    }
+    return p => items.forEach((it, i) => {
+      const on = p >= it.a && p < it.b;
+      it.li.classList.toggle('on', on);
+      if (dots[i]) { dots[i].classList.toggle('on', on); dots[i].classList.toggle('done', p >= it.b); }
+    });
+  };
+  // Elements that switch on at a progress threshold (data-at, optional data-until)
+  const steps = el => {
+    const items = $$('[data-at]', el).map(n => ({ n, a: +n.dataset.at, b: n.dataset.until ? +n.dataset.until : 2 }));
+    return p => items.forEach(it => it.n.classList.toggle('on', p >= it.a && p < it.b));
   };
 
   /* ---------- Swatch canvases ---------- */
@@ -68,9 +86,14 @@
       canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       // final palette grid sits in the right/center area, clear of captions and counter
-      const gw = Math.min(W * (W < 760 ? .9 : .56), 820), labelW = W < 760 ? 0 : 110;
-      const cw = (gw - labelW) / 10, ch = Math.min(cw * .7, H * .055);
-      grid = { x: (W - gw) / 2 + (W < 760 ? 0 : W * .12), y: H * (W < 760 ? .3 : .26), labelW, cw, ch };
+      if (mode === 'calm') {
+        const cw = Math.min(W / 10, 110), ch = Math.min(cw * .7, H / 7);
+        grid = { x: (W - cw * 10) / 2, y: (H - ch * 7) / 2, labelW: 0, cw, ch };
+      } else {
+        const gw = Math.min(W * (W < 760 ? .9 : .56), 820), labelW = W < 760 ? 0 : 110;
+        const cw = (gw - labelW) / 10, ch = Math.min(cw * .7, H * .055);
+        grid = { x: (W - gw) / 2 + (W < 760 ? 0 : W * .12), y: H * (W < 760 ? .3 : .26), labelW, cw, ch };
+      }
       draw(performance.now());
     };
     const draw = now => {
@@ -187,6 +210,14 @@
       add(sec, { update: p => { cam.set(p); caps(p); } });
     }
     else if (kind === 'lanes') add(sec, { mode: 'pass' });
+    else if (kind === 'build') {
+      const caps = timed(sec), st = steps(sec);
+      add(sec, { update: p => { caps(p); st(p); } });
+    }
+    else if (kind === 'chat') {
+      const st = steps(sec), lanes = $('.lanes', sec);
+      add(sec, { update: p => { st(p); lanes.style.setProperty('--lp', clamp((p - .5) / .42, 0, 1).toFixed(4)); } });
+    }
     else if (kind === 'dial') {
       const arc = $('.dial__arc', sec), num = $('[data-dial]', sec), C = 2 * Math.PI * 88;
       add(sec, { mode: 'pass', update: p => {
@@ -196,6 +227,8 @@
       } });
     }
   });
+
+  $$('[data-swatches="calm"]').forEach(cv => { const s = makeSwatches(cv, 'calm'); canvases.push({ resize: () => { s.resize(); s.set(1); } }); });
 
   /* ---------- Scrubber ---------- */
   const scrub = $('.scrub'), marks = $$('.scrub__marks a');
