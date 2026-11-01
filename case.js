@@ -65,26 +65,49 @@
     const ctx = canvas.getContext('2d');
     let seed = 11;
     const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    // Four competing color libraries: each a loose sheet sorted by family, packed with
+    // near-duplicates, with its own cell size, corner style, tilt and color cast.
+    const SHEETS = [
+      // each library also carries its own inherited type style for the same heading
+      { cx: .24, cy: .31, rot: -.06, cell: 15, gap: 3, cols: 16, rad: 0,   cast: [10, 0, -6],  font: k => `600 ${20 * k}px Chillax, Inter, sans-serif`, text: 'Book your container' },
+      { cx: .63, cy: .27, rot: .05,  cell: 12, gap: 5, cols: 18, rad: 6,   cast: [-6, 4, 12],  font: k => `300 ${18 * k}px Inter, sans-serif`, text: 'Book  your  container' },
+      { cx: .43, cy: .62, rot: .035, cell: 17, gap: 2, cols: 14, rad: 3,   cast: [4, 10, -4],  font: k => `italic 400 ${20 * k}px Georgia, serif`, text: 'Book your container' },
+      { cx: .8,  cy: .58, rot: -.03, cell: 13, gap: 4, cols: 17, rad: 1.5, cast: [12, -6, 6],  font: k => `800 ${13 * k}px Inter, sans-serif`, text: 'BOOK YOUR CONTAINER' }
+    ];
+    SHEETS.forEach(s => { s.ph = rnd() * 6.28; s.items = []; });
     const N = 820, sw = [];
     for (let i = 0; i < N; i++) {
       const fi = i < 70 ? (i / 10) | 0 : (rnd() * 7) | 0;
       const si = i < 70 ? i % 10 : (rnd() * 10) | 0;
       const t = hex(PAL[FAMS[fi]][si]);
-      const j = i < 70 ? 40 : 75;
-      sw.push({
-        fi, si, real: i < 70, target: t,
-        start: t.map(v => clamp(Math.round(v + (rnd() * 2 - 1) * j), 0, 255)),
-        x0: rnd(), y0: rnd(), r0: (rnd() * 2 - 1) * 1.3, s0: 5 + rnd() * 13,
-        ph: rnd() * 6.28, sp: .2 + rnd() * .5, d: rnd() * .2
-      });
+      const sh = SHEETS[i % 4];
+      const j = i < 70 ? 18 : 34;                                  // near-duplicates, not random noise
+      const s = {
+        fi, si, real: i < 70, target: t, sheet: sh,
+        start: t.map((v, c) => clamp(Math.round(v + sh.cast[c] + (rnd() * 2 - 1) * j), 0, 255)),
+        sort: fi * 10 + si + rnd() * .9, d: rnd() * .2, lx: 0, ly: 0
+      };
+      sh.items.push(s); sw.push(s);
     }
+    SHEETS.forEach(sh => sh.items.sort((a, b) => a.sort - b.sort));
     sw.sort((a, b) => a.real - b.real);
-    let W = 0, H = 0, grid, p = 0, visible = false, raf = 0;
+    let W = 0, H = 0, grid, p = 0, visible = false, raf = 0, kScale = 1;
     const resize = () => {
       const r = canvas.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
       W = r.width; H = r.height;
       canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      kScale = clamp(Math.min(W / 1440, H / 900), .42, 1.25);
+      // lay each sheet out as a grid, centred on its anchor
+      SHEETS.forEach(sh => {
+        const cell = sh.cell * kScale, gap = sh.gap * kScale, step = cell + gap;
+        const rows = Math.ceil(sh.items.length / sh.cols);
+        sh.w = sh.cols * step - gap; sh.h = rows * step - gap; sh.c = cell;
+        sh.items.forEach((s, n) => {
+          s.lx = (n % sh.cols) * step - sh.w / 2 + cell / 2;
+          s.ly = ((n / sh.cols) | 0) * step - sh.h / 2 + cell / 2;
+        });
+      });
       // final palette grid sits in the right/center area, clear of captions and counter
       if (mode === 'calm') {
         const cw = Math.min(W / 10, 110), ch = Math.min(cw * .7, H / 7);
@@ -96,35 +119,64 @@
       }
       draw(performance.now());
     };
+    const rr = (x, y, w, h, r) => {
+      if (r > .5 && ctx.roundRect) { ctx.beginPath(); ctx.roundRect(x, y, w, h, Math.min(r, w / 2, h / 2)); ctx.fill(); }
+      else ctx.fillRect(x, y, w, h);
+    };
+    // where each sheet sits right now: gentle float, and in Act I the sheets crowd each other
+    const sheetPos = (sh, time) => {
+      const drift = reduced ? 0 : 1;
+      const pull = mode === 'chaos' ? p * .22 : 0;
+      const cx = lerp(sh.cx, .5, pull) * W + Math.sin(time * .25 + sh.ph) * 6 * drift;
+      const cy = lerp(sh.cy, .5, pull) * H + Math.cos(time * .2 + sh.ph) * 5 * drift;
+      const rot = sh.rot * (1 + (mode === 'chaos' ? p * .8 : 0));
+      return { cx, cy, rot, cos: Math.cos(rot), sin: Math.sin(rot) };
+    };
     const draw = now => {
       if (!W) return;
       ctx.clearRect(0, 0, W, H);
       const time = now / 1000;
       const { x: gx, y: gy, labelW, cw, ch } = grid;
       const gap = Math.max(2, cw * .07);
+      const pos = new Map(SHEETS.map(sh => [sh, sheetPos(sh, time)]));
+      // faint sheet backgrounds read as four separate libraries
+      const sheetA = mode === 'chaos' ? 1 : mode === 'collapse' ? 1 - clamp(p / .3, 0, 1) : 0;
+      if (sheetA > 0) {
+        SHEETS.forEach(sh => {
+          const q = pos.get(sh), pad = 14 * kScale;
+          ctx.save(); ctx.translate(q.cx, q.cy); ctx.rotate(q.rot);
+          ctx.globalAlpha = sheetA;
+          ctx.fillStyle = 'rgba(255,255,255,.035)'; ctx.strokeStyle = 'rgba(255,255,255,.09)'; ctx.lineWidth = 1;
+          const top = -sh.h / 2 - pad - 34 * kScale;              // room for the sheet's heading
+          ctx.beginPath(); (ctx.roundRect ? ctx.roundRect(-sh.w / 2 - pad, top, sh.w + pad * 2, sh.h / 2 + pad - top, 10) : ctx.rect(-sh.w / 2 - pad, top, sh.w + pad * 2, sh.h / 2 + pad - top));
+          ctx.fill(); ctx.stroke();
+          // the heading, set in this library's own inherited type style
+          ctx.fillStyle = 'rgba(242,240,235,.88)'; ctx.font = sh.font(Math.max(kScale, .62)); ctx.textBaseline = 'middle';
+          ctx.fillText(sh.text, -sh.w / 2, -sh.h / 2 - 18 * kScale);
+          ctx.restore();
+        });
+        ctx.globalAlpha = 1;
+      }
       for (const s of sw) {
-        const drift = reduced ? 0 : 1;
-        const wob = Math.sin(time * s.sp + s.ph) * 10 * drift;
-        let x = s.x0 * W + wob, y = s.y0 * H + Math.cos(time * s.sp * .8 + s.ph) * 8 * drift, w = s.s0, h = s.s0, rot = s.r0 + Math.sin(time * .3 + s.ph) * .2 * drift;
-        let a = mode === 'chaos' ? .35 + p * .55 : 1, col = s.start;
-        if (mode === 'chaos') {
-          // the noise gets louder as the problem builds
-          const spread = 1 + p * .25;
-          x = W / 2 + (x - W / 2) * spread; y = H / 2 + (y - H / 2) * spread;
-        } else {
+        const sh = s.sheet, q = pos.get(sh);
+        // start position: the swatch's cell on its (tilted) sheet
+        const sx = q.cx + s.lx * q.cos - s.ly * q.sin, sy = q.cy + s.lx * q.sin + s.ly * q.cos;
+        let w = sh.c, h = sh.c, x = sx - w / 2, y = sy - h / 2, rot = q.rot, rad = sh.rad * kScale;
+        let a = mode === 'chaos' ? .9 : 1, col = s.start;
+        if (mode !== 'chaos') {
           const t = easeIO(clamp((p - .06 - s.d) / .58, 0, 1));
           const tx = gx + labelW + s.si * cw + gap / 2, ty = gy + s.fi * ch + gap / 2;
           x = lerp(x, tx, t); y = lerp(y, ty, t);
-          w = lerp(s.s0, cw - gap, t); h = lerp(s.s0, ch - gap, t);
-          rot = rot * (1 - t);
+          w = lerp(sh.c, cw - gap, t); h = lerp(sh.c, ch - gap, t);
+          rot = rot * (1 - t); rad = lerp(rad, 2, t);
           col = s.start.map((v, k) => Math.round(lerp(v, s.target[k], t)));
           if (!s.real) a = t < .55 ? 1 : 1 - (t - .55) / .45;
         }
         if (a <= .01) continue;
         ctx.globalAlpha = a;
         ctx.fillStyle = `rgb(${col[0]},${col[1]},${col[2]})`;
-        if (Math.abs(rot) > .002) { ctx.save(); ctx.translate(x + w / 2, y + h / 2); ctx.rotate(rot); ctx.fillRect(-w / 2, -h / 2, w, h); ctx.restore(); }
-        else ctx.fillRect(x, y, w, h);
+        if (Math.abs(rot) > .002) { ctx.save(); ctx.translate(x + w / 2, y + h / 2); ctx.rotate(rot); rr(-w / 2, -h / 2, w, h, rad); ctx.restore(); }
+        else rr(x, y, w, h, rad);
       }
       ctx.globalAlpha = 1;
       if (mode === 'collapse' && labelW) {
