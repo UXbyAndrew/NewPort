@@ -268,23 +268,6 @@
   };
   requestAnimationFrame(frame);
 
-  /* ---------- Hero fan follows the pointer ---------- */
-  const fan = $('[data-fan]');
-  if (fan && finePointer && !reduced) {
-    let tx = 0, ty = 0, cx = 0, cy = 0;
-    addEventListener('pointermove', e => {
-      tx = (e.clientX / innerWidth - 0.5) * 2;
-      ty = (e.clientY / innerHeight - 0.5) * 2;
-    }, { passive: true });
-    const loop = () => {
-      cx = lerp(cx, tx, 0.06); cy = lerp(cy, ty, 0.06);
-      fan.style.setProperty('--mx', cx.toFixed(3));
-      fan.style.setProperty('--my', cy.toFixed(3));
-      requestAnimationFrame(loop);
-    };
-    loop();
-  }
-
   /* ---------- Custom cursor ---------- */
   const cursor = $('.cursor');
   if (cursor && finePointer && !reduced) {
@@ -330,12 +313,18 @@
   if (rot && !reduced) {
     const items = [...rot.children];
     let idx = 0;
+    // size the slot to the visible word so "design." always sits right after it
+    const fitRot = () => { rot.style.width = Math.ceil(items[idx].getBoundingClientRect().width) + 'px'; };
+    fitRot();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitRot);
+    addEventListener('resize', fitRot);
     setTimeout(() => setInterval(() => {
       const cur = items[idx];
       idx = (idx + 1) % items.length;
       const nxt = items[idx];
       cur.classList.remove('is-on'); cur.classList.add('is-out');
       nxt.classList.remove('is-out'); nxt.classList.add('is-on');
+      fitRot();
       setTimeout(() => {
         // park the old word below without animating it back through view
         cur.style.transition = 'none';
@@ -432,47 +421,26 @@
     scrIO.observe(eb);
   });
 
-  /* ---------- Hero cards: drag, fling, spring back ---------- */
-  if (fan && finePointer && !reduced) {
-    root.classList.add('has-drag');
-    const hint = document.createElement('div');
-    hint.className = 'fan-hint';
-    hint.textContent = 'Drag me ✦';
-    fan.appendChild(hint);
-    let z = 10;
-    $$('.fan-card', fan).forEach(card => {
-      let sx = 0, sy = 0, dragging = false, lastX = 0;
-      card.addEventListener('pointerdown', e => {
-        dragging = true; sx = e.clientX; sy = e.clientY; lastX = e.clientX;
-        card.setPointerCapture(e.pointerId);
-        card.classList.remove('is-springing');
-        card.classList.add('is-dragging');
-        card.style.zIndex = ++z;
-        hint.classList.add('is-gone');
-        e.preventDefault();
-      });
-      card.addEventListener('pointermove', e => {
-        if (!dragging) return;
-        const dx = e.clientX - sx, dy = e.clientY - sy;
-        const vx = e.clientX - lastX; lastX = e.clientX;
-        card.style.setProperty('--dx', dx + 'px');
-        card.style.setProperty('--dy', dy + 'px');
-        card.style.setProperty('--dr', clamp(vx * 1.2 + dx * 0.04, -25, 25).toFixed(1) + 'deg');
-      });
-      const release = () => {
-        if (!dragging) return;
-        dragging = false;
-        card.classList.remove('is-dragging');
-        card.classList.add('is-springing');
-        card.style.setProperty('--dx', '0px');
-        card.style.setProperty('--dy', '0px');
-        card.style.setProperty('--dr', '0deg');
-        setTimeout(() => card.classList.remove('is-springing'), 1000);
-      };
-      card.addEventListener('pointerup', release);
-      card.addEventListener('pointercancel', release);
-    });
-  }
+  /* ---------- Hero reel: stats count up when a card opens ---------- */
+  const countUp = (el, dur = 1100) => {
+    const to = +el.dataset.to, pre = el.dataset.pre || '', suf = el.dataset.suf || '';
+    if (reduced) { el.textContent = pre + to + suf; return; }
+    cancelAnimationFrame(el._raf);
+    const t0 = performance.now();
+    const step = now => {
+      const p = clamp((now - t0) / dur, 0, 1);
+      el.textContent = pre + Math.round(to * (1 - Math.pow(1 - p, 4))) + suf;
+      if (p < 1) el._raf = requestAnimationFrame(step);
+    };
+    el._raf = requestAnimationFrame(step);
+  };
+  $$('.reel__card').forEach(card => {
+    const nums = $$('[data-to]', card);
+    if (!nums.length) return;
+    const run = () => nums.forEach((n, i) => setTimeout(() => countUp(n), 150 + i * 80));
+    card.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') run(); });
+    card.addEventListener('focus', run);
+  });
 
   /* ---------- Experience rows: floating preview ---------- */
   const preview = $('.preview');
