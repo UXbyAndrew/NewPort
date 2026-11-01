@@ -1,108 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
-  <title>Card Group with Top Nav</title>
+  <title>Andrew Arquines — UXbyAndrew</title>
+  <meta name="description" content="Andrew Arquines is a senior UX designer crafting refined experiences that use customer insights to connect businesses with their goals.">
+  <meta name="theme-color" content="#0d0d0f">
+  <meta property="og:title" content="Andrew Arquines — UXbyAndrew">
+  <meta property="og:description" content="Senior UX designer. Design systems, growth UX, and research-backed product work.">
+  <meta property="og:image" content="assets/img/hero-andrew.webp">
+  <link rel="icon" href="assets/img/memoji.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=chillax@200,300,400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js')</script>
 </head>
 
 <body>
-  <div class="container">
-    <!-- Navigation -->
-    <div class="top-nav">
-      <div class="label">UX Lead @ Cirkul</div>
-      <div class="menu">
-        <div class="menu-item">Work</div>
-        <div class="menu-item">About</div>
-        <div class="menu-item">Playground</div>
-        <div class="menu-item">Blog</div>
+  <a class="skip" href="#work">Skip to work</a>
+
+  <!-- Preloader -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader__word"><span>UX</span><span class="loader__by">by</span><span>Andrew</span></div>
+    <div class="loader__count"><span data-loader-count>0</span>%</div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <div class="cursor" aria-hidden="true"><span class="cursor__label">View</span></div>
+
+  <!-- Header -->
+  <header class="header">
+    <a class="brand" href="#top" aria-label="UXbyAndrew, back to top">
+      <img src="assets/img/memoji.webp" alt="" width="32" height="32">
+      <span>UX<em>by</em>Andrew</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#process">Process</a>
+      <a href="#kind-words">Kind words</a>
+    </nav>
+    <a class="pill-cta" href="#contact" data-magnetic>
+      <span class="dot" aria-hidden="true"></span> Let's talk
+    </a>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__meta" data-intro>
+        <span class="tag">Senior UX Designer</span>
+        <span class="hero__meta-line">Design systems · Growth UX · Research</span>
       </div>
-      <button class="button">
-        Resume
-        <div class="arrow"></div>
-      </button>
+
+      <h1 id="hero-title" class="hero__title">
+        <span class="line"><span class="line__in" data-intro>Empowering</span></span>
+        <span class="line"><span class="line__in" data-intro>growth through</span></span>
+        <span class="line"><span class="line__in" data-intro><span class="hero__face"><img src="assets/img/andrew-portrait.webp" alt="" width="200" height="300"></span><em>user&#8209;centric</em></span></span>
+        <span class="line"><span class="line__in" data-intro>design.</span></span>
+      </h1>
+
+      <div class="hero__fan" data-fan aria-hidden="true">
+        <div class="fan-card" style="--i:0"><img src="assets/img/work-cirkul-laptop.webp" alt=""></div>
+        <div class="fan-card" style="--i:1"><img src="assets/img/work-pods.webp" alt=""></div>
+        <div class="fan-card" style="--i:2"><img src="assets/img/work-prequote.webp" alt=""></div>
+        <div class="fan-card" style="--i:3"><img src="assets/img/work-nav.webp" alt=""></div>
+      </div>
+
+      <div class="hero__foot">
+        <p class="hero__lede" data-intro>I'm a designer crafting refined experiences, using customer insights to connect businesses with their goals.</p>
+        <a class="scroll-cue" href="#work" data-intro aria-label="Scroll to selected work">
+          <span class="scroll-cue__ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m0 0-6-6m6 6 6-6"/></svg></span>
+          Scroll
+        </a>
+      </div>
+
+      <div class="wordmark" aria-hidden="true">
+        <span class="wm" data-intro>UX</span><span class="wm wm--by" data-intro>by</span><span class="wm" data-intro>Andrew</span>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-label="Companies and focus areas">
+      <div class="marquee__track" data-marquee>
+        <ul class="marquee__group">
+          <li>PODS</li><li class="star" aria-hidden="true">✳</li>
+          <li>Cirkul</li><li class="star" aria-hidden="true">✳</li>
+          <li>SKILLZ</li><li class="star" aria-hidden="true">✳</li>
+          <li>MrBeast × Cirkul</li><li class="star" aria-hidden="true">✳</li>
+          <li>Design Systems</li><li class="star" aria-hidden="true">✳</li>
+          <li>E‑commerce</li><li class="star" aria-hidden="true">✳</li>
+          <li>WCAG Accessibility</li><li class="star" aria-hidden="true">✳</li>
+        </ul>
+      </div>
     </div>
 
-    <!-- Text Statement -->
-    <div class="cirkul">UX<span style="color:grey";>by</span>Andrew</div>
-    <!-- Projects -->
-    <div class="content">
-      <div class="group">
-        <div class="card">
-          <p class="headline">MrBeast x Cirkul</p>
-          <p class="subheadline">Driving Revenue via UX</p>
-          <div class="button-container">
-            <div class="button">
-              <div class="button-icon"></div>
+    <!-- IMPACT -->
+    <section class="impact" aria-label="Impact in numbers">
+      <div class="impact__grid">
+        <div class="stat" data-reveal>
+          <p class="stat__num"><span data-count="90" data-prefix="$" data-suffix="M+">$90M+</span></p>
+          <p class="stat__label">Revenue influenced through Cirkul's homepage &amp; shopping experience</p>
+        </div>
+        <div class="stat" data-reveal>
+          <p class="stat__num"><span data-count="37" data-suffix="M+">37M+</span></p>
+          <p class="stat__label">Sessions designed for across e‑commerce journeys</p>
+        </div>
+        <div class="stat" data-reveal>
+          <p class="stat__num"><span data-count="2" data-suffix="M+">2M+</span></p>
+          <p class="stat__label">Products sold through optimized flows</p>
+        </div>
+        <div class="stat" data-reveal>
+          <p class="stat__num"><span data-count="11" data-prefix="+" data-suffix="%">+11%</span></p>
+          <p class="stat__label">First‑click success after a navigation redesign</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="work" aria-labelledby="work-title">
+      <div class="section-head">
+        <p class="eyebrow"><span>(01)</span> Selected work</p>
+        <h2 id="work-title" class="section-title" data-split>Work that ships, and moves the numbers.</h2>
+        <p class="section-sub" data-reveal>A curated selection of projects that reflect my commitment to simplicity and purposeful design.</p>
+      </div>
+
+      <ol class="stack">
+        <li class="project" style="--bg:#0f1b2d;--fg:#eaf3ff;--accent:#5cc8ff">
+          <a class="project__link" href="https://www.andrewarquines.com/work" data-cursor="View case">
+            <div class="project__info">
+              <div class="project__top"><span class="project__idx">01</span><span class="badge">Shipped</span><span>2026</span></div>
+              <h3 class="project__title">Pre‑Quote Strategy</h3>
+              <p class="project__desc">A decision framework built from data and user insights, giving teams a shared way to decide what goes in front of customers before they ever get a quote.</p>
+              <ul class="chips"><li>Strategy</li><li>Research</li><li>Data</li></ul>
             </div>
-            <p class="button-text">Learn More</p>
+            <div class="project__media"><img src="assets/img/work-prequote.webp" alt="Two phones showing the pre-quote mobile flow" loading="lazy" width="512" height="384"></div>
+          </a>
+        </li>
+        <li class="project" style="--bg:#16161a;--fg:#f4f1ec;--accent:#ff5a4f">
+          <a class="project__link" href="https://www.andrewarquines.com/work" data-cursor="View case">
+            <div class="project__info">
+              <div class="project__top"><span class="project__idx">02</span><span class="badge">Shipped</span><span>2025</span></div>
+              <h3 class="project__title">PODS Design System</h3>
+              <p class="project__desc">From a loose pattern library to a governed product language: reusable components, layout guidance and interaction patterns that cut implementation ambiguity across teams.</p>
+              <ul class="chips"><li>Design systems</li><li>Governance</li><li>Components</li></ul>
+            </div>
+            <div class="project__media"><img src="assets/img/work-pods.webp" alt="Laptop displaying the PODS design system documentation" loading="lazy" width="1600" height="1200"></div>
+          </a>
+        </li>
+        <li class="project" style="--bg:#0a8fd0;--fg:#ffffff;--accent:#ffe14d">
+          <a class="project__link" href="https://www.andrewarquines.com/work" data-cursor="View case">
+            <div class="project__info">
+              <div class="project__top"><span class="project__idx">03</span><span class="badge">Shipped</span><span>2024</span></div>
+              <h3 class="project__title">Cirkul Homepage</h3>
+              <p class="project__desc">A homepage and shopping redesign that contributed to $90M+ in revenue and 2M+ products sold across 37M+ sessions.</p>
+              <p class="project__metric"><strong>$90M</strong> revenue</p>
+            </div>
+            <div class="project__media"><img src="assets/img/work-cirkul.webp" alt="Cirkul homepage shown on a laptop and a phone" loading="lazy" width="1376" height="768"></div>
+          </a>
+        </li>
+        <li class="project" style="--bg:#ece8df;--fg:#0d0d0f;--accent:#0a8fd0">
+          <a class="project__link" href="https://www.andrewarquines.com/work" data-cursor="View case">
+            <div class="project__info">
+              <div class="project__top"><span class="project__idx">04</span><span class="badge">Shipped</span><span>2025</span></div>
+              <h3 class="project__title">Nav Redesign</h3>
+              <p class="project__desc">Information architecture and navigation rebuilt around how people actually look for things, validated with first‑click testing.</p>
+              <p class="project__metric"><strong>+11%</strong> first‑click success</p>
+            </div>
+            <div class="project__media"><img src="assets/img/work-nav.webp" alt="Redesigned navigation menu with product categories" loading="lazy" width="1600" height="1030"></div>
+          </a>
+        </li>
+      </ol>
+
+      <div class="center">
+        <a class="btn" href="https://www.andrewarquines.com/work" data-magnetic>View all projects <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about" aria-labelledby="about-title">
+      <p class="eyebrow"><span>(02)</span> About me</p>
+      <h2 id="about-title" class="visually-hidden">About Andrew</h2>
+      <p class="about__statement" data-highlight>I'm a designer focused on creating simple, purposeful, and elegant solutions. Beyond design I'm a dad, husband, son, adventurer, gamer, and collector of experiences.</p>
+
+      <div class="about__grid">
+        <figure class="about__portrait" data-reveal>
+          <div class="parallax" data-parallax="0.12"><img src="assets/img/andrew-steps.webp" alt="Andrew sitting on outdoor stone steps" loading="lazy" width="1400" height="934"></div>
+        </figure>
+        <div class="about__copy">
+          <p data-reveal>From road trips across America's National Parks, trekking through Iceland, backpacking through Norway, or eating my way through Japan&nbsp;🍣 — I bring a world of experiences to the table.</p>
+          <blockquote class="about__quote" data-reveal>
+            <p>“Leadership is not about being in charge. Leadership is about taking care of those in your charge.”</p>
+            <cite>— Simon Sinek</cite>
+          </blockquote>
+          <div class="polaroids" data-reveal>
+            <figure class="polaroid" style="--r:-6deg"><img src="assets/img/life-rome.webp" alt="Andrew in front of the Colosseum" loading="lazy" width="1000" height="750"><figcaption>Rome</figcaption></figure>
+            <figure class="polaroid" style="--r:4deg"><img src="assets/img/life-family.webp" alt="Andrew with his family on a trip" loading="lazy" width="1000" height="750"><figcaption>Family first</figcaption></figure>
+            <figure class="polaroid" style="--r:-2deg"><img src="assets/img/life-coast.webp" alt="Andrew and a friend on a rocky coastline" loading="lazy" width="960" height="721"><figcaption>Out exploring</figcaption></figure>
           </div>
         </div>
-        <div class="card">
-          <p class="headline">Customer Account Redesign</p>
-          <p class="subheadline">+ Trust // - Challenges</p>
-          <div class="button-container">
-            <div class="button">
-              <div class="button-icon"></div>
-            </div>
-            <p class="button-text">Learn More</p>
-          </div>
+      </div>
+
+      <div class="principles">
+        <p class="eyebrow">My principles</p>
+        <ul class="principles__grid">
+          <li class="principle" data-reveal>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0"/><path d="M21 12q-3.6 6-9 6t-9-6q3.6-6 9-6t9 6"/></svg>
+            <h3>Clarity</h3><p>Whether visual UI elements or CTA labels, purpose and clarity are the goal.</p>
+          </li>
+          <li class="principle" data-reveal>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M8 12h8"/></svg>
+            <h3>Simplicity</h3><p>Don't overcomplicate things. Find what works and keep the noise low.</p>
+          </li>
+          <li class="principle" data-reveal>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+            <h3>Human</h3><p>People use it, so it should be designed to be used from start to end.</p>
+          </li>
+          <li class="principle" data-reveal>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16v-4M12 16V7M17 16v-6"/></svg>
+            <h3>Informed</h3><p>Decisions validated or invalidated by data, not opinions.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROCESS (pinned horizontal) -->
+    <section id="process" class="process" aria-labelledby="process-title">
+      <div class="process__pin">
+        <div class="process__head">
+          <p class="eyebrow"><span>(03)</span> Process</p>
+          <h2 id="process-title" class="section-title">Simple, purposeful, adaptable.</h2>
+          <div class="process__bar" aria-hidden="true"><span></span></div>
         </div>
-        <div class="card">
-          <p class="headline">SKILLZ - Platform Redesign</p>
-          <p class="subheadline">Driving Value & Revenue</p>
-          <div class="button-container">
-            <div class="button">
-              <div class="button-icon"></div>
-            </div>
-            <p class="button-text">Learn More</p>
-          </div>
-        </div>
-        <div class="card">
-          <p class="headline">Malinois Rescue Redesign</p>
-          <p class="subheadline">Simplified UX</p>
-          <div class="button-container">
-            <div class="button">
-              <div class="button-icon"></div>
-            </div>
-            <p class="button-text">Learn More</p>
-          </div>
-        </div>
+        <ol class="process__track">
+          <li class="step">
+            <span class="step__num">01</span>
+            <h3>Discover</h3>
+            <p>I begin by listening, gaining a deep understanding of your goals, audience, and challenges through research and conversation.</p>
+          </li>
+          <li class="step">
+            <span class="step__num">02</span>
+            <h3>Define</h3>
+            <p>I distill insights into a clear direction. Strategy, structure, and creative foundations are set to guide the work forward.</p>
+          </li>
+          <li class="step">
+            <span class="step__num">03</span>
+            <h3>Design</h3>
+            <p>Ideas take shape through thoughtful design. I explore, refine, and iterate with intention, always rooted in purpose and simplicity.</p>
+          </li>
+          <li class="step">
+            <span class="step__num">04</span>
+            <h3>Deliver</h3>
+            <p>I finalize and hand off with care. Every element is ready for implementation with clarity, consistency, and attention to detail.</p>
+          </li>
+          <li class="step step--photo">
+            <img src="assets/img/andrew-workshop.webp" alt="Andrew leading a workshop in front of a wall of sticky notes" loading="lazy" width="900" height="789">
+            <p class="step__caption">Great design is a result of clarity, collaboration, and craft.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="experience" aria-labelledby="exp-title">
+      <div class="section-head">
+        <p class="eyebrow"><span>(04)</span> Experience</p>
+        <h2 id="exp-title" class="section-title" data-split>Leaving an impact.</h2>
+        <p class="section-sub" data-reveal>I've had the delight of working with, leading, and mentoring some amazing people while improving the metrics that matter.</p>
+      </div>
+      <ul class="roles">
+        <li class="role" data-reveal>
+          <span class="role__co">PODS</span><span class="role__title">Senior UX Designer</span><span class="role__yr">2025 – 2026</span>
+          <p class="role__desc">Defined reusable components, layout guidance, and interaction patterns for the PODS design system, improving consistency across design teams.</p>
+        </li>
+        <li class="role" data-reveal>
+          <span class="role__co">Cirkul</span><span class="role__title">Lead UX Designer</span><span class="role__yr">2023 – 2025</span>
+          <p class="role__desc">Contributed to $90M+ in revenue and 2M+ products sold through optimized homepage and e‑commerce experiences across 37M+ sessions.</p>
+        </li>
+        <li class="role" data-reveal>
+          <span class="role__co">SKILLZ</span><span class="role__title">UX Designer</span><span class="role__yr">2018 – 2023</span>
+          <p class="role__desc">Redesigned core information architecture, user flows, and product experiences, simplifying complex surfaces and improving usability.</p>
+        </li>
+        <li class="role" data-reveal>
+          <span class="role__co">Freelance</span><span class="role__title">Product Designer</span><span class="role__yr">2018 – Present</span>
+          <p class="role__desc">Partnering with product and business teams on feature prioritization, UX strategy, and customer journey improvements across verticals.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="kind-words" class="kind" aria-labelledby="kind-title">
+      <div class="section-head">
+        <p class="eyebrow"><span>(05)</span> Testimonials</p>
+        <h2 id="kind-title" class="section-title" data-split>Kind words from great people.</h2>
+      </div>
+      <div class="kind__rows">
+        <div class="kind__row" data-quotes></div>
+        <div class="kind__row kind__row--rev" data-quotes></div>
+      </div>
+      <!-- Source list for testimonials; JS lays these out into the marquee rows above. -->
+      <ul class="quotes" data-quote-source>
+        <li class="quote"><p>Andrew's one of those rare designers who gets both UX flow and UI detail: meticulous, strategic, and never superficial. He asks sharp questions, works clean, and delivers work that lasts. The email system he built continues to drive results. I would work with him again in a heartbeat.</p><footer><img src="assets/img/t-barry.webp" alt="" width="48" height="48" loading="lazy"><span><strong>Barry Klipp</strong>Design Manager</span></footer></li>
+        <li class="quote"><p>Andrew has been a massive contribution to the team. He's done a phenomenal job coming in, providing design structure. The design team, and I mean this deeply, would not be where it is today without all of his hard effort and work and structure.</p><footer><img src="assets/img/t-brandon.webp" alt="" width="48" height="48" loading="lazy"><span><strong>Brandon Audie</strong>VP of Digital Experience &amp; Revenue</span></footer></li>
+        <li class="quote"><p>He is a true leader and talks to anyone, whether an intern or the CBO, with respect and kindness. At Cirkul, his influence was everywhere, from email templatization to website interface, and even WCAG standards for digital accessibility.</p><footer><img src="assets/img/t-maya.webp" alt="" width="48" height="48" loading="lazy"><span><strong>Maya James</strong>Copywriter</span></footer></li>
+        <li class="quote"><p>Andrew is incredibly knowledgeable and approaches each project with a thorough understanding of the audience, the goals, and the desired outcomes, always backed by research and a clear point of view.</p><footer><img src="assets/img/t-melanie.webp" alt="" width="48" height="48" loading="lazy"><span><strong>Melanie Kinney</strong>Senior Marketing Manager</span></footer></li>
+        <li class="quote"><p>Andrew's well‑organized and methodical approach ensured all design projects were completed to a high standard, and his attention to detail was exemplary. He would be a great asset to any design team.</p><footer><img src="assets/img/t-nick.webp" alt="" width="48" height="48" loading="lazy"><span><strong>Nick Hughes</strong>UX Designer</span></footer></li>
+        <li class="quote"><p>Not only is he talented, but his expertise in UX and his professional, leader approach to different challenges has left a mark here and on everyone who had the pleasure to work with him.</p><footer><img src="assets/img/t-victoria.webp" alt="" width="48" height="48" loading="lazy"><span><strong>Victoria Ballanti</strong>Senior Designer</span></footer></li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- CONTACT / FOOTER -->
+  <footer id="contact" class="contact">
+    <p class="eyebrow"><span>(06)</span> Contact</p>
+    <h2 class="contact__title" data-contact-title><span>Let's</span> <span>talk.</span></h2>
+    <p class="contact__sub">Whether you're building a brand, designing a product, or simply want to explore an idea, I'd love to hear from you. No pressure.</p>
+
+    <div class="contact__actions">
+      <a class="orb" href="mailto:uxbyandrew@yahoo.com" data-magnetic data-cursor="Email">
+        <span>Say hello</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+      <div class="contact__email">
+        <a href="mailto:uxbyandrew@yahoo.com">uxbyandrew@yahoo.com</a>
+        <button type="button" class="copy" data-copy="uxbyandrew@yahoo.com">Copy</button>
       </div>
     </div>
 
-    <!-- Bottom Lockup -->
-    <div class="two-columns">
-      <div class="left-column">
-        <div class="top">EMPOWERING GROWTH</div>
-        <div class="bottom">Through user centric solutions</div>
-      </div>
-      <div class="right-column">
-        <button class="button play">Playground</button>
-        <button class="button">
-          Contact Me
-          <div class="arrow"></div>
-        </button>
-      </div>
+    <div class="contact__bottom">
+      <ul class="socials">
+        <li><a href="https://www.linkedin.com/in/andrewarq/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        <li><a href="https://www.instagram.com/uxbyandrew" target="_blank" rel="noopener">Instagram ↗</a></li>
+        <li><a href="https://www.andrewarquines.com" target="_blank" rel="noopener">andrewarquines.com ↗</a></li>
+      </ul>
+      <p>© <span data-year>2026</span> Andrew Arquines · Designed &amp; built with care</p>
+      <a class="totop" href="#top">Back to top ↑</a>
     </div>
+  </footer>
 
-    <!-- Call Outs -->
-    <div class="calloutContainer">
-      <div class="callout">
-        100+ Successful Projects
-      </div>
-      <div class="callout">
-        50+ Happy Customers
-      </div>
-      <div class="callout">
-        $300k+ in Revenue
-      </div>
-    </div>
-  </div> <!--COcontain -->
-  </div> <!-- containter -->
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script src="main.js" defer></script>
 </body>
-
 </html>
