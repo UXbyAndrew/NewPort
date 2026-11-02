@@ -18,6 +18,31 @@
   }), { rootMargin: '0px 0px -12% 0px' });
   $$('[data-r]').forEach(el => io.observe(el));
 
+  /* ---------- Opening: type the first line, then hop through real page paths ---------- */
+  const first = $('.lines--open li');
+  if (first && !reduced) {
+    const text = first.textContent;
+    first.setAttribute('aria-label', text);
+    let c = 0;
+    // words stay intact so the line wraps naturally; each letter fades in on a stagger
+    first.innerHTML = text.split(' ').map(w => `<span class="wd" aria-hidden="true">${[...w].map(ch => `<span class="ch" style="--c:${c++}">${ch}</span>`).join('')}</span>`).join(' ');
+    requestAnimationFrame(() => root.classList.add('typed'));
+  }
+  const ghosts = $('.ghosts');
+  if (ghosts) {
+    const spans = $$('span', ghosts), order = ghosts.dataset.order.split(',').map(Number);
+    let k = 0, prev = null;
+    const hop = () => {
+      if (prev) prev.classList.remove('on');
+      prev = spans[order[k % order.length]]; prev.classList.add('on');
+      ghosts.style.setProperty('--hx', prev.style.getPropertyValue('--x'));
+      ghosts.style.setProperty('--hy', prev.style.getPropertyValue('--y'));
+      k++;
+    };
+    hop();
+    if (!reduced) setInterval(() => { if (scrollY < innerHeight * 3) hop(); }, 1100);
+  }
+
   /* ---------- helpers ---------- */
   const timed = el => {
     const items = $$('[data-from]', el).map(n => ({ n, a: +n.dataset.from, b: +n.dataset.to }));
