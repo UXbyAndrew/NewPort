@@ -83,8 +83,19 @@
       </div>
     </section>
 
+    <!-- 02 · METHOD -->
+    <section class="sc sc--method" id="evidence" data-ch="1" aria-labelledby="m-h">
+      <p class="file file--s">02 · The evidence</p>
+      <h2 id="m-h" class="h2" data-r>Behavior shows <span>where</span>. Research explains <span>why</span>.</h2>
+      <ol class="method" data-r>
+        <li><span>01</span><b>Identify</b>Rank the highest‑volume quote‑driving pages to see where intent concentrates.</li>
+        <li><span>02</span><b>Map</b>Trace four steps before and after each one to find repeated patterns and shared hubs.</li>
+        <li><span>03</span><b>Synthesize</b>Pair the paths with moderated interviews, using AI to speed synthesis and vetting every insight against the data.</li>
+      </ol>
+    </section>
+
     <!-- 02 · EVIDENCE A: where quote intent concentrates -->
-    <section class="sc pin" id="evidence" data-scene="bars" data-ch="1" aria-labelledby="ev-h">
+    <section class="sc pin" data-scene="bars" data-ch="1" aria-labelledby="ev-h">
       <div class="stage stage--split">
         <div class="copy">
           <p class="file">02 · The evidence</p>
@@ -92,13 +103,13 @@
           <h2 id="ev-h" class="h2">First, where does quote intent actually live?</h2>
           <ol class="lines lines--side">
             <li data-from="0" data-to=".4">I ranked the pages that drove the most “Get a quote” clicks.</li>
-            <li data-from=".4" data-to=".75">The homepage led by far. Then a tight cluster: services, the calculator, costs, sizes.</li>
-            <li data-from=".75" data-to="1.01">A small set of pages carried the decision.</li>
+            <li data-from=".36" data-to=".7">The homepage led by far. Take it off the scale, and a tight cluster appears: services, the calculator, costs, sizes.</li>
+            <li data-from=".7" data-to="1.01">A small set of pages carried the decision.</li>
           </ol>
         </div>
         <figure class="bars" aria-label="Get a Quote clicks by page in one week">
           <ul>
-            <li style="--v:43.10"><span class="bars__k">43.10k</span><span class="bars__p">/ (homepage)</span></li>
+            <li class="bars__home" style="--v:43.10"><span class="bars__k">43.10k</span><span class="bars__p">/ (homepage)</span></li>
             <li style="--v:4.53"><span class="bars__k">4.53k</span><span class="bars__p">/storage-solutions</span></li>
             <li style="--v:4.17"><span class="bars__k">4.17k</span><span class="bars__p">/moving-and-storage-calculator</span></li>
             <li style="--v:3.53"><span class="bars__k">3.53k</span><span class="bars__p">/moving-services</span></li>
@@ -107,6 +118,7 @@
             <li style="--v:1.29"><span class="bars__k">1.29k</span><span class="bars__p">/portable-container-sizes</span></li>
             <li style="--v:1.19"><span class="bars__k">1.19k</span><span class="bars__p">/partners/costco</span></li>
           </ul>
+          <p class="bars__scale" aria-hidden="true"><span data-scale>Scale: 0 – 43k</span></p>
           <button type="button" class="proof" data-zoom data-src="assets/img/prequote/quote-pages.webp" data-alt="Analytics funnel chart of Get a Quote clicks by page">See the source chart ↗</button>
         </figure>
       </div>
@@ -149,19 +161,23 @@
             <circle class="map__dot" r="9"/>
           </svg>
           <div class="node" data-n="home" style="--x:50%;--y:14%"><b>Home</b><i class="node__q" data-q="Moving or storage?"></i></div>
-          <div class="node" data-n="moving" style="--x:16%;--y:40%"><b>Moving services</b><i class="node__q" data-q="Does this fit my move?"></i></div>
-          <div class="node" data-n="storage" style="--x:84%;--y:40%"><b>Storage solutions</b><i class="node__q" data-q="Can I store too?"></i></div>
-          <div class="node" data-n="sizes" style="--x:24%;--y:80%"><b>Container sizes</b><i class="node__q" data-q="What size do I need?"></i></div>
-          <div class="node" data-n="costs" style="--x:52%;--y:62%"><b>Moving costs</b><i class="node__q" data-q="What will it cost?"></i></div>
-          <div class="node" data-n="calc" style="--x:78%;--y:82%"><b>Calculator</b><i class="node__q" data-q="How many containers?"></i></div>
+          <div class="node" data-n="moving" data-theme="fit" style="--x:16%;--y:40%"><b>Moving services</b><i class="node__q" data-q="Does this fit my move?"></i></div>
+          <div class="node" data-n="storage" data-theme="service" style="--x:84%;--y:40%"><b>Storage solutions</b><i class="node__q" data-q="Can I store too?"></i></div>
+          <div class="node" data-n="sizes" data-theme="size" style="--x:24%;--y:80%"><b>Container sizes</b><i class="node__q" data-q="What size do I need?"></i></div>
+          <div class="node" data-n="costs" data-theme="price" style="--x:52%;--y:62%"><b>Moving costs</b><i class="node__q" data-q="What will it cost?"></i></div>
+          <div class="node" data-n="calc" data-theme="size" style="--x:78%;--y:82%"><b>Calculator</b><i class="node__q" data-q="How many containers?"></i></div>
           <div class="node node--goal" data-n="quote" style="--x:50%;--y:98%"><b>Get a quote</b></div>
           <p class="map__hops" aria-hidden="true"><span data-hops>0</span> page hops</p>
+          <ul class="themes" aria-hidden="true">
+            <li data-t="fit">Fit</li><li data-t="service">Service type</li><li data-t="size">Size</li><li data-t="price">Price</li>
+            <li class="themes__n"><b data-themes>0</b> / 4 answered</li>
+          </ul>
         </div>
         <div class="lower">
           <ol class="lines lines--lower">
             <li data-from="0" data-to=".2">Here's a typical path. On a dashboard, it looks like a problem.</li>
             <li data-from=".2" data-to=".46"><span class="warn">Back and forth. Bounce after bounce.</span> Confused?</li>
-            <li data-from=".46" data-to=".72">Interviews told a different story. Every hop answered a question.</li>
+            <li data-from=".46" data-to=".72">Interviews told a different story. Every hop answered a question about fit, service, size, or price.</li>
             <li data-from=".72" data-to="1.01"><strong>The loops weren't friction. They were confidence being built.</strong></li>
           </ol>
         </div>
@@ -175,6 +191,7 @@
           <p class="file">04 · The why</p>
           <h2 id="why-h" class="h2">What customers told us, <span>and what they did.</span></h2>
           <p class="deck__note">Moderated interviews, synthesized with AI and vetted against behavioral data.</p>
+          <p class="deck__count" aria-hidden="true"><b data-deck>01</b> / 06</p>
         </div>
         <ol class="deck">
           <li style="--i:0"><span>01 · Exploratory intent</span>Customers start quotes to get oriented, expecting to adjust details later.</li>
@@ -251,6 +268,7 @@
         <li data-r><span>Proof</span><b>Nav &amp; page prototype</b>An early prototype of the core flow, for alignment.</li>
         <li data-r><span>Content</span><b>Page &amp; content strategy</b>Data over organizational opinion, for clarity and simplicity.</li>
       </ul>
+      <p class="verdict" data-r aria-label="Not confusion. Confidence."><span class="verdict__q" aria-hidden="true">Confusion, or confidence?</span><span class="verdict__a" aria-hidden="true"><s>Confusion.</s> <b>Confidence.</b></span></p>
       <blockquote class="closer" data-r><p>Customers don't fail to convert.<br><span>They pause until they feel safe.</span></p></blockquote>
     </section>
 
