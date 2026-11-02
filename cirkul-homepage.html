@@ -22,7 +22,7 @@
 
   <header class="bar">
     <a class="bar__brand" href="index.html" aria-label="UXbyAndrew, home"><img src="assets/img/memoji.webp" alt="" width="28" height="28"><span>UX<em>by</em>Andrew</span></a>
-    <p class="scene-chip" aria-hidden="true"><i></i><span data-scene-num>01</span> / 05 · <b data-scene-name>The audience</b></p>
+    <p class="scene-chip" aria-hidden="true"><i></i><span data-scene-num>01</span> / 06 · <b data-scene-name>The audience</b></p>
     <a class="bar__back" href="index.html#work">All work</a>
   </header>
 
@@ -38,7 +38,7 @@
           <span class="legend__n"><i></i><b>20</b> new</span>
         </div>
         <ol class="lines lines--crowd">
-          <li data-from="0" data-to=".17">100 people land on Cirkul's homepage.</li>
+          <li data-from="0" data-to=".17">For every 100 visitors to Cirkul's homepage…</li>
           <li data-from=".17" data-to=".36"><span class="hl-c">52</span> of them never reach a product.</li>
           <li data-from=".36" data-to=".56">The surprise: <span class="hl-b">80</span> had been here before. They came to buy.</li>
           <li data-from=".56" data-to=".76">Only <span class="hl-c">20</span> were new to Cirkul.</li>
@@ -55,10 +55,10 @@
         <p class="kicker">Lead UX Designer · 12 weeks · 2024</p>
         <h1 id="title" class="title__h">Cirkul Homepage</h1>
         <p class="title__sub">One page, two audiences, and a brief the data rewrote.</p>
-        <ul class="kpis">
-          <li><b>−28%</b>funnel drop‑off</li>
-          <li><b>+2.8%</b>first‑time buyer conversion</li>
-          <li><b>+2.5%</b>revenue per visitor</li>
+        <ul class="kpis" data-r>
+          <li><b data-kpi="28" data-pre="−" data-suf="%">−28%</b>funnel drop‑off</li>
+          <li><b data-kpi="2.8" data-pre="+" data-suf="%" data-dec="1">+2.8%</b>first‑time buyer conversion</li>
+          <li><b data-kpi="2.5" data-pre="+" data-suf="%" data-dec="1">+2.5%</b>revenue per visitor</li>
         </ul>
         <p class="title__fine">A/B tested on a storefront serving 37M sessions and $90M in revenue.</p>
       </div>
@@ -108,8 +108,8 @@
     <section class="sc sc--paths" aria-labelledby="paths-h">
       <h2 id="paths-h" class="h2 h2--c" data-r>Two audiences. <span>One frame.</span></h2>
       <div class="paths" data-r>
-        <div class="path path--r"><span>Returning · 80%</span><b>High intent</b><i></i><b>Product access</b></div>
-        <div class="path path--n"><span>New · 20%</span><b>Needs context</b><i></i><b>Product anchors</b></div>
+        <div class="path path--r"><span>Returning · 80%</span><b>High intent</b><i><em></em><em></em><em></em></i><b>Product access</b><i class="path__out"><em></em><em></em></i></div>
+        <div class="path path--n"><span>New · 20%</span><b>Needs context</b><i><em></em></i><b>Product anchors</b><i class="path__out"><em></em></i></div>
         <div class="paths__goal">Conversion</div>
       </div>
       <p class="paths__cap" data-r>A concise value statement up top, shop lanes immediately after. Education preserved for new visitors, with zero added friction for the 80%.</p>
@@ -187,7 +187,22 @@
       </div>
     </section>
 
-    <!-- 05 · CREDITS ROLL -->
+    <!-- 05 · THE 100, AGAIN -->
+    <section class="sc pin pin--l" data-scene="again" data-name="The 100, again" aria-labelledby="again-h">
+      <div class="stage stage--crowd stage--again">
+        <p class="kicker">Back to the 100</p>
+        <h2 id="again-h" class="visually-hidden">The 100, again</h2>
+        <div class="crowd crowd--again" aria-hidden="true"></div>
+        <p class="tally" aria-hidden="true"><b data-tally>52</b> of 100 never reach a product</p>
+        <ol class="lines lines--crowd">
+          <li data-from="0" data-to=".3">Before: 52 of every 100 visitors never reached a product.</li>
+          <li data-from=".3" data-to=".7">After the redesign: <span class="hl-c">37</span>.</li>
+          <li data-from=".7" data-to="1.01">About <span class="hl-c">15 more</span> of every 100 now reach a product. Nobody had to read first.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 06 · CREDITS ROLL -->
     <section class="sc pin pin--l" data-scene="credits" data-name="Looking back" aria-labelledby="cr-h">
       <div class="stage stage--credits">
         <h2 id="cr-h" class="visually-hidden">Looking back</h2>
