@@ -3,184 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paused · About Andrew — UXbyAndrew</title>
+  <title>About Andrew — UXbyAndrew</title>
   <meta name="description" content="Andrew Arquines: senior UX designer, dad, husband, son, adventurer, gamer, and collector of experiences.">
-  <meta name="theme-color" content="#0e1116">
-  <meta property="og:title" content="Paused · About Andrew">
+  <meta name="theme-color" content="#f2f0eb">
+  <meta property="og:title" content="About Andrew — UXbyAndrew">
   <meta property="og:image" content="assets/img/hero-andrew.webp">
   <link rel="icon" href="assets/img/memoji.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=chillax@400,500,600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=chillax@300,400,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="about.css">
 </head>
 
-<body class="pz">
-  <a class="skip" href="#status">Skip to content</a>
+<body>
+  <a class="skip" href="#story">Skip to the story</a>
 
-  <!-- The world, frozen behind the menu -->
-  <div class="world" aria-hidden="true"><img src="assets/img/hero-andrew.webp" alt="" width="1600" height="1066"></div>
-  <p class="resumed-cap" aria-live="polite"></p>
-
-  <header class="hud">
-    <a class="hud__home" href="index.html" aria-label="Back to UXbyAndrew home">← UX<em>by</em>Andrew</a>
-    <p class="hud__state"><span class="hud__ii" aria-hidden="true">II</span> PAUSED · <span data-timer>00:00</span></p>
-    <button type="button" class="hud__resume" data-resume aria-keyshortcuts="Escape">▶ Resume</button>
+  <header class="top">
+    <a class="top__brand" href="index.html" aria-label="UXbyAndrew, home"><img src="assets/img/memoji.webp" alt="" width="30" height="30"><span>UX<em>by</em>Andrew</span></a>
+    <nav class="top__nav" aria-label="Primary">
+      <a href="index.html#work">Work</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="mailto:uxbyandrew@yahoo.com">Contact</a>
+    </nav>
   </header>
 
-  <!-- Menu rail -->
-  <nav class="rail" aria-label="Pause menu">
-    <ol>
-      <li><a href="#status" data-k="status">Status</a></li>
-      <li><a href="#quests" data-k="quests">Quests</a></li>
-      <li><a href="#loadout" data-k="loadout">Loadout</a></li>
-      <li><a href="#map" data-k="map">Map</a></li>
-      <li><a href="#codex" data-k="codex">Codex</a></li>
-      <li><a href="#party" data-k="party">Party</a></li>
-    </ol>
-    <p class="rail__legend" aria-hidden="true"><kbd>Q</kbd><kbd>E</kbd> switch · <kbd>Esc</kbd> resume</p>
-  </nav>
+  <!-- Opening frame -->
+  <section class="open" aria-labelledby="name">
+    <figure class="open__img"><img src="assets/img/hero-andrew.webp" alt="Andrew sitting on a wide set of outdoor stairs, palm trees behind him" width="1600" height="1066" fetchpriority="high"></figure>
+    <div class="open__txt">
+      <h1 id="name" class="open__name">Andrew Arquines</h1>
+      <p class="open__role">Senior UX Designer</p>
+    </div>
+  </section>
 
-  <main class="menu" id="main">
-    <!-- TITLE -->
-    <section class="title" aria-labelledby="who">
-      <h1 id="who" class="title__name">Andrew Arquines</h1>
-      <p class="title__class">Senior UX designer. Also: dad, husband, son, adventurer, gamer.</p>
-      <p class="title__earned"><span>Title earned</span> Collector of Experiences</p>
+  <main id="story">
+    <!-- 1 -->
+    <section class="chapter chapter--intro">
+      <p class="lede" data-r>Beyond design, I'm a dad, husband, son, adventurer, gamer, and collector of experiences.</p>
+      <p class="body" data-r>I've been designing since 2018, at a mobile gaming platform, a hydration brand, and a moving and storage company. Whether it's through a striking design or a seamless experience, I'm here to make work that inspires and resonates.</p>
     </section>
 
-    <!-- STATUS -->
-    <section class="panel" id="status" data-sec="status" aria-labelledby="st-h">
-      <h2 id="st-h" class="ph"><span>01</span>Status</h2>
-      <div class="status">
-        <figure class="frame frame--portrait"><img src="assets/img/andrew-portrait.webp" alt="Portrait of Andrew" width="200" height="300"></figure>
-        <dl class="sheet">
-          <div><dt>Class</dt><dd>Senior UX Designer</dd></div>
-          <div><dt>In UX since</dt><dd>2018</dd></div>
-          <div><dt>Current build</dt><dd>Design systems · Growth UX · Research</dd></div>
-          <div><dt>Specials</dt><dd>$90M+ revenue influenced at Cirkul</dd></div>
-          <div><dt>Party</dt><dd>Wife &amp; kid (Player 2)</dd></div>
-        </dl>
-        <figure class="frame frame--p2">
-          <img src="assets/img/life-family.webp" alt="Andrew with his family in front of the Colosseum" width="1000" height="750" loading="lazy">
-          <figcaption>Player 2. Best co‑op partner I've had.</figcaption>
-        </figure>
-      </div>
-      <p class="dialog">Whether it's through stunning designs or seamless user experiences, I'm dedicated to delivering work that inspires and resonates.<span class="dialog__tri" aria-hidden="true">▼</span></p>
+    <!-- 2 · Family -->
+    <section class="spread spread--family">
+      <figure class="ph ph--wide" data-r>
+        <div class="ph__in" data-drift><img src="assets/img/life-family.webp" alt="Andrew, his wife, and their daughter laughing in a selfie in front of the Colosseum" width="1000" height="750" loading="lazy"></div>
+        <figcaption>Rome, with my favorite people.</figcaption>
+      </figure>
+      <aside class="aside" data-r>
+        <p class="aside__k">Life</p>
+        <blockquote>“Courage is what it takes to stand up and speak; courage is also what it takes to sit down and listen.”</blockquote>
+        <p class="aside__by">Winston Churchill</p>
+      </aside>
     </section>
 
-    <!-- QUESTS -->
-    <section class="panel" id="quests" data-sec="quests" aria-labelledby="q-h">
-      <h2 id="q-h" class="ph"><span>02</span>Quest log</h2>
-      <div class="quests">
-        <div class="qlist" role="tablist" aria-label="Quests" aria-orientation="vertical">
-          <button role="tab" id="t-pods" aria-controls="p-pods" aria-selected="true"><b>PODS</b><span class="tag tag--live">Latest</span></button>
-          <button role="tab" id="t-cirkul" aria-controls="p-cirkul" aria-selected="false" tabindex="-1"><b>Cirkul</b><span class="tag tag--done">Complete</span></button>
-          <button role="tab" id="t-skillz" aria-controls="p-skillz" aria-selected="false" tabindex="-1"><b>SKILLZ</b><span class="tag tag--done">Complete</span></button>
-          <button role="tab" id="t-free" aria-controls="p-free" aria-selected="false" tabindex="-1"><b>Freelance</b><span class="tag tag--side">Side quest</span></button>
-        </div>
-        <div class="qpanes">
-          <article role="tabpanel" id="p-pods" aria-labelledby="t-pods" class="qp">
-            <p class="qp__meta">Senior UX Designer · 2025–2026</p>
-            <h3>Build a design system three teams actually use.</h3>
-            <ul class="obj"><li>Reusable components &amp; layout guidance</li><li>Interaction patterns, documented</li><li>Less implementation ambiguity</li></ul>
-            <a class="qp__go" href="pods-design-system.html">Replay this quest →</a>
-          </article>
-          <article role="tabpanel" id="p-cirkul" aria-labelledby="t-cirkul" class="qp" hidden>
-            <p class="qp__meta">Lead UX Designer · 2023–2025</p>
-            <h3>Optimize the homepage &amp; e‑commerce shopping.</h3>
-            <p class="loot"><span><b>$90M+</b>revenue</span><span><b>2M+</b>products sold</span><span><b>37M+</b>sessions</span></p>
-            <a class="qp__go" href="cirkul-homepage.html">Replay this quest →</a>
-          </article>
-          <article role="tabpanel" id="p-skillz" aria-labelledby="t-skillz" class="qp" hidden>
-            <p class="qp__meta">UX Designer · 2018–2023</p>
-            <h3>Home turf: a mobile gaming &amp; esports platform.</h3>
-            <ul class="obj"><li>Core information architecture</li><li>User flows &amp; product experiences</li><li>Simplify complex surfaces</li></ul>
-          </article>
-          <article role="tabpanel" id="p-free" aria-labelledby="t-free" class="qp" hidden>
-            <p class="qp__meta">Product Designer · 2018–present</p>
-            <h3>Partner with product &amp; business teams across verticals.</h3>
-            <ul class="obj obj--open"><li>Feature prioritization</li><li>UX strategy</li><li>Customer‑journey improvement</li></ul>
-            <figure class="frame frame--field"><img src="assets/img/andrew-workshop.webp" alt="Andrew running a workshop in front of a sticky-note wall" width="900" height="789" loading="lazy"><figcaption>Field notes: running a workshop.</figcaption></figure>
-          </article>
-        </div>
+    <!-- 3 · Travel -->
+    <section class="chapter">
+      <p class="lede" data-r>I bring a world of experiences to the table.</p>
+      <p class="places" data-r>
+        <span>Road trips across America's National Parks.</span>
+        <span>Trekking through Iceland.</span>
+        <span>Backpacking through Norway.</span>
+        <span>Eating my way through Japan.&nbsp;🍣</span>
+      </p>
+    </section>
+
+    <section class="pair">
+      <figure class="ph ph--tall" data-r>
+        <div class="ph__in" data-drift><img src="assets/img/life-rome.webp" alt="Andrew in sunglasses taking a selfie at the Colosseum" width="1000" height="750" loading="lazy"></div>
+        <figcaption>The Colosseum, mid‑squint.</figcaption>
+      </figure>
+      <figure class="ph ph--offset" data-r>
+        <div class="ph__in" data-drift><img src="assets/img/life-coast.webp" alt="Two people smiling in a selfie on a rocky coastline" width="960" height="721" loading="lazy"></div>
+        <figcaption>Rocky coast, good company.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 4 · How I lead -->
+    <section class="spread spread--work">
+      <figure class="ph ph--work" data-r>
+        <div class="ph__in" data-drift><img src="assets/img/andrew-workshop.webp" alt="Andrew leading a workshop in front of a wall of sticky notes" width="900" height="789" loading="lazy"></div>
+        <figcaption>Somewhere between the sticky notes and the decision.</figcaption>
+      </figure>
+      <div class="lead" data-r>
+        <blockquote class="pull">“Leadership is not about being in charge. Leadership is about taking care of those in your charge.”</blockquote>
+        <p class="aside__by">Simon Sinek</p>
+        <p class="body">It's the line I come back to most. The best work I've shipped came from teams that felt looked after.</p>
       </div>
     </section>
 
-    <!-- LOADOUT -->
-    <section class="panel" id="loadout" data-sec="loadout" aria-labelledby="l-h">
-      <h2 id="l-h" class="ph"><span>03</span>Loadout</h2>
-      <p class="sub">Four principles, always equipped.</p>
-      <ul class="slots">
-        <li><button type="button" class="slot" data-desc="Effect: every element and every CTA label says exactly what it does." aria-describedby="itemdesc"><svg viewBox="0 0 24 24"><path d="M10 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0"/><path d="M21 12q-3.6 6-9 6t-9-6q3.6-6 9-6t9 6"/></svg><span>Clarity</span></button></li>
-        <li><button type="button" class="slot" data-desc="Effect: −noise. Don't overcomplicate things; find what works." aria-describedby="itemdesc"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8 12h8"/></svg><span>Simplicity</span></button></li>
-        <li><button type="button" class="slot" data-desc="Effect: designed to be used from start to end, not just the happy path." aria-describedby="itemdesc"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg><span>Human</span></button></li>
-        <li><button type="button" class="slot" data-desc="Passive: decisions validated or invalidated by data over opinions." aria-describedby="itemdesc"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M7 16v-4M12 16V7M17 16v-6"/></svg><span>Informed</span></button></li>
-      </ul>
-      <p class="itemdesc" id="itemdesc" aria-live="polite">Select an item to inspect it.</p>
+    <!-- 5 · What I believe -->
+    <section class="chapter chapter--believe">
+      <p class="small-k" data-r>What I believe about design</p>
+      <ol class="beliefs">
+        <li data-r><b>Clarity.</b> Every element and every label should say exactly what it does.</li>
+        <li data-r><b>Simplicity.</b> Don't overcomplicate it. Find what works and keep the noise low.</li>
+        <li data-r><b>Human.</b> People use it, so it should work for them from start to end.</li>
+        <li data-r><b>Informed.</b> Data settles it, not opinions.</li>
+      </ol>
     </section>
 
-    <!-- MAP -->
-    <section class="panel" id="map" data-sec="map" aria-labelledby="m-h">
-      <h2 id="m-h" class="ph"><span>04</span>World map</h2>
-      <div class="map">
-        <svg class="map__route" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true"><path d="M120 190 C 250 60, 330 60, 410 92 S 520 70, 545 80 S 560 170, 575 190 S 780 230, 880 150"/></svg>
-        <button type="button" class="pin" style="--x:12%;--y:63%" aria-describedby="pc-us"><i></i><span>USA</span></button>
-        <button type="button" class="pin" style="--x:41%;--y:31%" aria-describedby="pc-is"><i></i><span>Iceland</span></button>
-        <button type="button" class="pin" style="--x:54.5%;--y:27%" aria-describedby="pc-no"><i></i><span>Norway</span></button>
-        <button type="button" class="pin" style="--x:57.5%;--y:63%" aria-describedby="pc-it"><i></i><span>Rome</span></button>
-        <button type="button" class="pin" style="--x:88%;--y:50%" aria-describedby="pc-jp"><i></i><span>Japan</span></button>
-        <div class="cards">
-          <p class="pc" id="pc-us"><b>USA</b>Road‑tripped across America's National Parks.</p>
-          <p class="pc" id="pc-is"><b>Iceland</b>Trekked through it.</p>
-          <p class="pc" id="pc-no"><b>Norway</b>Backpacked through it.</p>
-          <p class="pc pc--img" id="pc-it"><img src="assets/img/life-rome.webp" alt="" width="1000" height="750" loading="lazy"><b>Rome</b>Sunglasses, Colosseum, zero regrets.</p>
-          <p class="pc" id="pc-jp"><b>Japan</b>Ate my way through it. 🍣</p>
-        </div>
-      </div>
-      <p class="map__count"><span>Map explored</span> 5 regions · Completion: low · Working on it.</p>
+    <!-- 6 · Where I've been -->
+    <section class="chapter chapter--path" aria-labelledby="path-h">
+      <h2 id="path-h" class="small-k" data-r>Where I've done it</h2>
+      <ol class="path">
+        <li data-r><span class="path__yr">2025–26</span><span class="path__co">PODS</span><span class="path__what">Senior UX Designer. Built a design system three product areas share. <a href="pods-design-system.html">Read&nbsp;→</a></span></li>
+        <li data-r><span class="path__yr">2023–25</span><span class="path__co">Cirkul</span><span class="path__what">Lead UX Designer. Homepage and shopping experiences behind $90M+ in revenue. <a href="cirkul-homepage.html">Read&nbsp;→</a></span></li>
+        <li data-r><span class="path__yr">2018–23</span><span class="path__co">SKILLZ</span><span class="path__what">UX Designer. Simplified the IA and flows of a mobile gaming platform.</span></li>
+        <li data-r><span class="path__yr">2018–now</span><span class="path__co">Freelance</span><span class="path__what">Product Designer. UX strategy and customer journeys across industries.</span></li>
+      </ol>
     </section>
 
-    <!-- CODEX -->
-    <section class="panel" id="codex" data-sec="codex" aria-labelledby="c-h">
-      <h2 id="c-h" class="ph"><span>05</span>Codex</h2>
-      <div class="codex">
-        <div class="cx__tabs" role="tablist" aria-label="Codex entries">
-          <button role="tab" aria-selected="true" data-cx="0">Leadership</button>
-          <button role="tab" aria-selected="false" data-cx="1" tabindex="-1">Life</button>
-          <button role="tab" aria-selected="false" data-cx="2" tabindex="-1">Work</button>
-        </div>
-        <button type="button" class="textbox" data-textbox aria-label="Next codex entry">
-          <span class="tb__q" data-q>“Leadership is not about being in charge. Leadership is about taking care of those in your charge.”</span>
-          <span class="tb__by" data-by>— Simon Sinek</span>
-          <span class="tb__tri" aria-hidden="true">▼</span>
-        </button>
-        <ol class="cx__src" hidden>
-          <li data-by="Simon Sinek">“Leadership is not about being in charge. Leadership is about taking care of those in your charge.”</li>
-          <li data-by="Winston Churchill">“Courage is what it takes to stand up and speak; courage is also what it takes to sit down and listen.”</li>
-          <li data-by="Simon Sinek">“Working hard for something we do not care about is called stress; working hard for something we love is called passion.”</li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- PARTY -->
-    <section class="panel" id="party" data-sec="party" aria-labelledby="p-h">
-      <h2 id="p-h" class="ph"><span>06</span>Party</h2>
-      <p class="party__h">Looking for party members.</p>
-      <ul class="party">
-        <li><button type="button" class="member" data-copy="uxbyandrew@yahoo.com"><img src="assets/img/memoji.webp" alt="" width="40" height="40" class="memoji"><span><b>Email</b>uxbyandrew@yahoo.com</span><i>Copy</i></button></li>
-        <li><a class="member" href="https://www.linkedin.com/in/andrewarq/" target="_blank" rel="noopener"><span class="glyph" aria-hidden="true">in</span><span><b>LinkedIn</b>/in/andrewarq</span><i>Open ↗</i></a></li>
-        <li><a class="member" href="https://www.instagram.com/uxbyandrew" target="_blank" rel="noopener"><span class="glyph" aria-hidden="true">◎</span><span><b>Instagram</b>@uxbyandrew</span><i>Open ↗</i></a></li>
-      </ul>
-      <div class="party__end">
-        <button type="button" class="resume-big" data-resume>▶ Resume</button>
-        <a class="party__work" href="index.html#work">or see the work →</a>
+    <!-- Close -->
+    <section class="close">
+      <figure class="ph ph--close" data-r>
+        <div class="ph__in" data-drift><img src="assets/img/andrew-steps.webp" alt="Andrew on the stairs, smiling" width="1400" height="934" loading="lazy"></div>
+      </figure>
+      <div class="close__txt" data-r>
+        <blockquote class="pull pull--sm">“Working hard for something we love is called passion.”</blockquote>
+        <p class="aside__by">Simon Sinek</p>
+        <p class="close__h">If you're building something people should love, I'd like to hear about it.</p>
+        <p class="close__links"><a href="mailto:uxbyandrew@yahoo.com">uxbyandrew@yahoo.com</a><a href="https://www.linkedin.com/in/andrewarq/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="index.html#work">See the work →</a></p>
       </div>
     </section>
   </main>
 
-  <div class="toast" role="status" aria-live="polite"></div>
+  <footer class="foot"><span>© <span data-year>2026</span> Andrew Arquines</span><a href="https://www.instagram.com/uxbyandrew" target="_blank" rel="noopener">Instagram ↗</a></footer>
   <script src="about.js" defer></script>
 </body>
 </html>
