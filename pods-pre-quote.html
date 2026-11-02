@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PODS Pre‑Quote Strategy — Andrew Arquines</title>
+  <meta name="description" content="A study on how PODS customers build confidence before starting a quote: behavioral pathing plus customer research, turned into a pre-quote decision model.">
+  <meta name="theme-color" content="#060a12">
+  <meta property="og:title" content="PODS Pre‑Quote Strategy — Andrew Arquines">
+  <meta property="og:description" content="Customers don't fail to convert. They pause until they feel safe.">
+  <meta property="og:image" content="assets/img/work-prequote.webp">
+  <link rel="icon" href="assets/img/memoji.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=chillax@300,400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="prequote.css">
+</head>
+
+<body class="pq">
+  <a class="skip" href="#q">Skip to the investigation</a>
+
+  <header class="bar">
+    <a class="bar__brand" href="index.html" aria-label="UXbyAndrew, home"><img src="assets/img/memoji.webp" alt="" width="28" height="28"><span>UX<em>by</em>Andrew</span></a>
+    <a class="bar__back" href="index.html#work">All work</a>
+  </header>
+
+  <!-- Case-file index -->
+  <nav class="index" aria-label="Case file">
+    <p class="index__file">Case file · PODS‑PQ</p>
+    <ol>
+      <li><a href="#q"><span>01</span>The question</a></li>
+      <li><a href="#evidence"><span>02</span>The evidence</a></li>
+      <li><a href="#reframe"><span>03</span>The reframe</a></li>
+      <li><a href="#why"><span>04</span>The why</a></li>
+      <li><a href="#model"><span>05</span>The model</a></li>
+      <li><a href="#answer"><span>06</span>The answer</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <!-- COLD OPEN -->
+    <section class="sc pin pin--m" data-scene="open" aria-label="Opening">
+      <div class="stage">
+        <p class="slate">PODS · Research &amp; strategy · Case study</p>
+        <ol class="lines lines--open">
+          <li data-from="0" data-to=".25">Customers kept leaving the page.</li>
+          <li data-from=".25" data-to=".5">Moving. Storage. Sizes. Costs. Then back again.</li>
+          <li data-from=".5" data-to=".75">Before anyone redesigned anything, I asked one question.</li>
+          <li data-from=".75" data-to="1.01">Is that confusion, <em>or confidence being built?</em></li>
+        </ol>
+        <p class="cue" aria-hidden="true">Scroll</p>
+      </div>
+    </section>
+
+    <!-- TITLE -->
+    <section class="sc sc--title" data-scene="title" aria-labelledby="title">
+      <figure class="title__img"><img src="assets/img/prequote/site-nav.webp" alt="The PODS.com navigation with the Moving menu open over the homepage hero" width="2000" height="830"></figure>
+      <div class="title__in">
+        <h1 id="title" class="title__h">Pre‑Quote Strategy</h1>
+        <p class="title__sub">How PODS customers build confidence before they start a quote.</p>
+        <dl class="credits">
+          <div><dt>Role</dt><dd>Senior UX Designer</dd></div>
+          <div><dt>Scope</dt><dd>Research &amp; strategy</dd></div>
+          <div><dt>Timeline</dt><dd>4 weeks · 2026</dd></div>
+          <div><dt>Informed</dt><dd>PODS.com navigation &amp; page redesign</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 01 · THE QUESTION -->
+    <section class="sc pin pin--m" id="q" data-scene="questions" data-ch="0" aria-labelledby="q-h">
+      <div class="stage">
+        <p class="file">01 · The question</p>
+        <h2 id="q-h" class="visually-hidden">The question</h2>
+        <p class="q-lead" aria-hidden="true">PODS had no pre‑quote strategy. Changing it would need evidence, not opinions.</p>
+        <ol class="qs">
+          <li data-at=".12"><span>Q1</span>Which pages are decision hubs, and which are dead ends?</li>
+          <li data-at=".32"><span>Q2</span>Are customers bouncing from confusion, or validation?</li>
+          <li data-at=".52"><span>Q3</span>How often do people compare Moving and Storage before deciding?</li>
+          <li data-at=".72"><span>Q4</span>What do they need to know before they feel ready to get a quote?</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 02 · EVIDENCE A: where quote intent concentrates -->
+    <section class="sc pin" id="evidence" data-scene="bars" data-ch="1" aria-labelledby="ev-h">
+      <div class="stage stage--split">
+        <div class="copy">
+          <p class="file">02 · The evidence</p>
+          <p class="exhibit">Exhibit A · Quote clicks by page, one week</p>
+          <h2 id="ev-h" class="h2">First, where does quote intent actually live?</h2>
+          <ol class="lines lines--side">
+            <li data-from="0" data-to=".4">I ranked the pages that drove the most “Get a quote” clicks.</li>
+            <li data-from=".4" data-to=".75">The homepage led by far. Then a tight cluster: services, the calculator, costs, sizes.</li>
+            <li data-from=".75" data-to="1.01">A small set of pages carried the decision.</li>
+          </ol>
+        </div>
+        <figure class="bars" aria-label="Get a Quote clicks by page in one week">
+          <ul>
+            <li style="--v:43.10"><span class="bars__k">43.10k</span><span class="bars__p">/ (homepage)</span></li>
+            <li style="--v:4.53"><span class="bars__k">4.53k</span><span class="bars__p">/storage-solutions</span></li>
+            <li style="--v:4.17"><span class="bars__k">4.17k</span><span class="bars__p">/moving-and-storage-calculator</span></li>
+            <li style="--v:3.53"><span class="bars__k">3.53k</span><span class="bars__p">/moving-services</span></li>
+            <li style="--v:1.42"><span class="bars__k">1.42k</span><span class="bars__p">/moving-costs</span></li>
+            <li style="--v:1.33"><span class="bars__k">1.33k</span><span class="bars__p">/storage-costs</span></li>
+            <li style="--v:1.29"><span class="bars__k">1.29k</span><span class="bars__p">/portable-container-sizes</span></li>
+            <li style="--v:1.19"><span class="bars__k">1.19k</span><span class="bars__p">/partners/costco</span></li>
+          </ul>
+          <button type="button" class="proof" data-zoom data-src="assets/img/prequote/quote-pages.webp" data-alt="Analytics funnel chart of Get a Quote clicks by page">See the source chart ↗</button>
+        </figure>
+      </div>
+    </section>
+
+    <!-- EVIDENCE B: pathing film strip -->
+    <section class="sc pin pin--l" data-scene="strip" data-ch="1" aria-label="Pathing before and after key pages">
+      <div class="stage stage--strip">
+        <div class="strip__head">
+          <p class="exhibit">Exhibit B · Pathing, four steps before and after</p>
+          <ol class="lines lines--strip">
+            <li data-from="0" data-to=".33">Then I mapped what people did before and after each of those pages.</li>
+            <li data-from=".33" data-to=".66">The same few pages kept showing up on both sides of the decision.</li>
+            <li data-from=".66" data-to="1.01">People weren't moving through a funnel. <em>They were looping.</em></li>
+          </ol>
+        </div>
+        <div class="strip">
+          <div class="strip__track">
+            <figure><img src="assets/img/prequote/path-2.webp" alt="Pathing chart: the four steps before visiting the homepage" width="2000" height="696" loading="lazy"><figcaption>Before the homepage</figcaption></figure>
+            <figure><img src="assets/img/prequote/path-1.webp" alt="Pathing chart: the four steps after visiting the homepage" width="2000" height="696" loading="lazy"><figcaption>After the homepage</figcaption></figure>
+            <figure><img src="assets/img/prequote/path-3.webp" alt="Pathing chart: the four steps before visiting moving services" width="2000" height="696" loading="lazy"><figcaption>Before /moving-services</figcaption></figure>
+            <figure><img src="assets/img/prequote/path-4.webp" alt="Pathing chart: the four steps after visiting moving services" width="2000" height="696" loading="lazy"><figcaption>After /moving-services</figcaption></figure>
+            <figure><img src="assets/img/prequote/path-5.webp" alt="Pathing chart: the four steps before visiting storage solutions" width="2000" height="696" loading="lazy"><figcaption>Before /storage-solutions</figcaption></figure>
+            <figure><img src="assets/img/prequote/path-6.webp" alt="Pathing chart: the four steps after visiting storage solutions" width="2000" height="696" loading="lazy"><figcaption>After /storage-solutions</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · THE REFRAME (signature moment) -->
+    <section class="sc pin pin--l" id="reframe" data-scene="map" data-ch="2" aria-labelledby="rf-h">
+      <div class="stage stage--map">
+        <p class="file">03 · The reframe</p>
+        <h2 id="rf-h" class="visually-hidden">The reframe</h2>
+        <p class="tag-ill">Illustrative journey</p>
+        <div class="map">
+          <svg class="map__svg" viewBox="0 0 1000 560" aria-hidden="true">
+            <path class="map__trail" d=""/>
+            <path class="map__trail map__trail--live" d=""/>
+            <circle class="map__dot" r="9"/>
+          </svg>
+          <div class="node" data-n="home" style="--x:50%;--y:14%"><b>Home</b><i class="node__q" data-q="Moving or storage?"></i></div>
+          <div class="node" data-n="moving" style="--x:16%;--y:40%"><b>Moving services</b><i class="node__q" data-q="Does this fit my move?"></i></div>
+          <div class="node" data-n="storage" style="--x:84%;--y:40%"><b>Storage solutions</b><i class="node__q" data-q="Can I store too?"></i></div>
+          <div class="node" data-n="sizes" style="--x:24%;--y:80%"><b>Container sizes</b><i class="node__q" data-q="What size do I need?"></i></div>
+          <div class="node" data-n="costs" style="--x:52%;--y:62%"><b>Moving costs</b><i class="node__q" data-q="What will it cost?"></i></div>
+          <div class="node" data-n="calc" style="--x:78%;--y:82%"><b>Calculator</b><i class="node__q" data-q="How many containers?"></i></div>
+          <div class="node node--goal" data-n="quote" style="--x:50%;--y:98%"><b>Get a quote</b></div>
+          <p class="map__hops" aria-hidden="true"><span data-hops>0</span> page hops</p>
+        </div>
+        <div class="lower">
+          <ol class="lines lines--lower">
+            <li data-from="0" data-to=".2">Here's a typical path. On a dashboard, it looks like a problem.</li>
+            <li data-from=".2" data-to=".46"><span class="warn">Back and forth. Bounce after bounce.</span> Confused?</li>
+            <li data-from=".46" data-to=".72">Interviews told a different story. Every hop answered a question.</li>
+            <li data-from=".72" data-to="1.01"><strong>The loops weren't friction. They were confidence being built.</strong></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · THE WHY: six insights as a deck -->
+    <section class="sc pin pin--l" id="why" data-scene="deck" data-ch="3" aria-labelledby="why-h">
+      <div class="stage stage--deck">
+        <div class="deck__head">
+          <p class="file">04 · The why</p>
+          <h2 id="why-h" class="h2">What customers told us, <span>and what they did.</span></h2>
+          <p class="deck__note">Moderated interviews, synthesized with AI and vetted against behavioral data.</p>
+        </div>
+        <ol class="deck">
+          <li style="--i:0"><span>01 · Exploratory intent</span>Customers start quotes to get oriented, expecting to adjust details later.</li>
+          <li style="--i:1"><span>02 · Pricing</span>Visible pricing signals raised confidence and cut early hesitation.</li>
+          <li style="--i:2"><span>03 · Mental bundling</span>People think “Moving + Storage”, not in rigid product buckets.</li>
+          <li style="--i:3"><span>04 · Familiar starts</span>They begin with the service they understand first, and expect to customize.</li>
+          <li style="--i:4"><span>05 · Terminology friction</span>Ambiguous industry terms caused hesitation between pages.</li>
+          <li style="--i:5"><span>06 · Validation loops</span>Page‑hopping was healthy: triangulating fit, cost, and logistics.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 05 · THE MODEL: staircase to the threshold -->
+    <section class="sc pin pin--l" id="model" data-scene="stairs" data-ch="4" aria-labelledby="model-h">
+      <div class="stage stage--stairs">
+        <div class="stairs__head">
+          <p class="file">05 · The model</p>
+          <h2 id="model-h" class="h2">What must be true before someone clicks “Get a quote”.</h2>
+        </div>
+        <div class="stairs">
+          <p class="stairs__end stairs__end--l">High uncertainty<small>Exploring under stress and fear of the wrong choice</small></p>
+          <ol>
+            <li style="--i:0" data-at=".1"><b>This works for my situation</b><small>Removes: choosing the wrong thing too early</small></li>
+            <li style="--i:1" data-at=".24"><b>I understand how this works</b><small>Removes: not knowing what happens next</small></li>
+            <li style="--i:2" data-at=".38"><b>I'm not locking myself in yet</b><small>Removes: fear of commitment</small></li>
+            <li style="--i:3" data-at=".52"><b>I understand what this will likely cost</b><small>Removes: unclear total cost</small></li>
+            <li style="--i:4" data-at=".66"><b>I can get help if I need it</b><small>Removes: going it alone</small></li>
+          </ol>
+          <p class="stairs__end stairs__end--r" data-at=".8">Confident enough to start a quote<small>The threshold</small></p>
+        </div>
+        <button type="button" class="proof proof--center" data-zoom data-src="assets/img/prequote/decision-model.webp" data-alt="The PODS Pre-Quote Decision Model">See the original model ↗</button>
+      </div>
+    </section>
+
+    <!-- Artifact: content strategy, camera over the real work -->
+    <section class="sc pin pin--l" data-scene="cam" data-ch="4" aria-label="Page and content strategy"
+      data-cam='[[0,1,0.5,0.5],[0.12,1,0.5,0.5],[0.26,2.6,0.1,0.32],[0.42,2.6,0.1,0.32],[0.54,2.4,0.24,0.2],[0.7,2.4,0.24,0.2],[0.82,1.9,0.72,0.42],[0.94,1.9,0.72,0.42],[1,1,0.5,0.5]]'>
+      <div class="stage stage--cam">
+        <div class="cam"><div class="cam__inner"><img class="cam__img" src="assets/img/prequote/page-strategy.webp" alt="Moving page strategy: a decision flow, customer insight, content and copy, and CTA columns, beside wireframe versions V1 to V3" width="2321" height="1250" loading="lazy"></div></div>
+        <div class="lower lower--panel">
+          <p class="exhibit">The work · Moving page strategy</p>
+          <ol class="lines lines--lower">
+            <li data-from="0" data-to=".22">Then I turned the model into pages that answer questions as the customer asks them.</li>
+            <li data-from=".22" data-to=".46">Each section maps to a moment in the decision: “Does this capture me?”</li>
+            <li data-from=".46" data-to=".72">Customer insight, then copy, then a CTA matched to how ready they feel.</li>
+            <li data-from=".72" data-to="1.01">Every button says: when you're ready, here's the next safe step.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · THE ANSWER: from → to -->
+    <section class="sc pin pin--l" id="answer" data-scene="swap" data-ch="5" aria-labelledby="ans-h">
+      <div class="stage stage--swap">
+        <p class="file">06 · The answer</p>
+        <h2 id="ans-h" class="visually-hidden">Reframing the strategy</h2>
+        <ol class="swaps">
+          <li data-from="0" data-to=".25"><p class="sw"><span class="sw__old"><i>From</i><s>Standalone pages</s></span><b>Connected systems</b></p><small>Hubs that anticipate the next question, instead of making people hunt for sizes and costs.</small></li>
+          <li data-from=".25" data-to=".5"><p class="sw"><span class="sw__old"><i>From</i><s>Rigid taxonomies</s></span><b>Guided comparison</b></p><small>Pages that follow how people really think: needs, constraints, timing, uncertainty.</small></li>
+          <li data-from=".5" data-to=".75"><p class="sw"><span class="sw__old"><i>From</i><s>Generic entry points</s></span><b>Intelligent routing</b></p><small>A homepage that routes high intent straight to the confidence it needs.</small></li>
+          <li data-from=".75" data-to="1.01"><p class="sw"><span class="sw__old"><i>From</i><s>Accidental bouncing</s></span><b>Faster confidence</b></p><small>Keep the healthy loops. Make every transition faster and more intentional.</small></li>
+        </ol>
+        <div class="swap__dots" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- DELIVERABLES -->
+    <section class="sc sc--out" aria-labelledby="out-h">
+      <p class="file file--c">What shipped</p>
+      <h2 id="out-h" class="h2 h2--c">Evidence the redesign could build on.</h2>
+      <ul class="outs">
+        <li data-r><span>Primary deliverable</span><b>Pre‑quote confidence model</b>The framework guiding navigation and destination‑page decisions in the redesign.</li>
+        <li data-r><span>Structure</span><b>Navigation model</b>Answers at people's fingertips, instead of hide‑and‑seek content.</li>
+        <li data-r><span>Proof</span><b>Nav &amp; page prototype</b>An early prototype of the core flow, for alignment.</li>
+        <li data-r><span>Content</span><b>Page &amp; content strategy</b>Data over organizational opinion, for clarity and simplicity.</li>
+      </ul>
+      <blockquote class="closer" data-r><p>Customers don't fail to convert.<br><span>They pause until they feel safe.</span></p></blockquote>
+    </section>
+
+    <!-- NEXT -->
+    <section class="sc sc--next" aria-labelledby="next-h">
+      <h2 id="next-h" class="h2 h2--c" data-r>Want the full findings, and what I'd test next?</h2>
+      <div class="next__act" data-r>
+        <a class="btn" href="mailto:uxbyandrew@yahoo.com?subject=PODS%20Pre-Quote%20Strategy%20walkthrough">Request the walkthrough</a>
+        <button type="button" class="btn btn--ghost" data-copy="uxbyandrew@yahoo.com">Copy email</button>
+      </div>
+      <a class="next" href="pods-design-system.html" data-r>
+        <img src="assets/img/work-pods.webp" alt="" loading="lazy">
+        <span class="next__label">Next case</span>
+        <span class="next__title">PODS Design System</span>
+        <span class="next__meta">3 product areas → 1 language</span>
+      </a>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>© <span data-year>2026</span> Andrew Arquines</span>
+    <span><a href="https://www.linkedin.com/in/andrewarq/" target="_blank" rel="noopener">LinkedIn ↗</a> · <a href="index.html">Home</a></span>
+  </footer>
+
+  <dialog class="lightbox" aria-label="Enlarged image"><button type="button" class="lightbox__close" aria-label="Close">×</button><img alt=""></dialog>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="pq.js" defer></script>
+</body>
+</html>
