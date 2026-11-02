@@ -33,8 +33,19 @@
 
   /* ---------- Bars: grow with scroll ---------- */
   const bars = sec => {
-    const ul = $('.bars ul', sec), lines = timed(sec);
-    return p => { lines(p); ul.style.setProperty('--g', easeOut(clamp((p - .04) / .4, 0, 1)).toFixed(4)); };
+    const ul = $('.bars ul', sec), fig = $('.bars', sec), scale = $('[data-scale]', sec), lines = timed(sec);
+    return p => {
+      lines(p);
+      ul.style.setProperty('--g', easeOut(clamp((p - .04) / .3, 0, 1)).toFixed(4));
+      // take the homepage off the scale so the cluster behind it becomes readable
+      const r = easeIO(clamp((p - .38) / .16, 0, 1));
+      ul.style.setProperty('--max', lerp(43.1, 4.6, r).toFixed(3));
+      const on = r > .5;
+      if (fig.classList.contains('rescaled') !== on) {
+        fig.classList.toggle('rescaled', on);
+        scale.textContent = on ? 'Rescaled: 0 – 4.6k · homepage off scale' : 'Scale: 0 – 43k';
+      }
+    };
   };
 
   /* ---------- Film strip: pan horizontally ---------- */
@@ -49,7 +60,7 @@
   const map = sec => {
     const box = $('.map', sec), stage = $('.stage', sec), lines = timed(sec);
     const trail = $('.map__trail', sec), live = $('.map__trail--live', sec), dot = $('.map__dot', sec);
-    const hops = $('[data-hops]', sec);
+    const hops = $('[data-hops]', sec), themes = $$('.themes [data-t]', sec), themeN = $('[data-themes]', sec);
     const nodes = Object.fromEntries($$('.node', sec).map(n => [n.dataset.n, n]));
     const route = ['home', 'moving', 'sizes', 'costs', 'home', 'storage', 'calc', 'costs', 'quote'];
     let pts = [], segLen = [], total = 0;
@@ -95,13 +106,22 @@
       const hit = new Set(route.slice(0, reached + 1));
       Object.entries(nodes).forEach(([k, n]) => n.classList.toggle('hit', hit.has(k) && (k !== 'home' || reached > 0 || len > 0)));
       hops.textContent = reached;
+      // second pass: light the confidence themes each hop answered
+      const answered = new Set(re ? route.slice(0, reached + 1).map(k => nodes[k].dataset.theme).filter(Boolean) : []);
+      themes.forEach(li => li.classList.toggle('on', answered.has(li.dataset.t)));
+      themeN.textContent = answered.size;
+      stage.classList.toggle('complete', re && answered.size === 4 && reached === route.length - 1);
     };
   };
 
   /* ---------- Deck: one insight at a time ---------- */
   const deck = sec => {
-    const d = $('.deck', sec), n = $$('.deck li', sec).length;
-    return p => d.style.setProperty('--d', Math.min(n - 1, Math.floor(clamp((p - .06) / .86, 0, .999) * n)));
+    const d = $('.deck', sec), n = $$('.deck li', sec).length, count = $('[data-deck]', sec);
+    return p => {
+      const i = Math.min(n - 1, Math.floor(clamp((p - .06) / .86, 0, .999) * n));
+      d.style.setProperty('--d', i);
+      count.textContent = String(i + 1).padStart(2, '0');
+    };
   };
 
   /* ---------- Swap: crossed-out → replacement ---------- */
