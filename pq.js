@@ -50,10 +50,20 @@
 
   /* ---------- Film strip: pan horizontally ---------- */
   const strip = sec => {
-    const track = $('.strip__track', sec), lines = timed(sec);
-    let dist = 0;
-    measurers.push(() => { dist = Math.max(track.scrollWidth - innerWidth, 0); });
-    return p => { lines(p); track.style.transform = `translate3d(${(-easeIO(clamp((p - .06) / .88, 0, 1)) * dist).toFixed(1)}px,0,0)`; };
+    const track = $('.strip__track', sec), lines = timed(sec), figs = $$('figure', track);
+    let offs = [], cur = -1;
+    // centre each chart in turn; move, then hold while its callout is read
+    measurers.push(() => { const vis = innerWidth > 1180 ? innerWidth - 190 : innerWidth; offs = figs.map(f => f.offsetLeft + f.offsetWidth / 2 - vis / 2); });
+    return p => {
+      lines(p);
+      if (!offs.length) return;
+      const n = figs.length, u = clamp((p - .04) / .92, 0, .9999) * n, i = Math.floor(u), t = u - i;
+      const from = offs[Math.max(i - 1, 0)], to = offs[i];
+      const x = i === 0 ? to : lerp(from, to, easeIO(clamp(t / .4, 0, 1)));
+      track.style.transform = `translate3d(${(-x).toFixed(1)}px,0,0)`;
+      const k = (i === 0 || t > .42) ? i : -1;
+      if (k !== cur) { cur = k; figs.forEach((f, n2) => f.classList.toggle('on', n2 === k)); }
+    };
   };
 
   /* ---------- The reframe: one journey, read two ways ---------- */
