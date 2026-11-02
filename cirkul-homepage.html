@@ -28,19 +28,18 @@
 
   <main>
     <!-- 01 · THE AUDIENCE: 100 visitors -->
-    <section class="sc pin pin--xl" data-scene="pipe" data-mode="before" data-name="The audience" aria-labelledby="crowd-h">
-      <div class="stage stage--pipe">
+    <section class="sc pin pin--xl" data-scene="numbers" data-mode="before" data-name="The audience" aria-labelledby="crowd-h"
+      data-keys='[[0,52.17],[0.24,52.17],[0.32,80],[0.5,80],[0.58,20],[1,20]]' data-tone='[[0,"drop"],[0.28,"blue"],[0.54,"plain"]]' data-dec="0">
+      <div class="stage stage--num">
         <p class="kicker">Cirkul · Homepage redesign · Case study</p>
-        <h2 id="crowd-h" class="visually-hidden">The audience</h2>
-        <figure class="pipe" aria-label="Of every 100 visitors, 52.17 left the homepage before reaching a product listing. 80 percent of visitors were returning customers.">
-          <svg class="pipe__svg" aria-hidden="true"></svg>
-        </figure>
-        <ol class="lines lines--crowd">
-          <li data-from="0" data-to=".2">For every 100 visitors to Cirkul's homepage…</li>
-          <li data-from=".2" data-to=".42"><span class="hl-x">52</span> never reached a product.</li>
-          <li data-from=".42" data-to=".62">The surprise: <span class="hl-b">80</span> had been here before. They came to buy.</li>
-          <li data-from=".62" data-to=".82">But the page made everyone read first.</li>
-          <li data-from=".82" data-to="1.01">The brief was written for the 20.</li>
+        <h2 id="crowd-h" class="visually-hidden">The audience: 52% of visitors never reached a product; 80% were returning customers; 20% were new.</h2>
+        <div class="big" aria-hidden="true"><span class="big__n" data-big>52</span><span class="big__u">%</span></div>
+        <div class="meter" aria-hidden="true"><i class="meter__fill"></i><i class="meter__gain"></i><span class="meter__k">0</span><span class="meter__k meter__k--r">100%</span></div>
+        <ol class="lines lines--num">
+          <li data-from="0" data-to=".28">of visitors never made it from the homepage to a product.</li>
+          <li data-from=".28" data-to=".54">of homepage traffic was returning customers. They came to buy.</li>
+          <li data-from=".54" data-to=".78">were new to Cirkul.</li>
+          <li data-from=".78" data-to="1.01" class="li--final">The brief was written for the <b>20%</b>.</li>
         </ol>
         <p class="cue" aria-hidden="true"><i></i>Scroll</p>
       </div>
@@ -139,6 +138,19 @@
       </div>
     </section>
 
+    <!-- SHIPPED: lights on -->
+    <section class="sc pin" data-scene="shipped" aria-labelledby="ship-h">
+      <div class="stage stage--ship">
+        <div class="ship">
+          <img src="assets/img/cirkul/devices.webp" alt="The redesigned Cirkul homepage on a laptop and a phone" width="1376" height="768" loading="lazy">
+        </div>
+        <div class="ship__cap">
+          <p class="kicker">Shipped · 2024</p>
+          <h2 id="ship-h" class="ship__h">One homepage. Every screen.</h2>
+        </div>
+      </div>
+    </section>
+
     <!-- 04 · THE TEST: scoreboard -->
     <section class="sc pin pin--l" id="test" data-scene="board" data-name="The test" aria-labelledby="test-h">
       <div class="stage stage--board">
@@ -186,18 +198,17 @@
     </section>
 
     <!-- 05 · THE 100, AGAIN -->
-    <section class="sc pin pin--xl" data-scene="pipe" data-mode="after" data-name="A shorter pipe" aria-labelledby="again-h">
-      <div class="stage stage--pipe">
-        <p class="kicker">Back to the pipe · Variant B</p>
-        <h2 id="again-h" class="visually-hidden">A shorter pipe</h2>
-        <figure class="pipe" aria-label="In the redesign, shop lanes moved directly under the hero. 37.42 of every 100 visitors left before reaching a product listing, down from 52.17.">
-          <svg class="pipe__svg" aria-hidden="true"></svg>
-        </figure>
-        <ol class="lines lines--crowd">
-          <li data-from="0" data-to=".3">Same sections. New order: shop lanes moved up, right under the hero.</li>
-          <li data-from=".3" data-to=".56">The path to a product got shorter.</li>
-          <li data-from=".56" data-to=".8"><span class="hl-x">37</span> of every 100 left, down from 52. <span class="hl-c">About 15 more</span> reached a product.</li>
-          <li data-from=".8" data-to="1.01">We didn't plug the leak. <span class="hl-c">We shortened the pipe.</span></li>
+    <section class="sc pin pin--l" data-scene="numbers" data-mode="after" data-name="The result" aria-labelledby="again-h"
+      data-keys='[[0,52.17],[0.3,52.17],[0.62,37.42],[1,37.42]]' data-tone='[[0,"drop"]]' data-dec="2">
+      <div class="stage stage--num">
+        <p class="kicker">Back to the drop‑off · Variant B</p>
+        <h2 id="again-h" class="visually-hidden">Homepage to product drop-off fell from 52.17% to 37.42%.</h2>
+        <div class="big" aria-hidden="true"><span class="big__n" data-big>52.17</span><span class="big__u">%</span></div>
+        <div class="meter" aria-hidden="true"><i class="meter__fill"></i><i class="meter__gain"></i><span class="meter__chip">+14.75 pts reach a product</span><span class="meter__k">0</span><span class="meter__k meter__k--r">100%</span></div>
+        <ol class="lines lines--num">
+          <li data-from="0" data-to=".3">left the old homepage before reaching a product.</li>
+          <li data-from=".3" data-to=".66">With shop lanes right under the hero…</li>
+          <li data-from=".66" data-to="1.01">left. <span class="hl-c">About 15 more</span> of every 100 reached a product.</li>
         </ol>
       </div>
     </section>
