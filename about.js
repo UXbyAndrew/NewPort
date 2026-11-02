@@ -14,6 +14,20 @@
   }), { rootMargin: '0px 0px -12% 0px' });
   document.querySelectorAll('[data-r]').forEach(el => io.observe(el));
 
+  // Beyond design: the line nearest the middle of the screen picks the photo
+  const by = document.querySelector('[data-beyond]');
+  if (by) {
+    const items = [...by.querySelectorAll('.beyond__list li')], imgs = [...by.querySelectorAll('.beyond__photos img')], cap = by.querySelector('[data-cap]');
+    const pick = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const li = e.target, i = +li.dataset.i;
+      items.forEach(x => x.classList.toggle('on', x === li));
+      imgs.forEach((im, k) => im.classList.toggle('on', k === i));
+      cap.textContent = li.dataset.cap;
+    }), { rootMargin: '-45% 0px -45% 0px' });
+    items.forEach(li => pick.observe(li));
+  }
+
   if (reduced) return;
   // photos drift a little slower than the page
   const drift = [...document.querySelectorAll('[data-drift]')];
@@ -29,5 +43,17 @@
     });
   };
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
+  // travel strip slides sideways while its section is pinned
+  const tr = document.querySelector('[data-travel]'), strip = document.querySelector('[data-strip]');
+  const slide = () => {
+    if (!tr || innerWidth <= 860) return;
+    const r = tr.getBoundingClientRect(), len = tr.offsetHeight - innerHeight;
+    const p = Math.min(1, Math.max(0, -r.top / Math.max(len, 1)));
+    const dist = Math.max(strip.scrollWidth - innerWidth, 0);
+    strip.style.transform = `translate3d(${(-p * dist).toFixed(1)}px,0,0)`;
+  };
+  addEventListener('scroll', () => requestAnimationFrame(slide), { passive: true });
+  addEventListener('resize', slide);
+  slide();
   frame();
 })();
