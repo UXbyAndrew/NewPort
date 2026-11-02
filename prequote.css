@@ -473,3 +473,46 @@ html:not(.js) .method::before { transform: none; }
 @media (prefers-reduced-motion: reduce) { .strip figure { opacity: 1; } .fspot, .strip figcaption { opacity: 1; transform: none; } }
 html:not(.js) .strip figure { opacity: 1; } html:not(.js) .fspot, html:not(.js) .strip figcaption { opacity: 1; transform: none; }
 @media (min-width: 1181px) { .strip figure { width: min(66vw, 980px); } }
+
+/* ==========================================================================
+   Pass 4: a live first frame
+   ========================================================================== */
+/* The opening is visible at scroll 0; it only fades out as you leave */
+.js .pin[data-scene="open"] .stage > * { opacity: clamp(0, calc((1 - var(--p, 0)) * 12), 1); }
+.js .pin[data-scene="open"] .ghosts { opacity: clamp(0, calc(1 - var(--p, 0) * 2.2), 1); }
+
+/* First line types itself */
+.lines--open .ch { opacity: 0; transition: opacity .05s linear; transition-delay: calc(.35s + var(--c) * 38ms); }
+.typed .lines--open .ch { opacity: 1; }
+.lines--open li:first-child::after { animation-delay: 0s; }
+
+/* Ghost page paths: one lights up at a time, like a visitor hopping */
+.ghosts { position: absolute; inset: 0; pointer-events: none; }
+.ghosts::before {
+  content: ""; position: absolute; left: var(--hx, 50%); top: var(--hy, 16%); width: 340px; height: 340px; margin: -170px 0 0 -170px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(127, 208, 245, .14), transparent); transition: left 1s var(--ease), top 1s var(--ease);
+}
+.ghosts span {
+  position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%); white-space: nowrap;
+  font: 500 13px/1 var(--mono); color: rgba(238, 242, 246, .14); transition: color .6s var(--ease), text-shadow .6s;
+}
+.ghosts span::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 8px; border-radius: 50%; background: currentColor; vertical-align: 1px; }
+.ghosts span.on { color: var(--blue-hi); text-shadow: 0 0 18px rgba(127, 208, 245, .6); }
+.lines--open, .slate, .cue { position: relative; z-index: 1; }
+.slate, .cue { position: absolute; }
+
+/* Clearer scroll cue */
+.cue { display: flex; align-items: center; gap: 14px; color: var(--fg); opacity: .8; }
+.cue::after { content: none; }
+.cue i { position: relative; width: 22px; height: 34px; border: 1.5px solid currentColor; border-radius: 12px; }
+.cue i::before { content: ""; position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: var(--blue-hi); animation: wheel 1.6s var(--ease) infinite; }
+@keyframes wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(10px); opacity: 0; } 100% { opacity: 0; } }
+
+@media (max-width: 760px) {
+  .ghosts span { font-size: 10px; }
+  .ghosts span:nth-child(n+8) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .ghosts { display: none; } .lines--open .ch { opacity: 1; } }
+html:not(.js) .ghosts { display: none; }
+.lines--open .wd { display: inline-block; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .js .pin[data-scene="open"] .stage > * { opacity: 1; } }
