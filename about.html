@@ -38,45 +38,54 @@
   </section>
 
   <main id="story">
-    <!-- 1 -->
-    <section class="chapter chapter--intro">
-      <p class="lede" data-r>Beyond design, I'm a dad, husband, son, adventurer, gamer, and collector of experiences.</p>
-      <p class="body" data-r>I've been designing since 2018, at a mobile gaming platform, a hydration brand, and a moving and storage company. Whether it's through a striking design or a seamless experience, I'm here to make work that inspires and resonates.</p>
+    <!-- 1 · Beyond design: sticky photo, lines swap it -->
+    <section class="beyond" data-beyond aria-labelledby="by-h">
+      <div class="beyond__stage">
+        <div class="beyond__photos" aria-hidden="true">
+          <img class="on" src="assets/img/andrew-workshop.webp" alt="" width="900" height="789">
+          <img src="assets/img/life-family.webp" alt="" width="1000" height="750">
+          <img src="assets/img/life-rome.webp" alt="" width="1000" height="750">
+          <img src="assets/img/hero-andrew.webp" alt="" width="1600" height="1066">
+        </div>
+        <p class="beyond__cap" aria-hidden="true" data-cap>Running a workshop.</p>
+      </div>
+      <div class="beyond__copy">
+        <h2 id="by-h" class="beyond__k">Beyond design, I'm a</h2>
+        <ol class="beyond__list">
+          <li class="on" data-i="0" data-cap="Running a workshop."><b>designer</b><span>since 2018, at a mobile gaming platform, a hydration brand, and a moving and storage company.</span></li>
+          <li data-i="1" data-cap="Rome, with my favorite people."><b>dad, husband &amp; son</b><span>The best co‑op team I've ever been on.</span></li>
+          <li data-i="2" data-cap="The Colosseum, mid‑squint."><b>adventurer &amp; gamer</b><span>Happiest exploring somewhere new, on a trail or on a screen.</span></li>
+          <li data-i="3" data-cap="Out and about."><b>collector of experiences</b><span>And I bring every one of them to the table.</span></li>
+        </ol>
+      </div>
     </section>
 
-    <!-- 2 · Family -->
-    <section class="spread spread--family">
-      <figure class="ph ph--wide" data-r>
-        <div class="ph__in" data-drift><img src="assets/img/life-family.webp" alt="Andrew, his wife, and their daughter laughing in a selfie in front of the Colosseum" width="1000" height="750" loading="lazy"></div>
-        <figcaption>Rome, with my favorite people.</figcaption>
-      </figure>
+    <section class="chapter chapter--mission">
+      <p class="lede" data-r>Whether it's a striking design or a seamless experience, I'm here to make work that inspires and resonates.</p>
       <aside class="aside" data-r>
-        <p class="aside__k">Life</p>
         <blockquote>“Courage is what it takes to stand up and speak; courage is also what it takes to sit down and listen.”</blockquote>
         <p class="aside__by">Winston Churchill</p>
       </aside>
     </section>
 
-    <!-- 3 · Travel -->
-    <section class="chapter">
-      <p class="lede" data-r>I bring a world of experiences to the table.</p>
-      <p class="places" data-r>
-        <span>Road trips across America's National Parks.</span>
-        <span>Trekking through Iceland.</span>
-        <span>Backpacking through Norway.</span>
-        <span>Eating my way through Japan.&nbsp;🍣</span>
-      </p>
-    </section>
-
-    <section class="pair">
-      <figure class="ph ph--tall" data-r>
-        <div class="ph__in" data-drift><img src="assets/img/life-rome.webp" alt="Andrew in sunglasses taking a selfie at the Colosseum" width="1000" height="750" loading="lazy"></div>
-        <figcaption>The Colosseum, mid‑squint.</figcaption>
-      </figure>
-      <figure class="ph ph--offset" data-r>
-        <div class="ph__in" data-drift><img src="assets/img/life-coast.webp" alt="Two people smiling in a selfie on a rocky coastline" width="960" height="721" loading="lazy"></div>
-        <figcaption>Rocky coast, good company.</figcaption>
-      </figure>
+    <!-- 3 · Travel strip -->
+    <section class="travel" data-travel aria-labelledby="tr-h">
+      <div class="travel__stage">
+        <div class="travel__head">
+          <h2 id="tr-h" class="lede">A world of experiences.</h2>
+          <p class="places">
+            <span>Road trips across America's National Parks.</span>
+            <span>Trekking through Iceland.</span>
+            <span>Backpacking through Norway.</span>
+            <span>Eating my way through Japan.&nbsp;🍣</span>
+          </p>
+        </div>
+        <div class="travel__strip" data-strip>
+          <figure><img src="assets/img/life-rome.webp" alt="Andrew in sunglasses taking a selfie at the Colosseum" width="1000" height="750" loading="lazy"><figcaption>The Colosseum, mid‑squint.</figcaption></figure>
+          <figure><img src="assets/img/life-family.webp" alt="Andrew, his wife, and their daughter laughing in a selfie in front of the Colosseum" width="1000" height="750" loading="lazy"><figcaption>Rome, with my favorite people.</figcaption></figure>
+          <figure><img src="assets/img/life-coast.webp" alt="Two people smiling in a selfie on a rocky coastline" width="960" height="721" loading="lazy"><figcaption>Rocky coast, good company.</figcaption></figure>
+        </div>
+      </div>
     </section>
 
     <!-- 4 · How I lead -->
@@ -114,16 +123,13 @@
       </ol>
     </section>
 
-    <!-- Close -->
-    <section class="close">
-      <figure class="ph ph--close" data-r>
-        <div class="ph__in" data-drift><img src="assets/img/andrew-steps.webp" alt="Andrew on the stairs, smiling" width="1400" height="934" loading="lazy"></div>
-      </figure>
-      <div class="close__txt" data-r>
-        <blockquote class="pull pull--sm">“Working hard for something we love is called passion.”</blockquote>
-        <p class="aside__by">Simon Sinek</p>
-        <p class="close__h">If you're building something people should love, I'd like to hear about it.</p>
-        <p class="close__links"><a href="mailto:uxbyandrew@yahoo.com">uxbyandrew@yahoo.com</a><a href="https://www.linkedin.com/in/andrewarq/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="index.html#work">See the work →</a></p>
+    <!-- Close: full-bleed bookend -->
+    <section class="close" aria-labelledby="close-h">
+      <figure class="close__img" aria-hidden="true"><img src="assets/img/andrew-steps.webp" alt="" width="1400" height="934" loading="lazy"></figure>
+      <div class="close__txt">
+        <p class="close__q" data-r>“Working hard for something we love is called passion.” <span>Simon Sinek</span></p>
+        <h2 id="close-h" class="close__h" data-r>If you're building something people should love, I'd like to hear about it.</h2>
+        <p class="close__links" data-r><a href="mailto:uxbyandrew@yahoo.com">uxbyandrew@yahoo.com</a><a href="https://www.linkedin.com/in/andrewarq/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="index.html#work">See the work →</a></p>
       </div>
     </section>
   </main>
