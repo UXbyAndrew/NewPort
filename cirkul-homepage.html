@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cirkul Homepage — Andrew Arquines</title>
+  <meta name="description" content="How a data-reframed brief and a two-week A/B test cut Cirkul's homepage funnel drop-off by 28%.">
+  <meta name="theme-color" content="#050a2a">
+  <meta property="og:title" content="Cirkul Homepage — Andrew Arquines">
+  <meta property="og:description" content="The brief was written for 20% of visitors. The data said design for the other 80%.">
+  <meta property="og:image" content="assets/img/work-cirkul.webp">
+  <link rel="icon" href="assets/img/memoji.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=chillax@300,400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cirkul.css">
+</head>
+
+<body class="ck">
+  <a class="skip" href="#brief">Skip to the story</a>
+
+  <header class="bar">
+    <a class="bar__brand" href="index.html" aria-label="UXbyAndrew, home"><img src="assets/img/memoji.webp" alt="" width="28" height="28"><span>UX<em>by</em>Andrew</span></a>
+    <p class="scene-chip" aria-hidden="true"><i></i><span data-scene-num>01</span> / 05 · <b data-scene-name>The audience</b></p>
+    <a class="bar__back" href="index.html#work">All work</a>
+  </header>
+
+  <main>
+    <!-- 01 · THE AUDIENCE: 100 visitors -->
+    <section class="sc pin pin--xl" data-scene="crowd" data-name="The audience" aria-labelledby="crowd-h">
+      <div class="stage stage--crowd">
+        <p class="kicker">Cirkul · Homepage redesign · Case study</p>
+        <h2 id="crowd-h" class="visually-hidden">The audience</h2>
+        <div class="crowd" aria-hidden="true"></div>
+        <div class="legend" aria-hidden="true">
+          <span class="legend__r"><i></i><b data-n-ret>80</b> returning</span>
+          <span class="legend__n"><i></i><b>20</b> new</span>
+        </div>
+        <ol class="lines lines--crowd">
+          <li data-from="0" data-to=".17">100 people land on Cirkul's homepage.</li>
+          <li data-from=".17" data-to=".36"><span class="hl-c">52</span> of them never reach a product.</li>
+          <li data-from=".36" data-to=".56">The surprise: <span class="hl-b">80</span> had been here before. They came to buy.</li>
+          <li data-from=".56" data-to=".76">Only <span class="hl-c">20</span> were new to Cirkul.</li>
+          <li data-from=".76" data-to="1.01">The brief was written for the 20.</li>
+        </ol>
+        <p class="cue" aria-hidden="true"><i></i>Scroll</p>
+      </div>
+    </section>
+
+    <!-- TITLE -->
+    <section class="sc sc--title" data-scene="title" aria-labelledby="title">
+      <figure class="title__img"><img src="assets/img/cirkul/hero.webp" alt="The redesigned Cirkul homepage hero: Turn up Cirkul and drink more water" width="2000" height="711"></figure>
+      <div class="title__in">
+        <p class="kicker">Lead UX Designer · 12 weeks · 2024</p>
+        <h1 id="title" class="title__h">Cirkul Homepage</h1>
+        <p class="title__sub">One page, two audiences, and a brief the data rewrote.</p>
+        <ul class="kpis">
+          <li><b>−28%</b>funnel drop‑off</li>
+          <li><b>+2.8%</b>first‑time buyer conversion</li>
+          <li><b>+2.5%</b>revenue per visitor</li>
+        </ul>
+        <p class="title__fine">A/B tested on a storefront serving 37M sessions and $90M in revenue.</p>
+      </div>
+    </section>
+
+    <!-- 02 · THE BRIEF FLIPS -->
+    <section class="sc pin pin--l" id="brief" data-scene="reorder" data-name="The brief" aria-labelledby="brief-h">
+      <div class="stage stage--reorder">
+        <div class="ro__copy">
+          <p class="num">02</p>
+          <h2 id="brief-h" class="h2">The data that changed the brief.</h2>
+          <ol class="lines lines--side">
+            <li data-from="0" data-to=".22">The brief: acquisition‑first, top‑to‑bottom brand education.</li>
+            <li data-from=".22" data-to=".5">For 80% of visitors, that meant reading before shopping.</li>
+            <li data-from=".5" data-to=".78">I reframed it with stakeholders: new‑user education <em>and</em> returning‑user efficiency.</li>
+            <li data-from=".78" data-to="1.01">Shop lanes moved up, right under the hero. Education stayed, below them.</li>
+          </ol>
+        </div>
+        <div class="ro" aria-label="Homepage section order, initial versus adjusted">
+          <div class="ro__col">
+            <p class="ro__h">Initial direction<small>Acquisition‑first</small></p>
+            <ol class="ro__list ro__list--static">
+              <li class="t-edu">Hero / value prop</li><li class="t-edu">Benefits</li><li class="t-edu">How it works</li><li class="t-shop">Flavor explorer</li><li class="t-edu">Testimonials</li><li class="t-ltv">Subscription</li><li class="t-util">Store locator</li><li class="t-util">FAQ</li>
+            </ol>
+          </div>
+          <div class="ro__col">
+            <p class="ro__h">Adjusted direction<small>High‑intent path early</small></p>
+            <ol class="ro__list ro__list--live">
+              <li class="t-edu" data-a="0" data-b="0">Hero / value prop</li>
+              <li class="t-shop t-new" data-a="0.5" data-b="1">Shop lanes · categories</li>
+              <li class="t-shop t-new" data-a="0.5" data-b="2">Shop lanes · best sellers</li>
+              <li class="t-edu" data-a="1" data-b="3">Benefits</li>
+              <li class="t-edu" data-a="2" data-b="4">How it works</li>
+              <li class="t-shop" data-a="3" data-b="5">Flavor explorer</li>
+              <li class="t-edu" data-a="4" data-b="6">Testimonials</li>
+              <li class="t-ltv" data-a="5" data-b="7">Subscription</li>
+              <li class="t-util" data-a="6" data-b="8">Store locator</li>
+              <li class="t-util" data-a="7" data-b="9">FAQ</li>
+            </ol>
+            <span class="ro__bracket" aria-hidden="true">Moved up &amp; expanded</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two paths, one page -->
+    <section class="sc sc--paths" aria-labelledby="paths-h">
+      <h2 id="paths-h" class="h2 h2--c" data-r>Two audiences. <span>One frame.</span></h2>
+      <div class="paths" data-r>
+        <div class="path path--r"><span>Returning · 80%</span><b>High intent</b><i></i><b>Product access</b></div>
+        <div class="path path--n"><span>New · 20%</span><b>Needs context</b><i></i><b>Product anchors</b></div>
+        <div class="paths__goal">Conversion</div>
+      </div>
+      <p class="paths__cap" data-r>A concise value statement up top, shop lanes immediately after. Education preserved for new visitors, with zero added friction for the 80%.</p>
+    </section>
+
+    <!-- 03 · THE PAGE, SCROLLED -->
+    <section class="sc pin pin--l" data-scene="browse" data-name="The page" aria-labelledby="page-h">
+      <div class="stage stage--browse">
+        <div class="br__copy">
+          <p class="num">03</p>
+          <h2 id="page-h" class="h2">Orient. Shop. Understand. Commit.</h2>
+          <ol class="lines lines--side">
+            <li data-from="0" data-to=".3"><span class="tag">Orient</span>Value prop above the fold, product in frame. One hero, both audiences.</li>
+            <li data-from=".3" data-to=".66"><span class="tag">Shop</span>Category lanes, then carousels ranked by real sales data. Returning users reach product in one scroll.</li>
+            <li data-from=".66" data-to="1.01"><span class="tag">Understand</span>Benefit modules built for under‑five‑second reads, then how it works, step by step. Made with the creative team.</li>
+          </ol>
+        </div>
+        <div class="browser" aria-hidden="true">
+          <div class="browser__bar"><i></i><i></i><i></i><span>drinkcirkul.com</span></div>
+          <div class="browser__view">
+            <div class="browser__page">
+              <img src="assets/img/cirkul/hero.webp" alt="" width="2000" height="711">
+              <img src="assets/img/cirkul/shop-lanes.webp" alt="" width="1600" height="1349" loading="lazy">
+              <img src="assets/img/cirkul/education.webp" alt="" width="1600" height="1126" loading="lazy">
+            </div>
+          </div>
+          <div class="browser__rail"><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · THE TEST: scoreboard -->
+    <section class="sc pin pin--l" id="test" data-scene="board" data-name="The test" aria-labelledby="test-h">
+      <div class="stage stage--board">
+        <div class="board__head">
+          <p class="num">04</p>
+          <h2 id="test-h" class="h2">Validated with real traffic, not opinions.</h2>
+          <ul class="spec">
+            <li>Optimizely · 50/50 split</li><li>~150k sessions</li><li>2‑week window</li><li>Hotjar scroll + behavior</li>
+          </ul>
+        </div>
+        <div class="board" role="table" aria-label="A/B test results">
+          <div class="board__row board__row--h" role="row"><span role="columnheader">Metric</span><span role="columnheader">A · Control</span><span role="columnheader">B · Redesign</span><span role="columnheader">Change</span></div>
+          <div class="board__row" role="row" data-at=".08" data-good="down" style="--a:52.17;--b:37.42;--max:60">
+            <span role="cell"><b>Funnel drop‑off</b><small>Homepage → product listing</small></span>
+            <span role="cell" class="v"><em>52.17%</em><i class="sb sb--a"></i></span>
+            <span role="cell" class="v"><em>37.42%</em><i class="sb sb--b"></i></span>
+            <span role="cell" class="d"><b data-to="28" data-pre="−" data-suf="%">−28%</b><small>−14.75 pts</small></span>
+          </div>
+          <div class="board__row" role="row" data-at=".3" style="--a:45;--b:58;--max:60">
+            <span role="cell"><b>Scroll depth</b><small>Reach at 50% of page</small></span>
+            <span role="cell" class="v"><em>45%</em><i class="sb sb--a"></i></span>
+            <span role="cell" class="v"><em>58%</em><i class="sb sb--b"></i></span>
+            <span role="cell" class="d"><b data-to="29" data-pre="+" data-suf="%">+29%</b><small>relative</small></span>
+          </div>
+          <div class="board__row" role="row" data-at=".52" style="--a:4.65;--b:4.78;--max:5">
+            <span role="cell"><b>First‑time buyer conversion</b><small>New visitors</small></span>
+            <span role="cell" class="v"><em>4.65%</em><i class="sb sb--a"></i></span>
+            <span role="cell" class="v"><em>4.78%</em><i class="sb sb--b"></i></span>
+            <span role="cell" class="d"><b data-to="2.8" data-pre="+" data-suf="%" data-dec="1">+2.8%</b><small>relative</small></span>
+          </div>
+          <div class="board__row" role="row" data-at=".74" style="--a:5.94;--b:6.09;--max:6.5">
+            <span role="cell"><b>Revenue per visitor</b><small>The returning 80%</small></span>
+            <span role="cell" class="v"><em>$5.94</em><i class="sb sb--a"></i></span>
+            <span role="cell" class="v"><em>$6.09</em><i class="sb sb--b"></i></span>
+            <span role="cell" class="d"><b data-to="2.5" data-pre="+" data-suf="%" data-dec="1">+2.5%</b><small>relative</small></span>
+          </div>
+        </div>
+        <ol class="lines lines--board">
+          <li data-from="0" data-to=".3">The primary goal: move more people into product discovery.</li>
+          <li data-from=".3" data-to=".52">And the education layer was being found, not skipped.</li>
+          <li data-from=".52" data-to=".74">New visitors converted more often.</li>
+          <li data-from=".74" data-to="1.01">The returning 80% didn't pay for it. The hybrid traded nothing.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 05 · CREDITS ROLL -->
+    <section class="sc pin pin--l" data-scene="credits" data-name="Looking back" aria-labelledby="cr-h">
+      <div class="stage stage--credits">
+        <h2 id="cr-h" class="visually-hidden">Looking back</h2>
+        <div class="roll">
+          <p class="roll__k">Looking back</p>
+          <p class="roll__big">What this project sharpened.</p>
+          <div class="roll__lesson"><span>01</span><b>Interrogate the brief before designing to it.</b>Data redefined the whole page architecture. The most valuable design work happened before any frames existed.</div>
+          <div class="roll__lesson"><span>02</span><b>Communicate early, and often.</b>High‑risk pages need clear, confident communication across teams and stakeholders.</div>
+          <div class="roll__lesson"><span>03</span><b>Honest metrics build more trust than big ones.</b>Attributed deltas, with baselines and method, beat impressive absolute numbers.</div>
+          <dl class="roll__credits">
+            <div><dt>Lead UX Designer</dt><dd>Andrew Arquines</dd></div>
+            <div><dt>Owned</dt><dd>Content strategy · Information hierarchy · Page layout</dd></div>
+            <div><dt>In collaboration with</dt><dd>Brand &amp; creative · Stakeholders</dd></div>
+            <div><dt>Measured with</dt><dd>Optimizely · Hotjar</dd></div>
+            <div><dt>Storefront</dt><dd>37M sessions · $90M revenue</dd></div>
+          </dl>
+          <p class="roll__end">Cirkul · 2024</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT -->
+    <section class="sc sc--next" aria-labelledby="next-h">
+      <h2 id="next-h" class="h2 h2--c" data-r>Want the full test readout, and what I'd change?</h2>
+      <div class="next__act" data-r>
+        <a class="btn" href="mailto:uxbyandrew@yahoo.com?subject=Cirkul%20Homepage%20walkthrough">Request the walkthrough</a>
+        <a class="btn btn--ghost" href="https://www.drinkcirkul.com" target="_blank" rel="noopener">See the live site ↗</a>
+      </div>
+      <a class="next" href="pods-pre-quote.html" data-r>
+        <img src="assets/img/prequote/site-nav.webp" alt="" loading="lazy">
+        <span class="next__label">Next case</span>
+        <span class="next__title">PODS Pre‑Quote Strategy</span>
+        <span class="next__meta">Confusion, or confidence?</span>
+      </a>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>© <span data-year>2026</span> Andrew Arquines</span>
+    <span><a href="https://www.linkedin.com/in/andrewarq/" target="_blank" rel="noopener">LinkedIn ↗</a> · <a href="index.html">Home</a></span>
+  </footer>
+
+  <script src="ck.js" defer></script>
+</body>
+</html>
