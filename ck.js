@@ -134,6 +134,55 @@
     return p => { roll.style.transform = `translate3d(0, ${(-p * dist).toFixed(1)}px, 0)`; };
   };
 
+  /* ---------- The 100, again: 52 → 37 ---------- */
+  const again = sec => {
+    const box = $('.crowd', sec), tally = $('[data-tally]', sec), lines = timed(sec);
+    let seed = 9; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const order = [...Array(100).keys()];
+    for (let i = 99; i > 0; i--) { const k = (rnd() * (i + 1)) | 0; [order[i], order[k]] = [order[k], order[i]]; }
+    const lost = new Set(order.slice(0, 52)), saved = new Set(order.slice(0, 15));
+    const dots = [...Array(100).keys()].map(i => {
+      const d = document.createElement('i'); d.className = 'dot'; d.style.setProperty('--i', i);
+      box.appendChild(d); return d;
+    });
+    let size = 0;
+    measurers.push(() => {
+      size = box.clientWidth;
+      const cell = size / 10, pad = cell * .15;
+      dots.forEach((d, i) => { d.style.setProperty('--tx', ((i % 10) * cell + pad).toFixed(1) + 'px'); d.style.setProperty('--ty', (((i / 10) | 0) * cell + pad).toFixed(1) + 'px'); });
+    });
+    return p => {
+      lines(p);
+      const drop = p >= .08, save = clamp((p - .32) / .3, 0, 1);
+      const nSaved = Math.round(save * 15);
+      let k = 0;
+      dots.forEach((d, i) => {
+        const isLost = drop && lost.has(i);
+        let back = false;
+        if (isLost && saved.has(i)) { back = k < nSaved; k++; }
+        d.classList.toggle('lost', isLost && !back);
+        d.classList.toggle('saved', back);
+        d.style.setProperty('--s', isLost && !back ? '.55' : '1');
+      });
+      tally.textContent = drop ? 52 - nSaved : 52;
+    };
+  };
+
+  /* ---------- Title KPIs count up ---------- */
+  const kpis = $('.kpis');
+  if (kpis && !reduced) {
+    const kio = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; kio.disconnect();
+      $$('[data-kpi]', kpis).forEach((el, n) => {
+        const to = +el.dataset.kpi, dec = +(el.dataset.dec || 0), t0 = performance.now() + n * 150;
+        const step = now => { const k = clamp((now - t0) / 1100, 0, 1); el.textContent = el.dataset.pre + (to * easeOut(k)).toFixed(dec) + el.dataset.suf; if (k < 1) requestAnimationFrame(step); };
+        el.textContent = el.dataset.pre + (0).toFixed(dec) + el.dataset.suf;
+        requestAnimationFrame(step);
+      });
+    }), { threshold: .6 });
+    kio.observe(kpis);
+  }
+
   $$('[data-scene]').forEach(sec => {
     const k = sec.dataset.scene;
     if (k === 'title') add(sec, null, 'pass');
@@ -142,6 +191,7 @@
     else if (k === 'browse') add(sec, browse(sec));
     else if (k === 'board') add(sec, board(sec));
     else if (k === 'credits') add(sec, credits(sec));
+    else if (k === 'again') add(sec, again(sec));
   });
 
   /* ---------- Scene chip ---------- */
