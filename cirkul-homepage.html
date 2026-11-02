@@ -202,42 +202,76 @@
       </div>
     </section>
 
-    <!-- 06 · CREDITS ROLL -->
-    <section class="sc pin pin--l" data-scene="credits" data-name="Looking back" aria-labelledby="cr-h">
-      <div class="stage stage--credits">
-        <h2 id="cr-h" class="visually-hidden">Looking back</h2>
-        <div class="roll">
-          <p class="roll__k">Looking back</p>
-          <p class="roll__big">What this project sharpened.</p>
-          <div class="roll__lesson"><span>01</span><b>Interrogate the brief before designing to it.</b>Data redefined the whole page architecture. The most valuable design work happened before any frames existed.</div>
-          <div class="roll__lesson"><span>02</span><b>Communicate early, and often.</b>High‑risk pages need clear, confident communication across teams and stakeholders.</div>
-          <div class="roll__lesson"><span>03</span><b>Honest metrics build more trust than big ones.</b>Attributed deltas, with baselines and method, beat impressive absolute numbers.</div>
-          <dl class="roll__credits">
-            <div><dt>Lead UX Designer</dt><dd>Andrew Arquines</dd></div>
-            <div><dt>Owned</dt><dd>Content strategy · Information hierarchy · Page layout</dd></div>
-            <div><dt>In collaboration with</dt><dd>Brand &amp; creative · Stakeholders</dd></div>
-            <div><dt>Measured with</dt><dd>Optimizely · Hotjar</dd></div>
-            <div><dt>Storefront</dt><dd>37M sessions · $90M revenue</dd></div>
-          </dl>
-          <p class="roll__end">Cirkul · 2024</p>
+    <!-- 06 · LOOKING BACK: three lessons, each with its evidence -->
+    <section class="sc pin pin--l" data-scene="lessons" data-name="Looking back" aria-labelledby="lb-h">
+      <div class="stage stage--lessons">
+        <p class="kicker lb__k">Looking back · What this project sharpened</p>
+        <h2 id="lb-h" class="visually-hidden">Looking back</h2>
+        <ol class="lessons">
+          <li data-from="0" data-to=".34">
+            <div class="lesson__t"><span>01</span><b>Interrogate the brief before designing to it.</b><p>The data redefined the whole page architecture. The most valuable design work happened before any frames existed.</p></div>
+            <div class="ev ev--order" aria-hidden="true">
+              <p class="ev__k">Evidence · the brief</p>
+              <ol><li class="t-edu">Hero / value prop</li><li class="t-shop t-hl">Shop lanes · categories</li><li class="t-shop t-hl">Shop lanes · best sellers</li><li class="t-edu">Benefits</li><li class="t-edu">How it works</li><li class="t-shop">Flavor explorer</li></ol>
+            </div>
+          </li>
+          <li data-from=".34" data-to=".67">
+            <div class="lesson__t"><span>02</span><b>Communicate early, and often.</b><p>High‑risk pages need clear, confident communication across teams and stakeholders. Reframing an acquisition brief meant bringing everyone along.</p></div>
+            <div class="ev ev--paths" aria-hidden="true">
+              <p class="ev__k">Evidence · the reframe</p>
+              <div class="ev__row ev__row--r"><span>Returning 80%</span><i></i><b>Product access</b></div>
+              <div class="ev__row ev__row--n"><span>New 20%</span><i></i><b>Product anchors</b></div>
+              <div class="ev__goal">One page, both audiences</div>
+            </div>
+          </li>
+          <li data-from=".67" data-to="1.01">
+            <div class="lesson__t"><span>03</span><b>Honest metrics build more trust than big ones.</b><p>Attributed deltas, with baselines and method, beat impressive absolute numbers.</p></div>
+            <div class="ev ev--metric" aria-hidden="true">
+              <p class="ev__k">Evidence · the test</p>
+              <p class="ev__m"><span>Funnel drop‑off</span><b>52.17% <i>→</i> <em>37.42%</em></b></p>
+              <p class="ev__d"><b>−28%</b> relative · −14.75 pts absolute</p>
+              <p class="ev__how">Optimizely 50/50 · ~150k sessions · 2 weeks</p>
+            </div>
+          </li>
+        </ol>
+        <div class="lb__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+      </div>
+    </section>
+
+    <!-- END CARD -->
+    <section class="sc endcard" aria-labelledby="end-h">
+      <figure class="endcard__img"><img src="assets/img/cirkul/hero.webp" alt="" width="2000" height="711" loading="lazy"></figure>
+      <div class="endcard__in">
+        <p class="kicker" data-r>Fin.</p>
+        <h2 id="end-h" class="endcard__h" data-r>Cirkul Homepage</h2>
+        <ul class="endcard__kpis" data-r>
+          <li><b>−28%</b>funnel drop‑off</li>
+          <li><b>+29%</b>scroll depth</li>
+          <li><b>+2.8%</b>first‑time buyer conversion</li>
+          <li><b>+2.5%</b>revenue per visitor</li>
+        </ul>
+        <p class="endcard__credit" data-r>Lead UX Designer <b>Andrew Arquines</b> · with Cirkul brand &amp; creative · Optimizely · Hotjar · 2024</p>
+        <div class="endcard__act" data-r>
+          <a class="btn" href="mailto:uxbyandrew@yahoo.com?subject=Cirkul%20Homepage%20walkthrough">Request the full test readout</a>
+          <a class="btn btn--ghost" href="https://www.drinkcirkul.com" target="_blank" rel="noopener">See it live ↗</a>
         </div>
       </div>
     </section>
 
-    <!-- NEXT -->
-    <section class="sc sc--next" aria-labelledby="next-h">
-      <h2 id="next-h" class="h2 h2--c" data-r>Want the full test readout, and what I'd change?</h2>
-      <div class="next__act" data-r>
-        <a class="btn" href="mailto:uxbyandrew@yahoo.com?subject=Cirkul%20Homepage%20walkthrough">Request the walkthrough</a>
-        <a class="btn btn--ghost" href="https://www.drinkcirkul.com" target="_blank" rel="noopener">See the live site ↗</a>
+    <!-- MORE WORK -->
+    <nav class="more" aria-label="More case studies">
+      <p class="more__k">More work</p>
+      <div class="more__grid">
+        <a class="more__card" href="pods-pre-quote.html">
+          <img src="assets/img/prequote/site-nav.webp" alt="" loading="lazy">
+          <span class="more__t">PODS Pre‑Quote Strategy</span><span class="more__m">Confusion, or confidence?</span>
+        </a>
+        <a class="more__card" href="pods-design-system.html">
+          <img src="assets/img/work-pods.webp" alt="" loading="lazy">
+          <span class="more__t">PODS Design System</span><span class="more__m">3 product areas → 1 language</span>
+        </a>
       </div>
-      <a class="next" href="pods-pre-quote.html" data-r>
-        <img src="assets/img/prequote/site-nav.webp" alt="" loading="lazy">
-        <span class="next__label">Next case</span>
-        <span class="next__title">PODS Pre‑Quote Strategy</span>
-        <span class="next__meta">Confusion, or confidence?</span>
-      </a>
-    </section>
+    </nav>
   </main>
 
   <footer class="foot">

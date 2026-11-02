@@ -191,6 +191,7 @@
     else if (k === 'browse') add(sec, browse(sec));
     else if (k === 'board') add(sec, board(sec));
     else if (k === 'credits') add(sec, credits(sec));
+    else if (k === 'lessons') { const t = timed(sec), dots = $$('.lb__dots i', sec); add(sec, p => { t(p); dots.forEach((d, i) => d.classList.toggle('on', p >= [0, .34, .67][i])); }); }
     else if (k === 'again') add(sec, again(sec));
   });
 
