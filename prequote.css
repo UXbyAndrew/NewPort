@@ -516,3 +516,43 @@ html:not(.js) .strip figure { opacity: 1; } html:not(.js) .fspot, html:not(.js) 
 html:not(.js) .ghosts { display: none; }
 .lines--open .wd { display: inline-block; white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) { .js .pin[data-scene="open"] .stage > * { opacity: 1; } }
+
+/* Staircase typography: roomier, balanced, never clipped */
+.stairs { grid-template-columns: 120px 1fr 150px; gap: 24px; }
+.stairs ol { height: 420px; gap: 12px; }
+.stairs li { height: calc(52% + var(--i) * 12%); padding: 22px 20px; gap: 14px; overflow: hidden; }
+.stairs b { font: 500 clamp(16px, 1.25vw, 19px)/1.32 var(--display); letter-spacing: 0; text-wrap: balance; hyphens: none; }
+.stairs small { font-size: 13px; line-height: 1.5; color: var(--dim); text-wrap: pretty; }
+.stairs small i { display: block; margin-bottom: 4px; font: 500 10px/1 var(--mono); font-style: normal; letter-spacing: .12em; text-transform: uppercase; color: var(--blue-hi); opacity: .8; }
+@media (max-width: 1280px) and (min-width: 761px) {
+  .stairs { grid-template-columns: 1fr; }
+  .stairs__end { display: none; }
+}
+@media (max-height: 800px) and (min-width: 761px) {
+  .stairs ol { height: 330px; }
+  .stairs li { padding: 16px; }
+  .stairs small { display: block; font-size: 12px; }
+  .stairs small i { display: none; }
+}
+@media (max-width: 760px) {
+  .stairs ol { height: auto; }
+  .stairs li { height: auto; overflow: visible; padding: 14px 16px; flex-direction: column; align-items: flex-start; gap: 4px; }
+  .stairs li small { display: block; font-size: 12px; }
+  .stairs small i { display: inline; margin: 0 6px 0 0; }
+}
+/* Ends become an axis under the steps, so the steps get the full width */
+.stairs { grid-template-columns: 1fr 1fr; grid-template-areas: "steps steps" "l r"; row-gap: 18px; }
+.stairs ol { grid-area: steps; width: 100%; }
+.stairs__end { display: block !important; padding: 14px 0 0; border-top: 1px solid var(--faint); align-self: start; }
+.stairs__end--l { grid-area: l; }
+.stairs__end--r { grid-area: r; text-align: right; position: relative; border-top-color: rgba(127, 208, 245, .5); }
+.stairs__end--r::before { content: ""; position: absolute; right: -2px; top: -5px; border: 5px solid transparent; border-left: 8px solid var(--blue-hi); border-right: 0; }
+.stairs__end small { display: inline; margin: 0 0 0 8px; }
+@media (max-width: 760px) {
+  .stairs { grid-template-columns: 1fr; grid-template-areas: "steps"; width: 100%; }
+  .stairs__end { display: none !important; }
+  .stairs ol { gap: 6px; }
+  .stairs li { width: 100%; padding: 10px 14px; }
+  .stairs b { font-size: 15px; }
+  .stairs li small { font-size: 11px; }
+}
