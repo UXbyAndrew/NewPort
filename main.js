@@ -51,15 +51,15 @@
   const loader = $('.loader');
   const countEl = $('[data-loader-count]');
   let seen = false;
-  try { seen = sessionStorage.getItem('uxba-seen') === '1'; } catch (e) { /* storage blocked */ }
+  try { seen = localStorage.getItem('uxba-seen') === '1' || sessionStorage.getItem('uxba-seen') === '1'; } catch (e) { /* storage blocked */ }
 
   const startIntro = () => {
     root.classList.add('is-ready');
     if (loader) {
       loader.classList.add('is-done');
-      setTimeout(() => loader.classList.add('is-gone'), 1100);
+      setTimeout(() => loader.classList.add('is-gone'), 750);
     }
-    try { sessionStorage.setItem('uxba-seen', '1'); } catch (e) { /* ignore */ }
+    try { localStorage.setItem('uxba-seen', '1'); } catch (e) { /* ignore */ }
   };
 
   if (!loader || reduced || seen) {
@@ -67,13 +67,13 @@
     requestAnimationFrame(() => root.classList.add('is-ready'));
   } else {
     const t0 = performance.now();
-    const dur = 1500;
+    const dur = 600;
     const tick = now => {
       const p = clamp((now - t0) / dur, 0, 1);
       const eased = 1 - Math.pow(1 - p, 3);
       countEl.textContent = Math.round(eased * 100);
       if (p < 1) requestAnimationFrame(tick);
-      else setTimeout(startIntro, 180);
+      else setTimeout(startIntro, 80);
     };
     requestAnimationFrame(tick);
   }
@@ -86,28 +86,10 @@
   }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
   $$('[data-reveal], [data-split], .project').forEach(el => io.observe(el));
 
-  /* ---------- Count-up numbers ---------- */
-  const countIO = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      countIO.unobserve(e.target);
-      const el = e.target;
-      const to = +el.dataset.count, pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
-      if (reduced) return;
-      const t0 = performance.now(), dur = 1800;
-      const step = now => {
-        const p = clamp((now - t0) / dur, 0, 1);
-        el.textContent = pre + Math.round(to * (1 - Math.pow(1 - p, 4))) + suf;
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    });
-  }, { threshold: 0.6 });
-  $$('[data-count]').forEach(el => countIO.observe(el));
 
   /* ---------- Header behavior & active nav ---------- */
   const header = $('.header');
-  const darkSections = $$('.marquee, .impact, .process, .contact');
+  const darkSections = $$('.marquee, .how, .contact');
   const navLinks = $$('.nav a');
   const sections = navLinks.map(a => $(a.getAttribute('href'))).filter(Boolean);
 
@@ -118,22 +100,10 @@
   const projects = $$('.project');
   const highlights = $$('[data-highlight]');
   const parallaxEls = $$('[data-parallax]');
-  const proc = $('.process');
-  const procTrack = $('.process__track');
-  const procBar = $('.process__head');
-  const steps = $$('.step');
   const contactTitle = $('[data-contact-title]');
 
   projects.forEach((p, i) => p.style.setProperty('--n', i));
 
-  // Section indicator data, read from each section's eyebrow
-  const where = $('.where');
-  const whereNum = where && $('.where__num', where);
-  const whereName = where && $('.where__name', where);
-  const whereSections = $$('section').map(el => {
-    const eb = $('.eyebrow', el); const n = eb && $('span', eb);
-    return n ? { el, num: n.textContent.trim(), name: eb.textContent.replace(n.textContent, '').trim() } : null;
-  }).filter(Boolean);
 
   // Duplicate marquee content for a seamless loop
   marquees.forEach(m => {
@@ -176,15 +146,6 @@
     sections.forEach((s, i) => { const r = s.getBoundingClientRect(); if (r.top < vh * 0.4 && r.bottom > vh * 0.4) active = i; });
     navLinks.forEach((a, i) => a.classList.toggle('is-active', i === active));
 
-    // section indicator
-    if (where) {
-      let cur = null;
-      whereSections.forEach(s => { const r = s.el.getBoundingClientRect(); if (r.top < vh * 0.5 && r.bottom > vh * 0.5) cur = s; });
-      where.classList.toggle('is-on', !!cur);
-      if (cur && whereNum.textContent !== cur.num) { whereNum.textContent = cur.num; whereName.textContent = cur.name; }
-      const wr = where.getBoundingClientRect();
-      where.classList.toggle('on-dark', darkSections.some(s => { const r = s.getBoundingClientRect(); return r.top <= wr.top && r.bottom >= wr.bottom; }));
-    }
 
     if (!reduced) {
       // marquee reacts to scroll velocity
@@ -245,25 +206,6 @@
       for (let i = 0; i < n; i++) words[i].classList.toggle('on', reduced || i < lit);
     });
 
-    // pinned horizontal process
-    if (proc && procTrack) {
-      if (isWide()) {
-        const r = proc.getBoundingClientRect();
-        const total = proc.offsetHeight - vh;
-        const t = clamp(-r.top / Math.max(total, 1), 0, 1);
-        const dist = Math.max(procTrack.scrollWidth - innerWidth, 0);
-        procTrack.style.transform = `translate3d(${(-t * dist).toFixed(1)}px,0,0)`;
-        procBar.style.setProperty('--pp', t.toFixed(4));
-        const activeIdx = Math.min(Math.floor(t * 4.2), 3);
-        steps.forEach((s, i) => s.classList.toggle('is-active', i === activeIdx));
-      } else {
-        procTrack.style.transform = '';
-        steps.forEach(s => {
-          const r = s.getBoundingClientRect();
-          s.classList.toggle('is-active', r.top < vh * 0.6 && r.bottom > vh * 0.3);
-        });
-      }
-    }
 
     requestAnimationFrame(frame);
   };
@@ -309,32 +251,6 @@
     });
   }
 
-  /* ---------- Rotating hero word ---------- */
-  const rot = $('[data-rotator]');
-  if (rot && !reduced) {
-    const items = [...rot.children];
-    let idx = 0;
-    // size the slot to the visible word so "design." always sits right after it
-    const fitRot = () => { rot.style.width = Math.ceil(items[idx].getBoundingClientRect().width) + 'px'; };
-    fitRot();
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitRot);
-    addEventListener('resize', fitRot);
-    setTimeout(() => setInterval(() => {
-      const cur = items[idx];
-      idx = (idx + 1) % items.length;
-      const nxt = items[idx];
-      cur.classList.remove('is-on'); cur.classList.add('is-out');
-      nxt.classList.remove('is-out'); nxt.classList.add('is-on');
-      fitRot();
-      setTimeout(() => {
-        // park the old word below without animating it back through view
-        cur.style.transition = 'none';
-        cur.classList.remove('is-out');
-        void cur.offsetWidth;
-        cur.style.transition = '';
-      }, 950);
-    }, 2600), 1800);
-  }
 
   /* ---------- Nav text roll ---------- */
   $$('.nav a').forEach(a => {
@@ -342,25 +258,6 @@
     a.innerHTML = `<span class="roll" data-text="${t}">${t}</span>`;
   });
 
-  /* ---------- Wordmark letters ---------- */
-  $$('.wm').forEach(wm => {
-    wm.innerHTML = [...wm.textContent].map(ch => `<span class="wl">${ch}</span>`).join('');
-  });
-
-  /* Fit the wordmark edge to edge, whatever font actually loads */
-  const wordmark = $('.wordmark');
-  const fitWordmark = () => {
-    if (!wordmark) return;
-    wordmark.style.fontSize = '';
-    const base = parseFloat(getComputedStyle(wordmark).fontSize);
-    const inner = [...wordmark.children].reduce((w, el) => w + el.getBoundingClientRect().width, 0);
-    const avail = wordmark.clientWidth - 2 * Math.min(innerWidth * 0.02, 24);
-    if (inner > 0) wordmark.style.fontSize = Math.min(base * avail / inner, 300).toFixed(1) + 'px';
-  };
-  fitWordmark();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWordmark);
-  let fitTimer;
-  addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitWordmark, 150); });
 
   /* ---------- Hero glow follows pointer; case images tilt ---------- */
   if (finePointer && !reduced) {
@@ -431,7 +328,7 @@
     const step = now => {
       const p = clamp((now - t0) / dur, 0, 1);
       el.textContent = pre + Math.round(to * (1 - Math.pow(1 - p, 4))) + suf;
-      if (p < 1) el._raf = requestAnimationFrame(step);
+      if (p < 1) el._raf = requestAnimationFrame(step); else el.textContent = pre + to + suf;
     };
     el._raf = requestAnimationFrame(step);
   };
@@ -440,6 +337,7 @@
     if (!nums.length) return;
     const run = () => nums.forEach((n, i) => setTimeout(() => countUp(n), 150 + i * 80));
     card.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') run(); });
+    card.addEventListener('pointerleave', () => nums.forEach(n => { cancelAnimationFrame(n._raf); n.textContent = (n.dataset.pre || '') + n.dataset.to + (n.dataset.suf || ''); }));
     card.addEventListener('focus', run);
   });
 
