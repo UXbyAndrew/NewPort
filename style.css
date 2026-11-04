@@ -216,12 +216,13 @@ button { font: inherit; color: inherit; }
 
 .hero__title {
   margin-top: 28px;
-  font: 500 clamp(44px, 6vw, 96px)/.96 var(--display); letter-spacing: -.035em;
+  font: 500 clamp(44px, 5.6vw, 88px)/.96 var(--display); letter-spacing: -.035em;
 }
 .line { display: block; overflow: hidden; padding: .04em 0 .14em; margin-bottom: -.12em; }
 .line__in { display: inline-flex; align-items: center; gap: .18em; }
-.hero__title em { font-style: normal; font-weight: 300; color: var(--accent-ink); }
-.rotator { display: inline-grid; overflow: hidden; transition: width .9s var(--ease); padding: .04em 0 .16em; margin: -.04em 0 -.16em; }
+.hero__title em { font-style: normal; font-weight: 400; color: var(--accent-ink); }
+.rotator { position: relative; display: inline-grid; vertical-align: bottom; overflow: hidden; transition: width .9s var(--ease); padding: .04em 0 .16em; margin: -.04em 0 -.16em; }
+.rotator::after { content: ""; position: absolute; left: 0; right: .12em; bottom: .1em; height: .06em; border-radius: 1em; background: var(--accent); opacity: .6; }
 .rotator > span { grid-area: 1 / 1; justify-self: start; transform: translateY(110%); transition: transform .9s var(--ease); white-space: nowrap; }
 .rotator > span.is-on { transform: none; }
 .rotator > span.is-out { transform: translateY(-110%); }
@@ -424,7 +425,7 @@ button { font: inherit; color: inherit; }
   .header { gap: 12px; }
   .pill-cta { padding: 12px 16px; min-height: 44px; }
   .hero__glow { display: none; }
-  .hero__title { font-size: clamp(36px, 10.4vw, 56px); }
+  .hero__title { font-size: clamp(34px, 9.4vw, 52px); }
   .hero__face { width: 1.3em; }
   .roll::after { display: none; }
   .nav a::after { display: none; }
@@ -598,7 +599,7 @@ button { font: inherit; color: inherit; }
 /* Short laptop screens: tighten the hero so the reel sits above the fold */
 @media (min-width: 761px) and (max-height: 820px) {
   .hero { padding-top: calc(var(--header-h) + 24px); }
-  .hero__title { margin-top: 16px; font-size: clamp(40px, 5.2vw, 84px); }
+  .hero__title { margin-top: 16px; font-size: clamp(40px, 5vw, 80px); }
   .hero__foot { margin-top: 16px; }
   .hero__lede { font-size: 16px; }
   .reel { margin-top: 24px; height: clamp(250px, calc(100svh - 440px), 480px); }
