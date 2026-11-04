@@ -269,6 +269,7 @@ button { font: inherit; color: inherit; }
 .work { padding: clamp(96px, 12vw, 180px) 0 clamp(96px, 12vw, 160px); }
 .stack { max-width: var(--max); margin: clamp(48px, 7vw, 96px) auto 0; padding: 0 var(--gutter); }
 .project {
+  --bg: var(--ink-2); --fg: #f4f1ec; --accent: var(--accent-hi);
   position: sticky; top: calc(var(--header-h) + 16px + var(--n, 0) * 14px);
   margin-bottom: 6vh; transform-origin: 50% 0;
 }
@@ -513,6 +514,7 @@ button { font: inherit; color: inherit; }
   height: clamp(260px, calc(100svh - 560px), 480px);
 }
 .reel__card {
+  --bg: var(--ink-2);
   position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; isolation: isolate;
   border-radius: clamp(18px, 2vw, 28px); background: var(--bg); color: #fff;
   transition: flex-grow .9s var(--ease), box-shadow .5s;
