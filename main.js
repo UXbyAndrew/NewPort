@@ -252,6 +252,39 @@
   }
 
 
+  /* ---------- Rotating hero word (pauses on the hovered project's word) ---------- */
+  const rot = $('[data-rotator]');
+  if (rot) {
+    const items = [...rot.children];
+    let idx = 0, held = false;
+    const fit = () => { rot.style.width = Math.ceil(items[idx].getBoundingClientRect().width) + 'px'; };
+    const show = n => {
+      if (n === idx) return;
+      const cur = items[idx], nxt = items[n];
+      idx = n;
+      cur.classList.remove('is-on'); cur.classList.add('is-out');
+      nxt.classList.remove('is-out'); nxt.classList.add('is-on');
+      fit();
+      setTimeout(() => {
+        if (cur === items[idx]) return;
+        cur.style.transition = 'none'; cur.classList.remove('is-out'); void cur.offsetWidth; cur.style.transition = '';
+      }, 950);
+    };
+    fit();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    addEventListener('resize', fit);
+    if (!reduced) setTimeout(() => setInterval(() => { if (!held && !document.hidden) show((idx + 1) % items.length); }, 2800), 2200);
+    $$('.reel__card[data-word]').forEach(card => {
+      const n = items.findIndex(s => s.textContent === card.dataset.word);
+      if (n < 0) return;
+      const on = () => { held = true; show(n); };
+      card.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') on(); });
+      card.addEventListener('focus', on);
+      card.addEventListener('pointerleave', () => { held = false; });
+      card.addEventListener('blur', () => { held = false; });
+    });
+  }
+
   /* ---------- Nav text roll ---------- */
   $$('.nav a').forEach(a => {
     const t = a.textContent.trim();
